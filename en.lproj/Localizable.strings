@@ -1,0 +1,40 @@
+/*
+  Localizable.strings
+  trainig
+
+  Created by omer yildirim on 27.01.2025.
+  
+*/
+
+"sign_in" = "Sign In";
+"sign_up" = "Sign Up";
+"forgot_pass" = "Forgot Password?";
+"orStr" = "Or";
+"man" = "Man";
+"woman" = "Woman";
+"trans" = "Trans Gender";
+"nonbin" = "Non-Binary";
+"what_are_u_interested" = "What are you interested in?";
+"select_int_desc" = "Please select so we can personalize your training plans and provide recommendations tailored to your needs";
+"yrs" = "year(s)";
+"yrs_short" = "yrs";
+"experiences"="Experiences";
+"experiences_desc"="Please share your experiences with us so that users will be impressed by your experiences and get to know you better!";
+"certificates"="Certificates";
+"certificates_desc"="Please share your certificates with us. Users will want to make sure of your proficiency!";
+"d" = "d";
+"h" = "h";
+"m" = "m";
+"comments" = "Comments";
+"interests" = "Interests";
+"age" = "Age";
+"weight" = "Weight";
+"height" = "Height";
+"upcoming" = "Upcoming Trainings";
+"recommended_trainers" = "Recommended Trainers";
+"total_profit" = "Total Profit";
+"monthly_profit" = "Monthly Profit";
+"comments" = "Comments";
+"specialities" = "Specialities";
+"about" = "About";
+"trainings" = "Trainings";

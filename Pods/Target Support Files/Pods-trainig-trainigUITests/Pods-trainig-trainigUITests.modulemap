@@ -1,0 +1,6 @@
+framework module Pods_trainig_trainigUITests {
+  umbrella header "Pods-trainig-trainigUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
