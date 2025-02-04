@@ -1,0 +1,46 @@
+//
+//  UpdatePhotoViewController.swift
+//  trainig
+//
+//  Created by omer yildirim on 3.02.2025.
+//
+
+import UIKit
+
+class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+
+    @IBOutlet weak var imgView: UIImageView!
+    let imagePickerController = UIImagePickerController()
+    @IBOutlet weak var pickBtn: UIButton!
+    var imageURL: URL?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imagePickerController.delegate=self
+    }
+    @IBAction func pickImage(_ sender: Any) {
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.mediaTypes = ["public.image"]
+
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        let img=selectedImage.resize(Int(imgView.frame.width), Int(imgView.frame.height))
+        imgView.image = img
+        imgView.contentMode = .scaleToFill
+        dismiss(animated: true, completion: nil)
+    }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
