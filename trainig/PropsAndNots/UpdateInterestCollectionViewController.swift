@@ -14,7 +14,7 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title=String(localized:"interests")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -82,6 +82,17 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
         interestsList[indexPath.row].selected.toggle()
         cell.setBack(with: interestsList[indexPath.row])
         //InterestCollection.reloadData()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
     }
     // MARK: UICollectionViewDelegate
 

@@ -21,7 +21,7 @@ class UpdatePersonalViewController: UIViewController {
     var weights: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title=String(localized:"personal_info")
         wPicker.delegate = self
         hPicker.delegate = self
         wPicker.dataSource = self
@@ -113,6 +113,17 @@ class UpdatePersonalViewController: UIViewController {
     @IBAction func t_up(_ sender: Any) {
         selectedTextField = sender as? UITextField
     
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
     }
     /*
     // MARK: - Navigation

@@ -26,6 +26,18 @@ class InterestsCell: UICollectionViewCell {
             back.backgroundColor = UIColor(named: "DrkBack")
         }
     }
+    func setBack2(with interest_item:InterestItem){
+        if interest_item.selected{
+            back.backgroundColor = UIColor(named: "MainColor")
+        }else{
+            back.backgroundColor = UIColor.clear
+        }
+    }
+    func organize(item:CGFloat,color:UIColor){
+        let height:CGFloat=self.frame.height;
+        back.layer.cornerRadius = height/item
+        back.backgroundColor = color
+    }
     override init(frame: CGRect) {
             super.init(frame: frame); common() }
         

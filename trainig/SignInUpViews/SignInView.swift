@@ -15,10 +15,11 @@ class SignInView: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var forgot_btn: UIButton!
     @IBOutlet weak var orLabel: UILabel!
+    public var delegate: sign_in_up_delegate?
     override func viewDidLoad() {
         super.viewDidLoad()
        
-       
+        
         forgot_btn.setTitle(String(localized: "forgot_pass"), for: .normal)
         //sign_in_button.setTitle(String(localized: "sign_in"), for: .normal)
         sign_in_button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -28,7 +29,10 @@ class SignInView: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func sign_in_cl(_ sender: Any) {
+        delegate?.sign_in()
+    }
+    
     /*
     // MARK: - Navigation
 

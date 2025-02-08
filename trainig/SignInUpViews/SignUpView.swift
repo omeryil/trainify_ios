@@ -10,14 +10,20 @@ import UIKit
 class SignUpView: UIViewController {
 
     @IBOutlet weak var sign_up: CustomButton!
+    public var delegate: sign_in_up_delegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-        sign_up.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        sign_up.titleLabel?.text = String(localized: "sign_up")
+       
+        sign_up.setTitle(String(localized: "sign_up"), for: .normal)
+        sign_up.setTitle(String(localized: "sign_up"), for: .selected)
+       
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func sign_up_cl(_ sender: Any) {
+        delegate?.sign_up()
+    }
+    
     /*
     // MARK: - Navigation
 

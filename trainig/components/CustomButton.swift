@@ -13,6 +13,7 @@ class CustomButton: UIButton {
         let height:CGFloat=self.frame.height;
         layer.cornerRadius = height/2
         clipsToBounds=true
+        self.titleLabel?.font=UIFont.systemFont(ofSize: 17, weight: .bold)
     }
     override var isHighlighted: Bool {
         didSet {

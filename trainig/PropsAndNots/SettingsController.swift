@@ -25,7 +25,7 @@ class SettingsController: UITableViewController {
         data.append(about)
         tableView.sectionHeaderTopPadding=16
         self.title = "Settings"
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+       
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,16 +33,30 @@ class SettingsController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     func addSwitch() {
         not.append(SwitchItem(title: "Allow/Reject Notifications",checked: true))
         coms.append(SwitchItem(title: "Allow/Reject Comments",checked: false))
     }
     func addForward() {
         
-        let pi = storyboard?.instantiateViewController(withIdentifier: "pi") as! PersonalInfo
+        let pi = storyboard?.instantiateViewController(withIdentifier: "upPerson") as! UpdatePersonalViewController
+        let ab = storyboard?.instantiateViewController(withIdentifier: "abt") as! UpdateAboutViewController
+        let ints = storyboard?.instantiateViewController(withIdentifier: "upInterests") as! UpdateInterestCollectionViewController
+        let photo = storyboard?.instantiateViewController(withIdentifier: "upPhoto") as! UpdatePhotoViewController
+        let video = storyboard?.instantiateViewController(withIdentifier: "upVideo") as! UpdateVideoViewController
         
-        personalInfo.append(ForwardItem(title: "Personal Info",controller: pi))
-        about.append(ForwardItem(title: "About App",controller: pi ))
+        personalInfo.append(ForwardItem(title: String(localized:"personal_info"),controller: pi))
+        personalInfo.append(ForwardItem(title: String(localized:"profile_photo"),controller: photo ))
+        personalInfo.append(ForwardItem(title: String(localized:"promotion_video"),controller: video ))
+        personalInfo.append(ForwardItem(title: String(localized:"about"),controller: ab ))
+        personalInfo.append(ForwardItem(title: String(localized:"interests"),controller: ints ))
+    
     }
     // MARK: - Table view data source
 
@@ -103,10 +117,16 @@ class SettingsController: UITableViewController {
         case is [ForwardItem]:
             let fItems=cellModel as! [ForwardItem]
             let item = fItems[indexPath.row]
-            present(item.controller as! UIViewController, animated: true)
+            self.navigationController?.pushViewController(item.controller as! UIViewController, animated: true)
         default: break
             
         }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "upPhoto"{
+            let vc = segue.destination as UIViewController
+                vc.navigationItem.title = "Update Photo"
+            }
     }
     /*
     // Override to support conditional editing of the table view.

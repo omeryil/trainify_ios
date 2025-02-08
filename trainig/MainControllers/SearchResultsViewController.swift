@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
+class SearchResultsViewController: UIViewController,filterDelegate {
+    func returnFilter(filter: FilterItem) {
+        self.filterItem=filter
+        print(filter)
+    }
+    var filterItem = FilterItem()
     @IBOutlet weak var recommendedCollection: UICollectionView!
     @IBOutlet weak var searchResultTable: UITableView!
     
@@ -45,6 +50,12 @@ class SearchResultsViewController: UIViewController {
         searchList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
         searchList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1,5 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
         searchList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "40 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
+    }
+    @IBAction func filter_cl(_ sender: Any) {
+        let fc=storyboard?.instantiateViewController(withIdentifier: "fltr") as! Filter
+        fc.delegate=self
+        fc.filterItem=self.filterItem
+        present(fc, animated: true)
     }
     /*
     // MARK: - Navigation
@@ -101,6 +112,15 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
   
-          
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor(named: "DarkCellBack")
+          }
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor.clear
+          }
+    }
     
 }

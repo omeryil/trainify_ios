@@ -7,20 +7,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,sign_in_up_delegate {
+    func sign_up() {
+        let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        self.navigationController!.pushViewController(n, animated: true)
+    }
+    
+    func sign_in() {
+        let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        self.navigationController!.pushViewController(n, animated: true)
+    }
+    
 
     @IBOutlet var sView: UIView!
     @IBOutlet weak var vc: UIView!
     @IBOutlet weak var segment: CustomSegmented!
-    var views: [UIView] = [SignInView().view,SignUpView().view]
+    var views: [UIViewController] = [SignInView(),SignUpView()]
     var position: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         for v in views{
-            vc.addSubview(v)
+            if v is SignInView{
+                (v as! SignInView).delegate = self
+            }
+            if v is SignUpView{
+                (v as! SignUpView).delegate = self
+            }
+            vc.addSubview(v.view)
         }
-        vc.bringSubviewToFront(views[0])
-        views[1].alpha = 0
+        vc.bringSubviewToFront(views[0].view)
+        views[1].view.alpha = 0
         
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
@@ -66,10 +83,10 @@ class ViewController: UIViewController {
     }
     func bringToFront(index:Int){
         for v in views{
-            v.alpha = 0
+            v.view.alpha = 0
         }
-        views[index].alpha = 1
-        vc.bringSubviewToFront(views[index])
+        views[index].view.alpha = 1
+        vc.bringSubviewToFront(views[index].view)
     }
     
 

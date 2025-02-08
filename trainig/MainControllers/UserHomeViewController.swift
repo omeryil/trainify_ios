@@ -89,7 +89,16 @@ extension UserHomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: recommendedList[indexPath.row])
         return cell
     }
-  
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor(named: "DarkCellBack")
+          }
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor.clear
+          }
+    }
           
     
 }

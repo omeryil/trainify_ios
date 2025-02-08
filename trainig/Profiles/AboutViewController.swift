@@ -12,10 +12,12 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var aboutText: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = String(localized:"about")
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
     /*
     // MARK: - Navigation

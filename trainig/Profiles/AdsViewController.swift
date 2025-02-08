@@ -59,4 +59,14 @@ extension AdsViewController: UITableViewDelegate, UITableViewDataSource {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
+            cell.backgroundColor = UIColor(named: "DarkCellBack")
+          }
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
+            cell.backgroundColor = UIColor.clear
+          }
+    }
 }

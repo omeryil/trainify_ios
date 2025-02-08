@@ -16,6 +16,8 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController.delegate=self
+        self.title=String(localized:"profile_photo")
+       
     }
     @IBAction func pickImage(_ sender: Any) {
         imagePickerController.allowsEditing = true
@@ -32,6 +34,21 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
         imgView.image = img
         imgView.contentMode = .scaleToFill
         dismiss(animated: true, completion: nil)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+       
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
     }
     /*
     // MARK: - Navigation

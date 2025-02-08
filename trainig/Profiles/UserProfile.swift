@@ -58,6 +58,10 @@ class UserProfile: UIViewController {
         heightText.text="172 cm"
         
     }
+    @IBAction func settings_cl(_ sender: Any) {
+        let n = storyboard?.instantiateViewController(withIdentifier: "sett") as! SettingsController
+        self.navigationController!.pushViewController(n, animated: true)
+    }
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer)
     {
         if sender.direction == .left

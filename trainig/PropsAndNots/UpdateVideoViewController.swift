@@ -17,7 +17,7 @@ class UpdateVideoViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         plyBtn.isHidden = true
-       
+        self.title=String(localized:"promotion_video")
     }
     @IBAction func play(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "vp") as! VideoPlay
@@ -53,7 +53,17 @@ class UpdateVideoViewController: UIViewController, UIImagePickerControllerDelega
         plyBtn.isHidden = false
         dismiss(animated: true, completion: nil)
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
+    }
     /*
     // MARK: - Navigation
 

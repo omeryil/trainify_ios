@@ -33,6 +33,16 @@ class Experiences: UIViewController,UITableViewDelegate,UITableViewDataSource,UI
         selectedCell = tableView.cellForRow(at: indexPath) as? ExperiencesCell
         dummy.becomeFirstResponder()
     }
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor(named: "DarkCellBack")
+          }
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+            cell.backgroundColor = UIColor.clear
+          }
+    }
     @IBOutlet weak var desc: UITextView!
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var experienceTable: UITableView!

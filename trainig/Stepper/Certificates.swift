@@ -19,7 +19,16 @@ class Certificates: UIViewController,UITableViewDelegate,UITableViewDataSource {
         cell.configure(with: certificates[indexPath.row])
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CertificateCell {
+            cell.backgroundColor = UIColor(named: "DarkCellBack")
+          }
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CertificateCell {
+            cell.backgroundColor = UIColor.clear
+          }
+    }
 
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var desc: UITextView!

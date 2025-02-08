@@ -6,74 +6,320 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A3EC62A4F45D383A4C5CBE15BFF10712 /* Build configuration list for PBXAggregateTarget "AgoraRtcEngine_iOS" */;
+			buildPhases = (
+				6AF7D79D5ED8248A2D4917A7183E8919 /* [CP] Copy XCFrameworks */,
+			);
+			dependencies = (
+			);
+			name = AgoraRtcEngine_iOS;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		12821039F94ED96DED38991418421627 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		13A2979023DB42BB8EA2726671C86E6E /* Pods-trainigTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BE08468098DDAC07453DCC23EBC30 /* Pods-trainigTests-dummy.m */; };
-		157B8742BDCBF6DA0C2059841361B09D /* Pods-trainig-trainigUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F78637FED56AAA4817F85F93D38CED /* Pods-trainig-trainigUITests-dummy.m */; };
+		01411588CA6D3306B685EB338116F20B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 79C1D27C2D4CF0FD39EB6A78925B7221 /* PrivacyInfo.xcprivacy */; };
+		06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback-AvailableHapticFeedback in Resources */ = {isa = PBXBuildFile; fileRef = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */; };
+		0864A3BBF109291830463A1C8B35BB05 /* NSManagedObjectContext+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D542ECE31962C4562D93D96FFB2A67 /* NSManagedObjectContext+Sweeter.swift */; };
+		098F54BDDA2E3D0DD00498ED79EA0380 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		0BF0A0E5AEB650EE711710E77ADD15D1 /* UIApplication+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244FAC8B94B8AED793F42B491B32DA2 /* UIApplication+Sweeter.swift */; };
+		0D0060C298B0AC79985CC92B71D6D992 /* MultiSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1500640CAB5C14586CC62C5E62AE12C3 /* MultiSlider-dummy.m */; };
+		13A2979023DB42BB8EA2726671C86E6E /* Pods-trainigTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F6F1D03DABF88B215800E87DEEAA60 /* Pods-trainigTests-dummy.m */; };
+		15FF1750978388C530123779FF255603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		1A51BD4E195CB4A266035A98CEF2466D /* SweeterSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F894D1B654B4F0F1231E1FB1E915210 /* SweeterSwift-dummy.m */; };
+		26EECEA8FF438D1D08F86B32F7C5E506 /* SweeterSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0D7E34A1855D52D0441B1F0A227CAC /* SweeterSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2966FA54BD00034649BA40B20C3D15E4 /* DateFormatter+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F800D024A30668DBBF715D77176D25 /* DateFormatter+Sweeter.swift */; };
+		31CA75B75BDE3EB676DD92909FFBF86C /* AvailableHapticFeedback-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 960E50FA18E0CA2456C7406AB0D1F2D5 /* AvailableHapticFeedback-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3758AE986B9C92B02A8EA218872EC9DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		61C22FA33463AF96576360DCF817B5B0 /* Pods-trainig-trainigUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8176190CB3D1C038A7621EFAB71282FF /* Pods-trainig-trainigUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E18902BEF26A80A67C22823645FAC9 /* Pods-trainig-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC23BEA8EE3A8D496B3B083F86E7BD /* Pods-trainig-dummy.m */; };
-		83B0CEB9441B5045979E35E985C6F5D8 /* Pods-trainig-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4F4559CBE73D69AB4410B8C29B1124 /* Pods-trainig-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8944A33BD3E7AEB4FC981D52892B4D36 /* Pods-trainigTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 80CC8B1572649ECBF56C63523D570FA0 /* Pods-trainigTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		89882727BE17937508D5B211722C7FAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		3DF23312389A7FDE15645F9E9759E7AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		45A52E9AE4BB893716C5960ADA916F10 /* UIViewController+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FDD8D77214F811ED5C622B82B8886 /* UIViewController+Sweeter.swift */; };
+		468C00BBF948D6CDD1D9505AB1A1C6CD /* Bundle+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409972736351EE2E0CC69644334E6E5D /* Bundle+Sweeter.swift */; };
+		4701EFF78C6A23ED279881EE983337FB /* SweeterSwift-SweeterSwift in Resources */ = {isa = PBXBuildFile; fileRef = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */; };
+		54F4ED0B4CE2DA3A9DA2E2F8F4012A86 /* NSAttributedString+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9E6DB7031F64084B8C2A9BB0FDFD5 /* NSAttributedString+Sweeter.swift */; };
+		5B4F8D87FD0CA23169AFF67DF4E8319B /* MultiSlider+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8203871B2ACBA07417A028B248DCD91 /* MultiSlider+Internal.swift */; };
+		633294839E437AB80ADAAA69D883A342 /* Pods-trainig-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A88C7CBD9A81BD97B483D4ACA1DBD2A2 /* Pods-trainig-dummy.m */; };
+		661EF03C4D5637152D6CB379AFBCF2BA /* AvailableHapticFeedback-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA0B3AD6B46C1EB8FBB1676034ED973 /* AvailableHapticFeedback-dummy.m */; };
+		6F14E229E7B8E31534F2056526E14913 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D5B2064725BF70D65BED636FF472EBE4 /* PrivacyInfo.xcprivacy */; };
+		7B570B6376AFB8E0CFBCE78DE0C5B80D /* TimeInterval+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D688C2301F06C3BB7299692F34EC15D3 /* TimeInterval+Sweeter.swift */; };
+		7CB75ACD633DEC75B929E01D42672B29 /* MultiSliderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0B147E375F6EB470F3FF29606CC2 /* MultiSliderExtensions.swift */; };
+		7DDF271D63311443B6FA1E6011ED1835 /* UITextView+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EAF411868ECEC7D464CC00FFFF195C /* UITextView+Sweeter.swift */; };
+		7F20D269CA410B1C1B0B0DF047EEF86F /* Swift+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10DCDF510BA07D70D4CBED48B0B49FD /* Swift+Sweeter.swift */; };
+		8944A33BD3E7AEB4FC981D52892B4D36 /* Pods-trainigTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D6BFBDEE1BCD37914FB511A8E569BE4 /* Pods-trainigTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A9EE06523FDF7E453931F0920C3EFAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		8C442EFFBF858F2CED35FAC9B990B04D /* MultiSlider+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD70B3650745307EBCCBCB25280C1B /* MultiSlider+Drag.swift */; };
+		8F06BAF058E622E63DEBF22A8FCD92E1 /* UIStackView+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20428FDAA533FB041461FE0D4E375264 /* UIStackView+Sweeter.swift */; };
+		92C4D29FAD5A4066759065A41FAAE6D5 /* MultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A527CAAD541278F60D4F6B1BA17E671 /* MultiSlider.swift */; };
+		9E22614C385B9C02DB721AD7E2DADAD9 /* String+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F4C659191C82A75CC3185B5D1206BB /* String+Sweeter.swift */; };
+		A6FD166CE7274042ABB78B73B78B75F5 /* Codable+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8AD5FBAA7F90674FEFF6B7955594D0 /* Codable+Sweeter.swift */; };
+		BD579F911991B93FF24D193D1786A353 /* Pods-trainig-trainigUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0031362BF41F18CAC09E7CCA1E911 /* Pods-trainig-trainigUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C01EA1BFBCEA15C40CBA8C1F8DCDE16A /* NSObject+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A7A1DEB3AC85BAF6A1FF41F521F179 /* NSObject+Sweeter.swift */; };
+		C44E5DE03C7BDF7D319821DC02913868 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		DB94901167B42AC84ABCBD4F7B612F1C /* MultiSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CD810D0A68AD53C48F5334AFE0363E7F /* MultiSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3D1CA607F05ECCF35F7062BC6191DB1 /* AvailableHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298CC39E2C6E481C2426BCFB0A62AF2 /* AvailableHapticFeedback.swift */; };
+		E77E582482EE6D2C6456202937312E62 /* Pods-trainig-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20295517C0E3E3F5FCE67158D84D3A2F /* Pods-trainig-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F005773E01DE6C370AD76BB373038F6F /* UIView+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D537CAA2066B9F8C7F90EE1A78D6D629 /* UIView+Sweeter.swift */; };
+		FB47ED7AE5697C0B14C3400C6DF2BECE /* Pods-trainig-trainigUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93B0E387E20DAC83C681B80B3D292B /* Pods-trainig-trainigUITests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3983EA5623269D45FC8358225A88FF52 /* PBXContainerItemProxy */ = {
+		154460E3EA84E8166126C214764F47B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6819F499159C87193DDD7D51504DD6C1;
+			remoteInfo = SweeterSwift;
+		};
+		24F957794622CA29873BAEAD54D343CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6819F499159C87193DDD7D51504DD6C1;
+			remoteInfo = SweeterSwift;
+		};
+		4BF70E9ECBDAC1CFC9FCF23F7612C7D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3512EBC5B210EF5D4D638A864E7E2A40;
+			remoteInfo = AvailableHapticFeedback;
+		};
+		4C47856B3BFAE0688C9B51934F1FCE6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3512EBC5B210EF5D4D638A864E7E2A40;
+			remoteInfo = AvailableHapticFeedback;
+		};
+		50B29488B44E3528AB684CB672382D1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6AC06A0352BD0093A0EFD2CDDF7680D8;
+			remoteInfo = "SweeterSwift-SweeterSwift";
+		};
+		51E0E9542939BFF69192A16FF7EBA9F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4D4D88BD8F45F312B63020B8BDD359A6;
 			remoteInfo = "Pods-trainig";
 		};
+		6450C32200670B354962B5C2F6C5A0F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3512EBC5B210EF5D4D638A864E7E2A40;
+			remoteInfo = AvailableHapticFeedback;
+		};
+		9758E482E6FF4E87D568A9AEDA792D73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F69984ED0D5D3CC1B9D170E4AC78A24E;
+			remoteInfo = MultiSlider;
+		};
+		978A9741BB402E32EDBC4CB467DE833A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 183C29DD6DE04D22CA29BAE61F5C530B;
+			remoteInfo = AgoraRtcEngine_iOS;
+		};
+		B6C4A1C5DE8713D472F6322EB36D25D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 183C29DD6DE04D22CA29BAE61F5C530B;
+			remoteInfo = AgoraRtcEngine_iOS;
+		};
+		DBCA048AF83F3B602BB7667A165E3C6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6819F499159C87193DDD7D51504DD6C1;
+			remoteInfo = SweeterSwift;
+		};
+		E2109686175AF217688F387D2DF071B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F69984ED0D5D3CC1B9D170E4AC78A24E;
+			remoteInfo = MultiSlider;
+		};
+		E46CFF9C42A632D3EC4D91780A2AF903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1983B503ED76448415D8C36BFC740644;
+			remoteInfo = "AvailableHapticFeedback-AvailableHapticFeedback";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E67131A8DD091B98456FCF3E5FE70A /* Pods-trainig-trainigUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-trainigUITests-Info.plist"; sourceTree = "<group>"; };
-		1AF550E32D2EBCA543B8C8091C82A720 /* Pods-trainig-trainigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1BD02DE8D83D5349CA3E11EC1ABEE3A6 /* Pods-trainig-trainigUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-trainigUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		2361CBCD2DAAB56B37C9CBFB6A500813 /* Pods-trainig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig.debug.xcconfig"; sourceTree = "<group>"; };
-		2495EE939B869A4592421E05440062E5 /* Pods-trainig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig.release.xcconfig"; sourceTree = "<group>"; };
-		35DFBD737796195796CF58FA116E7395 /* Pods-trainigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.debug.xcconfig"; sourceTree = "<group>"; };
+		033E999C40FC15788C07729964BB7E0F /* ResourceBundle-AvailableHapticFeedback-AvailableHapticFeedback-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-AvailableHapticFeedback-AvailableHapticFeedback-Info.plist"; sourceTree = "<group>"; };
+		0642352505BB3032DB88663AE3138B72 /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
+		086FDD8D77214F811ED5C622B82B8886 /* UIViewController+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Sweeter.swift"; path = "Source/UIViewController+Sweeter.swift"; sourceTree = "<group>"; };
+		0E66320DE277A4EB809DC2E770DEF503 /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_enc.xcframework; sourceTree = "<group>"; };
+		1298CC39E2C6E481C2426BCFB0A62AF2 /* AvailableHapticFeedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AvailableHapticFeedback.swift; path = Sources/AvailableHapticFeedback.swift; sourceTree = "<group>"; };
+		1500640CAB5C14586CC62C5E62AE12C3 /* MultiSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MultiSlider-dummy.m"; sourceTree = "<group>"; };
+		16AA580B6A694D1AE9DB3B7B55A17C5D /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
+		18A4212BDCAF9D2C59CC61CE4B46B4A2 /* Pods-trainig-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-trainig-frameworks.sh"; sourceTree = "<group>"; };
+		1905A3794095797D691E21FECB6FE480 /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
+		1E7130AB1DDEBC16B25908C2062CA251 /* Pods-trainig-trainigUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-trainigUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		1FF4F1AA01C2A982252FDA709658A709 /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
+		20295517C0E3E3F5FCE67158D84D3A2F /* Pods-trainig-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainig-umbrella.h"; sourceTree = "<group>"; };
+		20428FDAA533FB041461FE0D4E375264 /* UIStackView+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStackView+Sweeter.swift"; path = "Source/UIStackView+Sweeter.swift"; sourceTree = "<group>"; };
+		20A7A1DEB3AC85BAF6A1FF41F521F179 /* NSObject+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Sweeter.swift"; path = "Source/NSObject+Sweeter.swift"; sourceTree = "<group>"; };
+		254866391CE7B3165471F8BE24C712B2 /* Pods-trainigTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainigTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		261425C65D567DBEB4EE75304B14F2CD /* MultiSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MultiSlider-Info.plist"; sourceTree = "<group>"; };
+		281A2820740EEFC4F1E11D84E15B85AF /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
+		28A8B06489E26B268A95E612D98F4FF0 /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
+		2BAD214141C3F44248B576DD55575562 /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
+		2C93B0E387E20DAC83C681B80B3D292B /* Pods-trainig-trainigUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainig-trainigUITests-dummy.m"; sourceTree = "<group>"; };
+		2EA0031362BF41F18CAC09E7CCA1E911 /* Pods-trainig-trainigUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainig-trainigUITests-umbrella.h"; sourceTree = "<group>"; };
+		32A16E25DED21305166BEC31E80712EE /* Pods-trainig-trainigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.release.xcconfig"; sourceTree = "<group>"; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		38D680DB54898ED49743A30089F94269 /* MultiSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MultiSlider.modulemap; sourceTree = "<group>"; };
+		3F894D1B654B4F0F1231E1FB1E915210 /* SweeterSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SweeterSwift-dummy.m"; sourceTree = "<group>"; };
+		3FC99FCBDAF2C89E4218EA7175232D0B /* Pods-trainigTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainigTests-Info.plist"; sourceTree = "<group>"; };
+		409972736351EE2E0CC69644334E6E5D /* Bundle+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+Sweeter.swift"; path = "Source/Bundle+Sweeter.swift"; sourceTree = "<group>"; };
 		40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainig-trainigUITests"; path = Pods_trainig_trainigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423B7BE71642078D6CEC4F85DF353144 /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
+		4595A882730CA18A72125F587FFFBF85 /* Pods-trainig-trainigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainigTests"; path = Pods_trainigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		56EE0BFF080D70E084A4754160CC0917 /* Pods-trainig-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-acknowledgements.plist"; sourceTree = "<group>"; };
-		6EEF7EE466D980DB424D299098BD7282 /* Pods-trainig-trainigUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-trainigUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7312B89012B43FFB4549C031746D1184 /* Pods-trainig-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-Info.plist"; sourceTree = "<group>"; };
-		77E012DB056B0940BC801312ACA49496 /* Pods-trainigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.release.xcconfig"; sourceTree = "<group>"; };
-		80CC8B1572649ECBF56C63523D570FA0 /* Pods-trainigTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainigTests-umbrella.h"; sourceTree = "<group>"; };
-		8176190CB3D1C038A7621EFAB71282FF /* Pods-trainig-trainigUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainig-trainigUITests-umbrella.h"; sourceTree = "<group>"; };
-		8248FA333541844BD2D80FA6042029C3 /* Pods-trainig.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig.modulemap"; sourceTree = "<group>"; };
+		4A527CAAD541278F60D4F6B1BA17E671 /* MultiSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiSlider.swift; path = Sources/MultiSlider.swift; sourceTree = "<group>"; };
+		4ADA4EDEA2A4C8957F8494F12510189F /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
+		4B0E7811F9A90382DB734DAE509C0636 /* SweeterSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SweeterSwift-Info.plist"; sourceTree = "<group>"; };
+		4C1F0B147E375F6EB470F3FF29606CC2 /* MultiSliderExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiSliderExtensions.swift; path = Sources/MultiSliderExtensions.swift; sourceTree = "<group>"; };
+		4DFE262AD7E135A9D24BBBF88DECC4E0 /* SweeterSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SweeterSwift.modulemap; sourceTree = "<group>"; };
+		5244FAC8B94B8AED793F42B491B32DA2 /* UIApplication+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Sweeter.swift"; path = "Source/UIApplication+Sweeter.swift"; sourceTree = "<group>"; };
+		528092D11631210E83B202B5A1EEF05A /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
+		5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "AvailableHapticFeedback-AvailableHapticFeedback"; path = AvailableHapticFeedback.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDD70B3650745307EBCCBCB25280C1B /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MultiSlider+Drag.swift"; path = "Sources/MultiSlider+Drag.swift"; sourceTree = "<group>"; };
+		5D03DEB3B27289F21506816ECD78525A /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
+		5D6BFBDEE1BCD37914FB511A8E569BE4 /* Pods-trainigTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainigTests-umbrella.h"; sourceTree = "<group>"; };
+		5DA44AA5199D7FFBF017534AF74FAD9C /* Pods-trainig-trainigUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-trainigUITests-Info.plist"; sourceTree = "<group>"; };
+		5F20E71A602558E3DEACE36FB4904319 /* Pods-trainigTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainigTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6299194F9748BC04F90627F035A58AB3 /* Pods-trainigTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainigTests.modulemap"; sourceTree = "<group>"; };
+		67BC76C1660FCD031A07EEE49B89BAEC /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
+		68D542ECE31962C4562D93D96FFB2A67 /* NSManagedObjectContext+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectContext+Sweeter.swift"; path = "Source/NSManagedObjectContext+Sweeter.swift"; sourceTree = "<group>"; };
+		6939BDB9B4F343A93783C59B085C533A /* AgoraRtcEngine_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraRtcEngine_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
+		6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "SweeterSwift-SweeterSwift"; path = SweeterSwift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E3B6E0AAD7B9C3BFB5836C0D23C5489 /* ResourceBundle-SweeterSwift-SweeterSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SweeterSwift-SweeterSwift-Info.plist"; sourceTree = "<group>"; };
+		71C537869A4D2B6E1C75B0C6CBF78F6E /* SweeterSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SweeterSwift.release.xcconfig; sourceTree = "<group>"; };
+		71F6F1D03DABF88B215800E87DEEAA60 /* Pods-trainigTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainigTests-dummy.m"; sourceTree = "<group>"; };
+		730D8A4EF064C1DB7D1285FC26395BA7 /* MultiSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MultiSlider-prefix.pch"; sourceTree = "<group>"; };
+		75BA847B0032F37CADC19B43C6A99A8B /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
+		7712EA4EB667C5D03F8446E78DBCDB0C /* AvailableHapticFeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AvailableHapticFeedback.debug.xcconfig; sourceTree = "<group>"; };
+		787428DB5D8D19F32993DCA4D1EC2336 /* Pods-trainigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.release.xcconfig"; sourceTree = "<group>"; };
+		79444692F72A3B89537112CF3FB3B8F6 /* AvailableHapticFeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AvailableHapticFeedback.release.xcconfig; sourceTree = "<group>"; };
+		79C1D27C2D4CF0FD39EB6A78925B7221 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Source/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7B8AD5FBAA7F90674FEFF6B7955594D0 /* Codable+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Codable+Sweeter.swift"; path = "Source/Codable+Sweeter.swift"; sourceTree = "<group>"; };
+		8086DB90C7CDD72AB1C21959C867E48C /* AgoraVideoAv1DecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1DecoderExtension.xcframework; sourceTree = "<group>"; };
+		829FF00C4E1612BF06334542F681AA53 /* SweeterSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SweeterSwift-prefix.pch"; sourceTree = "<group>"; };
+		856DD65F53388E64969758193070FA3F /* AvailableHapticFeedback-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AvailableHapticFeedback-prefix.pch"; sourceTree = "<group>"; };
+		8579E61F52CB136B917379B315B1CB87 /* Pods-trainig-trainigUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig-trainigUITests.modulemap"; sourceTree = "<group>"; };
+		8CC886183681776B6D5944C8217B3531 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
 		8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainig"; path = Pods_trainig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D8BE08468098DDAC07453DCC23EBC30 /* Pods-trainigTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainigTests-dummy.m"; sourceTree = "<group>"; };
+		8EA43420E79BC5291C12F6B2ACEC4DAF /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
+		960E50FA18E0CA2456C7406AB0D1F2D5 /* AvailableHapticFeedback-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AvailableHapticFeedback-umbrella.h"; sourceTree = "<group>"; };
+		97137CE24C04773974E9C12BB82DC887 /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
+		9AF9E6DB7031F64084B8C2A9BB0FDFD5 /* NSAttributedString+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Sweeter.swift"; path = "Source/NSAttributedString+Sweeter.swift"; sourceTree = "<group>"; };
+		9BFAF149448BD853FBB5AA79855D9F46 /* Pods-trainig-trainigUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-trainig-trainigUITests-frameworks.sh"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A6DA8CA613A0B334583DB47B6EF173E2 /* Pods-trainig-trainigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A8490A941A6C85C2CBD47536B68A46CB /* Pods-trainigTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainigTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		BF4F4559CBE73D69AB4410B8C29B1124 /* Pods-trainig-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainig-umbrella.h"; sourceTree = "<group>"; };
-		BF79554DE7AA8629BC76C6187BC84A1B /* Pods-trainig-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-acknowledgements.markdown"; sourceTree = "<group>"; };
-		CB2FC0D00AAC9FAFB26C1C6DBD2CA0A6 /* Pods-trainigTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainigTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D44082862ECBEA8BA92169B32D1DD947 /* Pods-trainig-trainigUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig-trainigUITests.modulemap"; sourceTree = "<group>"; };
-		EB548D71CAD593B6DBB815713F1FF665 /* Pods-trainigTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainigTests-Info.plist"; sourceTree = "<group>"; };
-		ED320C7C7CF51D4D78D0CB3667B24953 /* Pods-trainigTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainigTests.modulemap"; sourceTree = "<group>"; };
-		F1DC23BEA8EE3A8D496B3B083F86E7BD /* Pods-trainig-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainig-dummy.m"; sourceTree = "<group>"; };
-		F4F78637FED56AAA4817F85F93D38CED /* Pods-trainig-trainigUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainig-trainigUITests-dummy.m"; sourceTree = "<group>"; };
+		A88C7CBD9A81BD97B483D4ACA1DBD2A2 /* Pods-trainig-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainig-dummy.m"; sourceTree = "<group>"; };
+		AA5CDF6AD9D76E25A889A9A0E50E4CD1 /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
+		AA61E012CB6F5DEA96D86183B82D975F /* AgoraRtcEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.release.xcconfig; sourceTree = "<group>"; };
+		B3C0D1F792F2181133AB93B9970F1A39 /* Pods-trainig-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-acknowledgements.plist"; sourceTree = "<group>"; };
+		B6902E64398E2D282BC5F83D08AFF8C3 /* Pods-trainig-trainigUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-trainigUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SweeterSwift; path = SweeterSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10DCDF510BA07D70D4CBED48B0B49FD /* Swift+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Swift+Sweeter.swift"; path = "Source/Swift+Sweeter.swift"; sourceTree = "<group>"; };
+		C1F4C659191C82A75CC3185B5D1206BB /* String+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Sweeter.swift"; path = "Source/String+Sweeter.swift"; sourceTree = "<group>"; };
+		C1F800D024A30668DBBF715D77176D25 /* DateFormatter+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+Sweeter.swift"; path = "Source/DateFormatter+Sweeter.swift"; sourceTree = "<group>"; };
+		C8926941554F3B655F169BE5EF238179 /* Pods-trainig.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig.modulemap"; sourceTree = "<group>"; };
+		CD810D0A68AD53C48F5334AFE0363E7F /* MultiSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MultiSlider-umbrella.h"; sourceTree = "<group>"; };
+		D040041D7D272DE1BB4761FA41A8865D /* MultiSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MultiSlider.release.xcconfig; sourceTree = "<group>"; };
+		D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AvailableHapticFeedback; path = AvailableHapticFeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D537CAA2066B9F8C7F90EE1A78D6D629 /* UIView+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Sweeter.swift"; path = "Source/UIView+Sweeter.swift"; sourceTree = "<group>"; };
+		D58C28C2BBF34859B0072B89D4C6806A /* AgoraVideoDecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoDecoderExtension.xcframework; sourceTree = "<group>"; };
+		D5B2064725BF70D65BED636FF472EBE4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		D688C2301F06C3BB7299692F34EC15D3 /* TimeInterval+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimeInterval+Sweeter.swift"; path = "Source/TimeInterval+Sweeter.swift"; sourceTree = "<group>"; };
+		DBC26DDC76F042EBCD541E4BC0ACDAF7 /* Pods-trainig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig.debug.xcconfig"; sourceTree = "<group>"; };
+		DEDCE16FEA807024B3BBA95D1482A2EA /* Pods-trainigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E1B60B0F26B3EAE67D86EFF6F2D33E63 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
+		E2EAF411868ECEC7D464CC00FFFF195C /* UITextView+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextView+Sweeter.swift"; path = "Source/UITextView+Sweeter.swift"; sourceTree = "<group>"; };
+		E347E4862CC15812BBD2ED0B488A3BF4 /* Pods-trainig-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E3758DDBE964676E907AC2EF7E916725 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
+		E76EDC3B0484A0D72A40FA5D68A5A104 /* Pods-trainig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig.release.xcconfig"; sourceTree = "<group>"; };
+		E7954659CBF21A46360E597C7A90932A /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
+		E8203871B2ACBA07417A028B248DCD91 /* MultiSlider+Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MultiSlider+Internal.swift"; path = "Sources/MultiSlider+Internal.swift"; sourceTree = "<group>"; };
+		EBA0B3AD6B46C1EB8FBB1676034ED973 /* AvailableHapticFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AvailableHapticFeedback-dummy.m"; sourceTree = "<group>"; };
+		EC0D7E34A1855D52D0441B1F0A227CAC /* SweeterSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SweeterSwift-umbrella.h"; sourceTree = "<group>"; };
+		EF6B89708E0BA514ACFE94DF5CFBDC33 /* Pods-trainig-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-Info.plist"; sourceTree = "<group>"; };
+		F007704092343CE36817FEB4B5F1D65A /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = aosl.xcframework; sourceTree = "<group>"; };
+		F0737749B1E55FB2D212F7E56A1815CD /* AvailableHapticFeedback-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AvailableHapticFeedback-Info.plist"; sourceTree = "<group>"; };
+		F5110B9070CB4A7CECBE923E0C59C00C /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_dec.xcframework; sourceTree = "<group>"; };
+		F577ECDAE7536A3CC234CF43C1F1F934 /* AvailableHapticFeedback.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AvailableHapticFeedback.modulemap; sourceTree = "<group>"; };
+		F60C33BF95F49DE9F40AC35C373B5A62 /* MultiSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MultiSlider.debug.xcconfig; sourceTree = "<group>"; };
+		F73B6C99598291FCA2A828CD414A11A6 /* SweeterSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SweeterSwift.debug.xcconfig; sourceTree = "<group>"; };
+		F86618E8FF795390AEF6A7C5FCFDEFF7 /* AgoraRtcEngine_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.debug.xcconfig; sourceTree = "<group>"; };
+		FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MultiSlider; path = MultiSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7B6AFF7F2296B517F9DB5F9348BB5974 /* Frameworks */ = {
+		2111B1BDC382F34A48F002FAFCB6990C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89882727BE17937508D5B211722C7FAE /* Foundation.framework in Frameworks */,
+				3DF23312389A7FDE15645F9E9759E7AF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A75EF6080ECBCB306C5ED7AF7D470EA7 /* Frameworks */ = {
+		32539C6B1C31F2AF663F72F7C4D32ED3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12821039F94ED96DED38991418421627 /* Foundation.framework in Frameworks */,
+				C44E5DE03C7BDF7D319821DC02913868 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41F6CAB3804950E366D9227E381AEEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61408815A30E3AD5C7A5C922FC5A7D62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65B73470713F55A3C13899A961F348BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A9EE06523FDF7E453931F0920C3EFAA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D302E9630C829FF79E3249BBA8A56D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15FF1750978388C530123779FF255603 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B46238D205744892A6EB8B4511679435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				098F54BDDA2E3D0DD00498ED79EA0380 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,72 +334,489 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FE10B69DBBD5271CDF82D61F5873974 /* Targets Support Files */ = {
+		00A5D871CB287DCC6680D099A6E3A0EE /* AINS */ = {
 			isa = PBXGroup;
 			children = (
-				4140DC094F09A97FE55066BCC3A5F1B7 /* Pods-trainig */,
-				724E330E33AF02104FFE210A8F413267 /* Pods-trainig-trainigUITests */,
-				28E3FE6C1D3479C0108C5DD2C328951F /* Pods-trainigTests */,
+				BEDB65058A5BB227BED6E69B4A89CE89 /* Frameworks */,
+			);
+			name = AINS;
+			sourceTree = "<group>";
+		};
+		0162A3CF850AC3153A7028D60B156A6C /* AudioBeauty */ = {
+			isa = PBXGroup;
+			children = (
+				6125D4A2AC262DCE1A69196083AF55CE /* Frameworks */,
+			);
+			name = AudioBeauty;
+			sourceTree = "<group>";
+		};
+		0454B01C9E4E5F41AC17D9813C7C4731 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8086DB90C7CDD72AB1C21959C867E48C /* AgoraVideoAv1DecoderExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		049695C30A85F7934EB9A25E82AC66BA /* VQA */ = {
+			isa = PBXGroup;
+			children = (
+				3F891997FB549216CBB562E69C682016 /* Frameworks */,
+			);
+			name = VQA;
+			sourceTree = "<group>";
+		};
+		058CFA69879CD15AE9F292636E3E578E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C39683909E63ABAEB64B0B80D9F3B495 /* Pods-trainig */,
+				6E6AC382689726EF10C1AD556B7BA18A /* Pods-trainig-trainigUITests */,
+				1C9DD7E910F0432DB7E7C06D54ADEC5D /* Pods-trainigTests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		28E3FE6C1D3479C0108C5DD2C328951F /* Pods-trainigTests */ = {
+		06E92E644D1DFABE062B13035C0FB9B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED320C7C7CF51D4D78D0CB3667B24953 /* Pods-trainigTests.modulemap */,
-				CB2FC0D00AAC9FAFB26C1C6DBD2CA0A6 /* Pods-trainigTests-acknowledgements.markdown */,
-				A8490A941A6C85C2CBD47536B68A46CB /* Pods-trainigTests-acknowledgements.plist */,
-				9D8BE08468098DDAC07453DCC23EBC30 /* Pods-trainigTests-dummy.m */,
-				EB548D71CAD593B6DBB815713F1FF665 /* Pods-trainigTests-Info.plist */,
-				80CC8B1572649ECBF56C63523D570FA0 /* Pods-trainigTests-umbrella.h */,
-				35DFBD737796195796CF58FA116E7395 /* Pods-trainigTests.debug.xcconfig */,
-				77E012DB056B0940BC801312ACA49496 /* Pods-trainigTests.release.xcconfig */,
+				423B7BE71642078D6CEC4F85DF353144 /* AgoraAiEchoCancellationLLExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08F1B4CDA7DADF6E0239751804897E0E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6939BDB9B4F343A93783C59B085C533A /* AgoraRtcEngine_iOS-xcframeworks.sh */,
+				F86618E8FF795390AEF6A7C5FCFDEFF7 /* AgoraRtcEngine_iOS.debug.xcconfig */,
+				AA61E012CB6F5DEA96D86183B82D975F /* AgoraRtcEngine_iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AgoraRtcEngine_iOS";
+			sourceTree = "<group>";
+		};
+		1538FF8D98620BA46ECFB7C652AD04BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5B2064725BF70D65BED636FF472EBE4 /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1C9DD7E910F0432DB7E7C06D54ADEC5D /* Pods-trainigTests */ = {
+			isa = PBXGroup;
+			children = (
+				6299194F9748BC04F90627F035A58AB3 /* Pods-trainigTests.modulemap */,
+				5F20E71A602558E3DEACE36FB4904319 /* Pods-trainigTests-acknowledgements.markdown */,
+				254866391CE7B3165471F8BE24C712B2 /* Pods-trainigTests-acknowledgements.plist */,
+				71F6F1D03DABF88B215800E87DEEAA60 /* Pods-trainigTests-dummy.m */,
+				3FC99FCBDAF2C89E4218EA7175232D0B /* Pods-trainigTests-Info.plist */,
+				5D6BFBDEE1BCD37914FB511A8E569BE4 /* Pods-trainigTests-umbrella.h */,
+				DEDCE16FEA807024B3BBA95D1482A2EA /* Pods-trainigTests.debug.xcconfig */,
+				787428DB5D8D19F32993DCA4D1EC2336 /* Pods-trainigTests.release.xcconfig */,
 			);
 			name = "Pods-trainigTests";
 			path = "Target Support Files/Pods-trainigTests";
 			sourceTree = "<group>";
 		};
-		4140DC094F09A97FE55066BCC3A5F1B7 /* Pods-trainig */ = {
+		1D10A431EA416A00F697612601C21C15 /* VideoCodecDec */ = {
 			isa = PBXGroup;
 			children = (
-				8248FA333541844BD2D80FA6042029C3 /* Pods-trainig.modulemap */,
-				BF79554DE7AA8629BC76C6187BC84A1B /* Pods-trainig-acknowledgements.markdown */,
-				56EE0BFF080D70E084A4754160CC0917 /* Pods-trainig-acknowledgements.plist */,
-				F1DC23BEA8EE3A8D496B3B083F86E7BD /* Pods-trainig-dummy.m */,
-				7312B89012B43FFB4549C031746D1184 /* Pods-trainig-Info.plist */,
-				BF4F4559CBE73D69AB4410B8C29B1124 /* Pods-trainig-umbrella.h */,
-				2361CBCD2DAAB56B37C9CBFB6A500813 /* Pods-trainig.debug.xcconfig */,
-				2495EE939B869A4592421E05440062E5 /* Pods-trainig.release.xcconfig */,
+				DE2D1FDE7FBE4F0C45CB73E8D9E016F4 /* Frameworks */,
 			);
-			name = "Pods-trainig";
-			path = "Target Support Files/Pods-trainig";
+			name = VideoCodecDec;
 			sourceTree = "<group>";
 		};
-		724E330E33AF02104FFE210A8F413267 /* Pods-trainig-trainigUITests */ = {
+		225D48948B0944FB4997B964C916903E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D44082862ECBEA8BA92169B32D1DD947 /* Pods-trainig-trainigUITests.modulemap */,
-				6EEF7EE466D980DB424D299098BD7282 /* Pods-trainig-trainigUITests-acknowledgements.markdown */,
-				1BD02DE8D83D5349CA3E11EC1ABEE3A6 /* Pods-trainig-trainigUITests-acknowledgements.plist */,
-				F4F78637FED56AAA4817F85F93D38CED /* Pods-trainig-trainigUITests-dummy.m */,
-				00E67131A8DD091B98456FCF3E5FE70A /* Pods-trainig-trainigUITests-Info.plist */,
-				8176190CB3D1C038A7621EFAB71282FF /* Pods-trainig-trainigUITests-umbrella.h */,
-				A6DA8CA613A0B334583DB47B6EF173E2 /* Pods-trainig-trainigUITests.debug.xcconfig */,
-				1AF550E32D2EBCA543B8C8091C82A720 /* Pods-trainig-trainigUITests.release.xcconfig */,
+				2BAD214141C3F44248B576DD55575562 /* AgoraContentInspectExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24658F0C6915FA254875AA4985D5C6ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16AA580B6A694D1AE9DB3B7B55A17C5D /* AgoraFaceCaptureExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		283B29DBDB89552235A8A955AACC21DD /* AIAECLL */ = {
+			isa = PBXGroup;
+			children = (
+				06E92E644D1DFABE062B13035C0FB9B8 /* Frameworks */,
+			);
+			name = AIAECLL;
+			sourceTree = "<group>";
+		};
+		2CA35BB0FEB714B33C6C0483076AC65C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E3B6E0AAD7B9C3BFB5836C0D23C5489 /* ResourceBundle-SweeterSwift-SweeterSwift-Info.plist */,
+				4DFE262AD7E135A9D24BBBF88DECC4E0 /* SweeterSwift.modulemap */,
+				3F894D1B654B4F0F1231E1FB1E915210 /* SweeterSwift-dummy.m */,
+				4B0E7811F9A90382DB734DAE509C0636 /* SweeterSwift-Info.plist */,
+				829FF00C4E1612BF06334542F681AA53 /* SweeterSwift-prefix.pch */,
+				EC0D7E34A1855D52D0441B1F0A227CAC /* SweeterSwift-umbrella.h */,
+				F73B6C99598291FCA2A828CD414A11A6 /* SweeterSwift.debug.xcconfig */,
+				71C537869A4D2B6E1C75B0C6CBF78F6E /* SweeterSwift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SweeterSwift";
+			sourceTree = "<group>";
+		};
+		343C3501B2049B973B3EDF3D2C5E6BBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CC886183681776B6D5944C8217B3531 /* AgoraSpatialAudioExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F891997FB549216CBB562E69C682016 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28A8B06489E26B268A95E612D98F4FF0 /* AgoraVideoQualityAnalyzerExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40A716266E3792B3B30C7493D8624D51 /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				5472392F3EF3E33C2861BCF238EE1F19 /* Frameworks */,
+			);
+			name = FaceDetection;
+			sourceTree = "<group>";
+		};
+		440C045F3D88BE89ADA5207A0F64062E /* AIAEC */ = {
+			isa = PBXGroup;
+			children = (
+				52607AD672D95C8AD415A6862E1B0D73 /* Frameworks */,
+			);
+			name = AIAEC;
+			sourceTree = "<group>";
+		};
+		4A08BDECB1E431A30087F63A71D7B174 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA5CDF6AD9D76E25A889A9A0E50E4CD1 /* AgoraVideoEncoderExtension.xcframework */,
+				0E66320DE277A4EB809DC2E770DEF503 /* video_enc.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DEB6F0037DF78AE05C6EF79316F54B5 /* SpatialAudio */ = {
+			isa = PBXGroup;
+			children = (
+				343C3501B2049B973B3EDF3D2C5E6BBD /* Frameworks */,
+			);
+			name = SpatialAudio;
+			sourceTree = "<group>";
+		};
+		4F28AC18884A6FF1BBBB6C7ACFA3D97A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				528092D11631210E83B202B5A1EEF05A /* Agorafdkaac.xcframework */,
+				E1B60B0F26B3EAE67D86EFF6F2D33E63 /* Agoraffmpeg.xcframework */,
+				1905A3794095797D691E21FECB6FE480 /* AgoraRtcKit.xcframework */,
+				8EA43420E79BC5291C12F6B2ACEC4DAF /* AgoraSoundTouch.xcframework */,
+				F007704092343CE36817FEB4B5F1D65A /* aosl.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52607AD672D95C8AD415A6862E1B0D73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D03DEB3B27289F21506816ECD78525A /* AgoraAiEchoCancellationExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52D571C6F15E747493240E1AF8AAA606 /* AvailableHapticFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				1298CC39E2C6E481C2426BCFB0A62AF2 /* AvailableHapticFeedback.swift */,
+				1538FF8D98620BA46ECFB7C652AD04BF /* Resources */,
+				95363D3977719FEF32330FF69A6EEDD5 /* Support Files */,
+			);
+			name = AvailableHapticFeedback;
+			path = AvailableHapticFeedback;
+			sourceTree = "<group>";
+		};
+		5472392F3EF3E33C2861BCF238EE1F19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75BA847B0032F37CADC19B43C6A99A8B /* AgoraFaceDetectionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		561B769E2F65BB097F77F2213C0C1610 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7954659CBF21A46360E597C7A90932A /* AgoraClearVisionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BD97E126D8CA1A155157F3E3DC498E7 /* SweeterSwift */ = {
+			isa = PBXGroup;
+			children = (
+				409972736351EE2E0CC69644334E6E5D /* Bundle+Sweeter.swift */,
+				7B8AD5FBAA7F90674FEFF6B7955594D0 /* Codable+Sweeter.swift */,
+				C1F800D024A30668DBBF715D77176D25 /* DateFormatter+Sweeter.swift */,
+				9AF9E6DB7031F64084B8C2A9BB0FDFD5 /* NSAttributedString+Sweeter.swift */,
+				68D542ECE31962C4562D93D96FFB2A67 /* NSManagedObjectContext+Sweeter.swift */,
+				20A7A1DEB3AC85BAF6A1FF41F521F179 /* NSObject+Sweeter.swift */,
+				C1F4C659191C82A75CC3185B5D1206BB /* String+Sweeter.swift */,
+				C10DCDF510BA07D70D4CBED48B0B49FD /* Swift+Sweeter.swift */,
+				D688C2301F06C3BB7299692F34EC15D3 /* TimeInterval+Sweeter.swift */,
+				5244FAC8B94B8AED793F42B491B32DA2 /* UIApplication+Sweeter.swift */,
+				20428FDAA533FB041461FE0D4E375264 /* UIStackView+Sweeter.swift */,
+				E2EAF411868ECEC7D464CC00FFFF195C /* UITextView+Sweeter.swift */,
+				D537CAA2066B9F8C7F90EE1A78D6D629 /* UIView+Sweeter.swift */,
+				086FDD8D77214F811ED5C622B82B8886 /* UIViewController+Sweeter.swift */,
+				C5739B38FC7E080BD73A1145855794C5 /* Resources */,
+				2CA35BB0FEB714B33C6C0483076AC65C /* Support Files */,
+			);
+			name = SweeterSwift;
+			path = SweeterSwift;
+			sourceTree = "<group>";
+		};
+		5E3EBA70ED4F73DCD3AB0BA2C9C3DB5A /* FaceCapture */ = {
+			isa = PBXGroup;
+			children = (
+				24658F0C6915FA254875AA4985D5C6ED /* Frameworks */,
+			);
+			name = FaceCapture;
+			sourceTree = "<group>";
+		};
+		6125D4A2AC262DCE1A69196083AF55CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FF4F1AA01C2A982252FDA709658A709 /* AgoraAudioBeautyExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66E10A2F915CE27C0110BA8CD0D12FE0 /* ContentInspect */ = {
+			isa = PBXGroup;
+			children = (
+				225D48948B0944FB4997B964C916903E /* Frameworks */,
+			);
+			name = ContentInspect;
+			sourceTree = "<group>";
+		};
+		6753B4E2F9CB0B59AAA5B1BBE5CBD4DD /* RtcBasic */ = {
+			isa = PBXGroup;
+			children = (
+				4F28AC18884A6FF1BBBB6C7ACFA3D97A /* Frameworks */,
+			);
+			name = RtcBasic;
+			sourceTree = "<group>";
+		};
+		68611DB20EBCF077AA1DCC74F60BC64B /* ClearVision */ = {
+			isa = PBXGroup;
+			children = (
+				561B769E2F65BB097F77F2213C0C1610 /* Frameworks */,
+			);
+			name = ClearVision;
+			sourceTree = "<group>";
+		};
+		6E6AC382689726EF10C1AD556B7BA18A /* Pods-trainig-trainigUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8579E61F52CB136B917379B315B1CB87 /* Pods-trainig-trainigUITests.modulemap */,
+				B6902E64398E2D282BC5F83D08AFF8C3 /* Pods-trainig-trainigUITests-acknowledgements.markdown */,
+				1E7130AB1DDEBC16B25908C2062CA251 /* Pods-trainig-trainigUITests-acknowledgements.plist */,
+				2C93B0E387E20DAC83C681B80B3D292B /* Pods-trainig-trainigUITests-dummy.m */,
+				9BFAF149448BD853FBB5AA79855D9F46 /* Pods-trainig-trainigUITests-frameworks.sh */,
+				5DA44AA5199D7FFBF017534AF74FAD9C /* Pods-trainig-trainigUITests-Info.plist */,
+				2EA0031362BF41F18CAC09E7CCA1E911 /* Pods-trainig-trainigUITests-umbrella.h */,
+				4595A882730CA18A72125F587FFFBF85 /* Pods-trainig-trainigUITests.debug.xcconfig */,
+				32A16E25DED21305166BEC31E80712EE /* Pods-trainig-trainigUITests.release.xcconfig */,
 			);
 			name = "Pods-trainig-trainigUITests";
 			path = "Target Support Files/Pods-trainig-trainigUITests";
 			sourceTree = "<group>";
 		};
-		B76A994C1DC297D668B2031B8DA2DCC2 /* Products */ = {
+		721AF94BF279634FAEE96CD04DD8B1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4ADA4EDEA2A4C8957F8494F12510189F /* AgoraVideoSegmentationExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7432BF876327B8BD05A2B4C04250871D /* VideoAv1CodecDec */ = {
+			isa = PBXGroup;
+			children = (
+				0454B01C9E4E5F41AC17D9813C7C4731 /* Frameworks */,
+			);
+			name = VideoAv1CodecDec;
+			sourceTree = "<group>";
+		};
+		75E794E5F079FE8424F992DDA6A2364C /* VirtualBackground */ = {
+			isa = PBXGroup;
+			children = (
+				721AF94BF279634FAEE96CD04DD8B1E3 /* Frameworks */,
+			);
+			name = VirtualBackground;
+			sourceTree = "<group>";
+		};
+		79E34E6CCDB888B16337B24BB7A1EDD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				281A2820740EEFC4F1E11D84E15B85AF /* AgoraReplayKitExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84C50621C96C6991113E6B94111C7D0A /* ReplayKit */ = {
+			isa = PBXGroup;
+			children = (
+				79E34E6CCDB888B16337B24BB7A1EDD0 /* Frameworks */,
+			);
+			name = ReplayKit;
+			sourceTree = "<group>";
+		};
+		862A4D5F6625F4585CE05111593232B3 /* AINSLL */ = {
+			isa = PBXGroup;
+			children = (
+				E3F4F2414F7BFF4F85FE4225355D1FA4 /* Frameworks */,
+			);
+			name = AINSLL;
+			sourceTree = "<group>";
+		};
+		8A8AC98FDCCDDAB37ABCEEE50C4B141D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0642352505BB3032DB88663AE3138B72 /* AgoraLipSyncExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95363D3977719FEF32330FF69A6EEDD5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F577ECDAE7536A3CC234CF43C1F1F934 /* AvailableHapticFeedback.modulemap */,
+				EBA0B3AD6B46C1EB8FBB1676034ED973 /* AvailableHapticFeedback-dummy.m */,
+				F0737749B1E55FB2D212F7E56A1815CD /* AvailableHapticFeedback-Info.plist */,
+				856DD65F53388E64969758193070FA3F /* AvailableHapticFeedback-prefix.pch */,
+				960E50FA18E0CA2456C7406AB0D1F2D5 /* AvailableHapticFeedback-umbrella.h */,
+				7712EA4EB667C5D03F8446E78DBCDB0C /* AvailableHapticFeedback.debug.xcconfig */,
+				79444692F72A3B89537112CF3FB3B8F6 /* AvailableHapticFeedback.release.xcconfig */,
+				033E999C40FC15788C07729964BB7E0F /* ResourceBundle-AvailableHapticFeedback-AvailableHapticFeedback-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AvailableHapticFeedback";
+			sourceTree = "<group>";
+		};
+		A09532A6A35C94D879FD421B1B3BD23C /* LipSync */ = {
+			isa = PBXGroup;
+			children = (
+				8A8AC98FDCCDDAB37ABCEEE50C4B141D /* Frameworks */,
+			);
+			name = LipSync;
+			sourceTree = "<group>";
+		};
+		A213EDBC155A3305658DCA61649835BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D68BE4363E16C51A3A20FC92857F9DAF /* AgoraRtcEngine_iOS */,
+				52D571C6F15E747493240E1AF8AAA606 /* AvailableHapticFeedback */,
+				CC309F2DA633E26685C4E7056A7F8C06 /* MultiSlider */,
+				5BD97E126D8CA1A155157F3E3DC498E7 /* SweeterSwift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A35161A2A94A4D6A6084FCDB34363346 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				38D680DB54898ED49743A30089F94269 /* MultiSlider.modulemap */,
+				1500640CAB5C14586CC62C5E62AE12C3 /* MultiSlider-dummy.m */,
+				261425C65D567DBEB4EE75304B14F2CD /* MultiSlider-Info.plist */,
+				730D8A4EF064C1DB7D1285FC26395BA7 /* MultiSlider-prefix.pch */,
+				CD810D0A68AD53C48F5334AFE0363E7F /* MultiSlider-umbrella.h */,
+				F60C33BF95F49DE9F40AC35C373B5A62 /* MultiSlider.debug.xcconfig */,
+				D040041D7D272DE1BB4761FA41A8865D /* MultiSlider.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MultiSlider";
+			sourceTree = "<group>";
+		};
+		AB8889AB8D306CBA34BE07CFFD76B88E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */,
+				5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */,
+				FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */,
 				8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */,
 				40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */,
 				47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */,
+				B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */,
+				6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BA3A02F31EF17C38314A99DFE71D1550 /* VideoAv1CodecEnc */ = {
+			isa = PBXGroup;
+			children = (
+				FFF0AC9B4B0D8CD87C30B62199B14349 /* Frameworks */,
+			);
+			name = VideoAv1CodecEnc;
+			sourceTree = "<group>";
+		};
+		BEDB65058A5BB227BED6E69B4A89CE89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67BC76C1660FCD031A07EEE49B89BAEC /* AgoraAiNoiseSuppressionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C39683909E63ABAEB64B0B80D9F3B495 /* Pods-trainig */ = {
+			isa = PBXGroup;
+			children = (
+				C8926941554F3B655F169BE5EF238179 /* Pods-trainig.modulemap */,
+				E347E4862CC15812BBD2ED0B488A3BF4 /* Pods-trainig-acknowledgements.markdown */,
+				B3C0D1F792F2181133AB93B9970F1A39 /* Pods-trainig-acknowledgements.plist */,
+				A88C7CBD9A81BD97B483D4ACA1DBD2A2 /* Pods-trainig-dummy.m */,
+				18A4212BDCAF9D2C59CC61CE4B46B4A2 /* Pods-trainig-frameworks.sh */,
+				EF6B89708E0BA514ACFE94DF5CFBDC33 /* Pods-trainig-Info.plist */,
+				20295517C0E3E3F5FCE67158D84D3A2F /* Pods-trainig-umbrella.h */,
+				DBC26DDC76F042EBCD541E4BC0ACDAF7 /* Pods-trainig.debug.xcconfig */,
+				E76EDC3B0484A0D72A40FA5D68A5A104 /* Pods-trainig.release.xcconfig */,
+			);
+			name = "Pods-trainig";
+			path = "Target Support Files/Pods-trainig";
+			sourceTree = "<group>";
+		};
+		C5739B38FC7E080BD73A1145855794C5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				79C1D27C2D4CF0FD39EB6A78925B7221 /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CC309F2DA633E26685C4E7056A7F8C06 /* MultiSlider */ = {
+			isa = PBXGroup;
+			children = (
+				4A527CAAD541278F60D4F6B1BA17E671 /* MultiSlider.swift */,
+				5CDD70B3650745307EBCCBCB25280C1B /* MultiSlider+Drag.swift */,
+				E8203871B2ACBA07417A028B248DCD91 /* MultiSlider+Internal.swift */,
+				4C1F0B147E375F6EB470F3FF29606CC2 /* MultiSliderExtensions.swift */,
+				A35161A2A94A4D6A6084FCDB34363346 /* Support Files */,
+			);
+			name = MultiSlider;
+			path = MultiSlider;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -161,8 +824,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				B76A994C1DC297D668B2031B8DA2DCC2 /* Products */,
-				0FE10B69DBBD5271CDF82D61F5873974 /* Targets Support Files */,
+				A213EDBC155A3305658DCA61649835BA /* Pods */,
+				AB8889AB8D306CBA34BE07CFFD76B88E /* Products */,
+				058CFA69879CD15AE9F292636E3E578E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,12 +838,73 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D68BE4363E16C51A3A20FC92857F9DAF /* AgoraRtcEngine_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				440C045F3D88BE89ADA5207A0F64062E /* AIAEC */,
+				283B29DBDB89552235A8A955AACC21DD /* AIAECLL */,
+				00A5D871CB287DCC6680D099A6E3A0EE /* AINS */,
+				862A4D5F6625F4585CE05111593232B3 /* AINSLL */,
+				0162A3CF850AC3153A7028D60B156A6C /* AudioBeauty */,
+				68611DB20EBCF077AA1DCC74F60BC64B /* ClearVision */,
+				66E10A2F915CE27C0110BA8CD0D12FE0 /* ContentInspect */,
+				5E3EBA70ED4F73DCD3AB0BA2C9C3DB5A /* FaceCapture */,
+				40A716266E3792B3B30C7493D8624D51 /* FaceDetection */,
+				A09532A6A35C94D879FD421B1B3BD23C /* LipSync */,
+				84C50621C96C6991113E6B94111C7D0A /* ReplayKit */,
+				6753B4E2F9CB0B59AAA5B1BBE5CBD4DD /* RtcBasic */,
+				4DEB6F0037DF78AE05C6EF79316F54B5 /* SpatialAudio */,
+				08F1B4CDA7DADF6E0239751804897E0E /* Support Files */,
+				7432BF876327B8BD05A2B4C04250871D /* VideoAv1CodecDec */,
+				BA3A02F31EF17C38314A99DFE71D1550 /* VideoAv1CodecEnc */,
+				1D10A431EA416A00F697612601C21C15 /* VideoCodecDec */,
+				E87282FC879BEB4CD19EC77E2E75E00F /* VideoCodecEnc */,
+				75E794E5F079FE8424F992DDA6A2364C /* VirtualBackground */,
+				049695C30A85F7934EB9A25E82AC66BA /* VQA */,
+			);
+			name = AgoraRtcEngine_iOS;
+			path = AgoraRtcEngine_iOS;
+			sourceTree = "<group>";
+		};
+		DE2D1FDE7FBE4F0C45CB73E8D9E016F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D58C28C2BBF34859B0072B89D4C6806A /* AgoraVideoDecoderExtension.xcframework */,
+				F5110B9070CB4A7CECBE923E0C59C00C /* video_dec.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3F4F2414F7BFF4F85FE4225355D1FA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97137CE24C04773974E9C12BB82DC887 /* AgoraAiNoiseSuppressionLLExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		E87282FC879BEB4CD19EC77E2E75E00F /* VideoCodecEnc */ = {
+			isa = PBXGroup;
+			children = (
+				4A08BDECB1E431A30087F63A71D7B174 /* Frameworks */,
+			);
+			name = VideoCodecEnc;
+			sourceTree = "<group>";
+		};
+		FFF0AC9B4B0D8CD87C30B62199B14349 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3758DDBE964676E907AC2EF7E916725 /* AgoraVideoAv1EncoderExtension.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,19 +918,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		320AC60217D36FCB3A0A3DF8D01E7271 /* Headers */ = {
+		3DB8560C85B95E11C0C8F5694BD66B71 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83B0CEB9441B5045979E35E985C6F5D8 /* Pods-trainig-umbrella.h in Headers */,
+				26EECEA8FF438D1D08F86B32F7C5E506 /* SweeterSwift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B438A794851E9D69E253DE4BBC57E772 /* Headers */ = {
+		4C5003D70B83562505E14D069D7DD2B2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61C22FA33463AF96576360DCF817B5B0 /* Pods-trainig-trainigUITests-umbrella.h in Headers */,
+				31CA75B75BDE3EB676DD92909FFBF86C /* AvailableHapticFeedback-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D87A68C0D875494791973B3878AA8CB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD579F911991B93FF24D193D1786A353 /* Pods-trainig-trainigUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		749A2CC23E734223A4CDA1CA92AA8F75 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB94901167B42AC84ABCBD4F7B612F1C /* MultiSlider-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2C06CA7592167CADFDB7A86A250688A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E77E582482EE6D2C6456202937312E62 /* Pods-trainig-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,47 +973,147 @@
 			buildRules = (
 			);
 			dependencies = (
-				2413C67A1FBCDCEA901D52FFC97F4A20 /* PBXTargetDependency */,
+				CE7B58DF4FF117412D0D241E237D0C25 /* PBXTargetDependency */,
 			);
 			name = "Pods-trainigTests";
 			productName = Pods_trainigTests;
 			productReference = 47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */;
 			productType = "com.apple.product-type.framework";
 		};
-		4D4D88BD8F45F312B63020B8BDD359A6 /* Pods-trainig */ = {
+		1983B503ED76448415D8C36BFC740644 /* AvailableHapticFeedback-AvailableHapticFeedback */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADC8AF5A35FE6F1E8869382A392BCF64 /* Build configuration list for PBXNativeTarget "Pods-trainig" */;
+			buildConfigurationList = E8ABD4563F76A0106134B504D16BD9A4 /* Build configuration list for PBXNativeTarget "AvailableHapticFeedback-AvailableHapticFeedback" */;
 			buildPhases = (
-				320AC60217D36FCB3A0A3DF8D01E7271 /* Headers */,
-				7046BE194F654798326CAF2E77EA0E7D /* Sources */,
-				A75EF6080ECBCB306C5ED7AF7D470EA7 /* Frameworks */,
-				133B693E77C99E58170F02CD7B2D602A /* Resources */,
+				449AF048B65ED9E4F31C975A68BC0B54 /* Sources */,
+				41F6CAB3804950E366D9227E381AEEF0 /* Frameworks */,
+				78D2D4F6D89C444890DAEAEAC9D8199C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			name = "AvailableHapticFeedback-AvailableHapticFeedback";
+			productName = AvailableHapticFeedback;
+			productReference = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */;
+			productType = "com.apple.product-type.bundle";
+		};
+		3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D989F950386BFBB3984E2F94D2DF21EA /* Build configuration list for PBXNativeTarget "AvailableHapticFeedback" */;
+			buildPhases = (
+				4C5003D70B83562505E14D069D7DD2B2 /* Headers */,
+				6DD3887F8B965775082370CDC93A86F3 /* Sources */,
+				B46238D205744892A6EB8B4511679435 /* Frameworks */,
+				6D2C3D5BC0917AA0B1F5DAFC47C0E720 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				545789661887FCE3CF6628AA0883B357 /* PBXTargetDependency */,
+			);
+			name = AvailableHapticFeedback;
+			productName = AvailableHapticFeedback;
+			productReference = D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */;
+			productType = "com.apple.product-type.framework";
+		};
+		4D4D88BD8F45F312B63020B8BDD359A6 /* Pods-trainig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44B095A1E7FD86A619175ABBC69A77C4 /* Build configuration list for PBXNativeTarget "Pods-trainig" */;
+			buildPhases = (
+				A2C06CA7592167CADFDB7A86A250688A /* Headers */,
+				E2A691106B4858E2EEF34D95A1846C3B /* Sources */,
+				65B73470713F55A3C13899A961F348BA /* Frameworks */,
+				3817C683B1FC524EAFDD1C19AF086D63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE88111FBBD32F552D34F609445DDDE3 /* PBXTargetDependency */,
+				BF857CB040B0F4C68130B5633D7AD9DC /* PBXTargetDependency */,
+				209786E61F64878BE7E06994274DB990 /* PBXTargetDependency */,
+				DFA97468BBD979B170BDFF954509EB46 /* PBXTargetDependency */,
 			);
 			name = "Pods-trainig";
 			productName = Pods_trainig;
 			productReference = 8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */;
 			productType = "com.apple.product-type.framework";
 		};
-		8A3B14A037C11CF9B5B35C4558F8215F /* Pods-trainig-trainigUITests */ = {
+		6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 535AEA17025664AC9CEA79C82325BAF6 /* Build configuration list for PBXNativeTarget "Pods-trainig-trainigUITests" */;
+			buildConfigurationList = 06A28462CE66F1D198DC0409871297EA /* Build configuration list for PBXNativeTarget "SweeterSwift" */;
 			buildPhases = (
-				B438A794851E9D69E253DE4BBC57E772 /* Headers */,
-				6D5CC520EF645C51821C4E32D1B561F0 /* Sources */,
-				7B6AFF7F2296B517F9DB5F9348BB5974 /* Frameworks */,
-				C161B13A3913D0B0779395331CF70B1B /* Resources */,
+				3DB8560C85B95E11C0C8F5694BD66B71 /* Headers */,
+				D87461F2FFAF1355B33466490DC94875 /* Sources */,
+				80D302E9630C829FF79E3249BBA8A56D /* Frameworks */,
+				C3D97C7D41E5394411E63A85836139C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FB7E21F9E84FABD9EECB76CBBDC61A3 /* PBXTargetDependency */,
+			);
+			name = SweeterSwift;
+			productName = SweeterSwift;
+			productReference = B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */;
+			productType = "com.apple.product-type.framework";
+		};
+		6AC06A0352BD0093A0EFD2CDDF7680D8 /* SweeterSwift-SweeterSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FF7EB2DDE1B506450E8505104EEDBE /* Build configuration list for PBXNativeTarget "SweeterSwift-SweeterSwift" */;
+			buildPhases = (
+				B1B4300F89B0F6702A13C62C4EF72674 /* Sources */,
+				61408815A30E3AD5C7A5C922FC5A7D62 /* Frameworks */,
+				AF41626C34A8D8ADF399EA34C5E5625B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = "SweeterSwift-SweeterSwift";
+			productName = SweeterSwift;
+			productReference = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8A3B14A037C11CF9B5B35C4558F8215F /* Pods-trainig-trainigUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B678C14743B5FE6D9218CFF8215D8B6D /* Build configuration list for PBXNativeTarget "Pods-trainig-trainigUITests" */;
+			buildPhases = (
+				6D87A68C0D875494791973B3878AA8CB /* Headers */,
+				6157D4330ACFE8F882E91048A0608F17 /* Sources */,
+				32539C6B1C31F2AF663F72F7C4D32ED3 /* Frameworks */,
+				EEEF5D6CF392C7378DC07F8E574089EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4527A6155B2921C94CA863B607947D55 /* PBXTargetDependency */,
+				1E1EB169EED81DFD5D6F4C5D06947596 /* PBXTargetDependency */,
+				3986DE025329E5DE1B232E2965673BD0 /* PBXTargetDependency */,
+				0CD2099DBF0E09B00328563165E34902 /* PBXTargetDependency */,
+			);
 			name = "Pods-trainig-trainigUITests";
 			productName = Pods_trainig_trainigUITests;
 			productReference = 40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		F69984ED0D5D3CC1B9D170E4AC78A24E /* MultiSlider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 960C1BBB9ACA67289081A8D136B8ABE4 /* Build configuration list for PBXNativeTarget "MultiSlider" */;
+			buildPhases = (
+				749A2CC23E734223A4CDA1CA92AA8F75 /* Headers */,
+				075885B00A5E246611A9852AF3571D36 /* Sources */,
+				2111B1BDC382F34A48F002FAFCB6990C /* Frameworks */,
+				704C832C64F811335A5A8464C6537E01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				234AAC42441F565D92896100C03C4641 /* PBXTargetDependency */,
+				7499D00921E3C5FA6A7F3977462D8583 /* PBXTargetDependency */,
+			);
+			name = MultiSlider;
+			productName = MultiSlider;
+			productReference = FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -287,22 +1136,59 @@
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			minimizedProjectReferenceProxies = 0;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = B76A994C1DC297D668B2031B8DA2DCC2 /* Products */;
+			productRefGroup = AB8889AB8D306CBA34BE07CFFD76B88E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */,
+				3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */,
+				1983B503ED76448415D8C36BFC740644 /* AvailableHapticFeedback-AvailableHapticFeedback */,
+				F69984ED0D5D3CC1B9D170E4AC78A24E /* MultiSlider */,
 				4D4D88BD8F45F312B63020B8BDD359A6 /* Pods-trainig */,
 				8A3B14A037C11CF9B5B35C4558F8215F /* Pods-trainig-trainigUITests */,
 				0BB33E6686DD8744CB6C7F8A224B580A /* Pods-trainigTests */,
+				6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */,
+				6AC06A0352BD0093A0EFD2CDDF7680D8 /* SweeterSwift-SweeterSwift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		133B693E77C99E58170F02CD7B2D602A /* Resources */ = {
+		3817C683B1FC524EAFDD1C19AF086D63 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2C3D5BC0917AA0B1F5DAFC47C0E720 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback-AvailableHapticFeedback in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		704C832C64F811335A5A8464C6537E01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78D2D4F6D89C444890DAEAEAC9D8199C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F14E229E7B8E31534F2056526E14913 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF41626C34A8D8ADF399EA34C5E5625B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01411588CA6D3306B685EB338116F20B /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +1199,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C161B13A3913D0B0779395331CF70B1B /* Resources */ = {
+		C3D97C7D41E5394411E63A85836139C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4701EFF78C6A23ED279881EE983337FB /* SweeterSwift-SweeterSwift in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEEF5D6CF392C7378DC07F8E574089EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -322,7 +1216,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6AF7D79D5ED8248A2D4917A7183E8919 /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		075885B00A5E246611A9852AF3571D36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92C4D29FAD5A4066759065A41FAAE6D5 /* MultiSlider.swift in Sources */,
+				8C442EFFBF858F2CED35FAC9B990B04D /* MultiSlider+Drag.swift in Sources */,
+				5B4F8D87FD0CA23169AFF67DF4E8319B /* MultiSlider+Internal.swift in Sources */,
+				0D0060C298B0AC79985CC92B71D6D992 /* MultiSlider-dummy.m in Sources */,
+				7CB75ACD633DEC75B929E01D42672B29 /* MultiSliderExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30BCE0B5ECACA6523592873D3CF5DCB0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,40 +1257,155 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D5CC520EF645C51821C4E32D1B561F0 /* Sources */ = {
+		449AF048B65ED9E4F31C975A68BC0B54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157B8742BDCBF6DA0C2059841361B09D /* Pods-trainig-trainigUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7046BE194F654798326CAF2E77EA0E7D /* Sources */ = {
+		6157D4330ACFE8F882E91048A0608F17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79E18902BEF26A80A67C22823645FAC9 /* Pods-trainig-dummy.m in Sources */,
+				FB47ED7AE5697C0B14C3400C6DF2BECE /* Pods-trainig-trainigUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DD3887F8B965775082370CDC93A86F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3D1CA607F05ECCF35F7062BC6191DB1 /* AvailableHapticFeedback.swift in Sources */,
+				661EF03C4D5637152D6CB379AFBCF2BA /* AvailableHapticFeedback-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B4300F89B0F6702A13C62C4EF72674 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D87461F2FFAF1355B33466490DC94875 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				468C00BBF948D6CDD1D9505AB1A1C6CD /* Bundle+Sweeter.swift in Sources */,
+				A6FD166CE7274042ABB78B73B78B75F5 /* Codable+Sweeter.swift in Sources */,
+				2966FA54BD00034649BA40B20C3D15E4 /* DateFormatter+Sweeter.swift in Sources */,
+				54F4ED0B4CE2DA3A9DA2E2F8F4012A86 /* NSAttributedString+Sweeter.swift in Sources */,
+				0864A3BBF109291830463A1C8B35BB05 /* NSManagedObjectContext+Sweeter.swift in Sources */,
+				C01EA1BFBCEA15C40CBA8C1F8DCDE16A /* NSObject+Sweeter.swift in Sources */,
+				9E22614C385B9C02DB721AD7E2DADAD9 /* String+Sweeter.swift in Sources */,
+				1A51BD4E195CB4A266035A98CEF2466D /* SweeterSwift-dummy.m in Sources */,
+				7F20D269CA410B1C1B0B0DF047EEF86F /* Swift+Sweeter.swift in Sources */,
+				7B570B6376AFB8E0CFBCE78DE0C5B80D /* TimeInterval+Sweeter.swift in Sources */,
+				0BF0A0E5AEB650EE711710E77ADD15D1 /* UIApplication+Sweeter.swift in Sources */,
+				8F06BAF058E622E63DEBF22A8FCD92E1 /* UIStackView+Sweeter.swift in Sources */,
+				7DDF271D63311443B6FA1E6011ED1835 /* UITextView+Sweeter.swift in Sources */,
+				F005773E01DE6C370AD76BB373038F6F /* UIView+Sweeter.swift in Sources */,
+				45A52E9AE4BB893716C5960ADA916F10 /* UIViewController+Sweeter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A691106B4858E2EEF34D95A1846C3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633294839E437AB80ADAAA69D883A342 /* Pods-trainig-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2413C67A1FBCDCEA901D52FFC97F4A20 /* PBXTargetDependency */ = {
+		0CD2099DBF0E09B00328563165E34902 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SweeterSwift;
+			target = 6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */;
+			targetProxy = 154460E3EA84E8166126C214764F47B1 /* PBXContainerItemProxy */;
+		};
+		1E1EB169EED81DFD5D6F4C5D06947596 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AvailableHapticFeedback;
+			target = 3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */;
+			targetProxy = 4C47856B3BFAE0688C9B51934F1FCE6C /* PBXContainerItemProxy */;
+		};
+		209786E61F64878BE7E06994274DB990 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MultiSlider;
+			target = F69984ED0D5D3CC1B9D170E4AC78A24E /* MultiSlider */;
+			targetProxy = E2109686175AF217688F387D2DF071B6 /* PBXContainerItemProxy */;
+		};
+		234AAC42441F565D92896100C03C4641 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AvailableHapticFeedback;
+			target = 3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */;
+			targetProxy = 6450C32200670B354962B5C2F6C5A0F7 /* PBXContainerItemProxy */;
+		};
+		3986DE025329E5DE1B232E2965673BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MultiSlider;
+			target = F69984ED0D5D3CC1B9D170E4AC78A24E /* MultiSlider */;
+			targetProxy = 9758E482E6FF4E87D568A9AEDA792D73 /* PBXContainerItemProxy */;
+		};
+		4527A6155B2921C94CA863B607947D55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AgoraRtcEngine_iOS;
+			target = 183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */;
+			targetProxy = B6C4A1C5DE8713D472F6322EB36D25D2 /* PBXContainerItemProxy */;
+		};
+		545789661887FCE3CF6628AA0883B357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AvailableHapticFeedback-AvailableHapticFeedback";
+			target = 1983B503ED76448415D8C36BFC740644 /* AvailableHapticFeedback-AvailableHapticFeedback */;
+			targetProxy = E46CFF9C42A632D3EC4D91780A2AF903 /* PBXContainerItemProxy */;
+		};
+		5FB7E21F9E84FABD9EECB76CBBDC61A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SweeterSwift-SweeterSwift";
+			target = 6AC06A0352BD0093A0EFD2CDDF7680D8 /* SweeterSwift-SweeterSwift */;
+			targetProxy = 50B29488B44E3528AB684CB672382D1B /* PBXContainerItemProxy */;
+		};
+		7499D00921E3C5FA6A7F3977462D8583 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SweeterSwift;
+			target = 6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */;
+			targetProxy = DBCA048AF83F3B602BB7667A165E3C6A /* PBXContainerItemProxy */;
+		};
+		BF857CB040B0F4C68130B5633D7AD9DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AvailableHapticFeedback;
+			target = 3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */;
+			targetProxy = 4BF70E9ECBDAC1CFC9FCF23F7612C7D8 /* PBXContainerItemProxy */;
+		};
+		CE7B58DF4FF117412D0D241E237D0C25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-trainig";
 			target = 4D4D88BD8F45F312B63020B8BDD359A6 /* Pods-trainig */;
-			targetProxy = 3983EA5623269D45FC8358225A88FF52 /* PBXContainerItemProxy */;
+			targetProxy = 51E0E9542939BFF69192A16FF7EBA9F6 /* PBXContainerItemProxy */;
+		};
+		DE88111FBBD32F552D34F609445DDDE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AgoraRtcEngine_iOS;
+			target = 183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */;
+			targetProxy = 978A9741BB402E32EDBC4CB467DE833A /* PBXContainerItemProxy */;
+		};
+		DFA97468BBD979B170BDFF954509EB46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SweeterSwift;
+			target = 6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */;
+			targetProxy = 24F957794622CA29873BAEAD54D343CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		20448FCDA63FEBA32EB3E4E6B12437FA /* Debug */ = {
+		03B17922EFB7F4A023E5D7A0AE0B542F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6DA8CA613A0B334583DB47B6EF173E2 /* Pods-trainig-trainigUITests.debug.xcconfig */;
+			baseConfigurationReference = F73B6C99598291FCA2A828CD414A11A6 /* SweeterSwift.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -375,35 +1416,35 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SweeterSwift/SweeterSwift-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SweeterSwift/SweeterSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/SweeterSwift/SweeterSwift.modulemap";
+				PRODUCT_MODULE_NAME = SweeterSwift;
+				PRODUCT_NAME = SweeterSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		2FF33B1710256E7A5DD18F5FAD483874 /* Release */ = {
+		0E40F9C6D8ACD7C432CD8416306252A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1AF550E32D2EBCA543B8C8091C82A720 /* Pods-trainig-trainigUITests.release.xcconfig */;
+			baseConfigurationReference = 32A16E25DED21305166BEC31E80712EE /* Pods-trainig-trainigUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -416,7 +1457,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -438,69 +1479,64 @@
 			};
 			name = Release;
 		};
-		44A4B2FB6211B90C1949A44A381F6D1F /* Release */ = {
+		19513138DD6F768225323AC514C3E99B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E76EDC3B0484A0D72A40FA5D68A5A104 /* Pods-trainig.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-trainig/Pods-trainig-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				SYMROOT = "${SRCROOT}/../build";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-trainig/Pods-trainig.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		A0DC1C2C814704734F83EAB35BB20B21 /* Debug */ = {
+		1FE9A3F95DE19358F2D08D8EE5B21279 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA61E012CB6F5DEA96D86183B82D975F /* AgoraRtcEngine_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -553,7 +1589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -566,12 +1602,11 @@
 			};
 			name = Debug;
 		};
-		A52364F8836659F24927A0726F484E13 /* Release */ = {
+		2E683B6C7C4E4BF2FE7128E8E657A757 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2495EE939B869A4592421E05440062E5 /* Pods-trainig.release.xcconfig */;
+			baseConfigurationReference = DBC26DDC76F042EBCD541E4BC0ACDAF7 /* Pods-trainig.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -584,7 +1619,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-trainig/Pods-trainig-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -600,18 +1635,199 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		37F62AA01BD631AD9375E7BB26D4CC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79444692F72A3B89537112CF3FB3B8F6 /* AvailableHapticFeedback.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/AvailableHapticFeedback";
+				IBSC_MODULE = AvailableHapticFeedback;
+				INFOPLIST_FILE = "Target Support Files/AvailableHapticFeedback/ResourceBundle-AvailableHapticFeedback-AvailableHapticFeedback-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = AvailableHapticFeedback;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3E62BEA33D89941E523598FF45C79F9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79444692F72A3B89537112CF3FB3B8F6 /* AvailableHapticFeedback.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback.modulemap";
+				PRODUCT_MODULE_NAME = AvailableHapticFeedback;
+				PRODUCT_NAME = AvailableHapticFeedback;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		E0ECD40772D45F8C3878B690A33A0D19 /* Release */ = {
+		46ECD3305A5B522990770579CC4289AA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77E012DB056B0940BC801312ACA49496 /* Pods-trainigTests.release.xcconfig */;
+			baseConfigurationReference = 71C537869A4D2B6E1C75B0C6CBF78F6E /* SweeterSwift.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/SweeterSwift/SweeterSwift-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SweeterSwift/SweeterSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SweeterSwift/SweeterSwift.modulemap";
+				PRODUCT_MODULE_NAME = SweeterSwift;
+				PRODUCT_NAME = SweeterSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		588BD4725DB344E662DDFFDB2476D382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F86618E8FF795390AEF6A7C5FCFDEFF7 /* AgoraRtcEngine_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D1A490621CFD69DF2F7A9CDF7514783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F60C33BF95F49DE9F40AC35C373B5A62 /* MultiSlider.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MultiSlider/MultiSlider-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/MultiSlider/MultiSlider-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = "Target Support Files/MultiSlider/MultiSlider.modulemap";
+				PRODUCT_MODULE_NAME = MultiSlider;
+				PRODUCT_NAME = MultiSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6A0DD31D5EAE1D0D5D3DE945443B78A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7712EA4EB667C5D03F8446E78DBCDB0C /* AvailableHapticFeedback.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AvailableHapticFeedback/AvailableHapticFeedback.modulemap";
+				PRODUCT_MODULE_NAME = AvailableHapticFeedback;
+				PRODUCT_NAME = AvailableHapticFeedback;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7C2875C50D91477F82C7D2C53F536F2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 787428DB5D8D19F32993DCA4D1EC2336 /* Pods-trainigTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -624,7 +1840,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-trainigTests/Pods-trainigTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -646,51 +1862,11 @@
 			};
 			name = Release;
 		};
-		E8CEB0B9330C22012492A40FF275FCED /* Debug */ = {
+		A1288D1268526B78D023A2046AE1ACD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2361CBCD2DAAB56B37C9CBFB6A500813 /* Pods-trainig.debug.xcconfig */;
+			baseConfigurationReference = DEDCE16FEA807024B3BBA95D1482A2EA /* Pods-trainigTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-trainig/Pods-trainig-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-trainig/Pods-trainig.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F72C6C3BD47AF2BF1F0CF6031B202A88 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35DFBD737796195796CF58FA116E7395 /* Pods-trainigTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -703,7 +1879,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-trainigTests/Pods-trainigTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,15 +1899,227 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		C575AD121158B48E3BB47D235FBC9C78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7712EA4EB667C5D03F8446E78DBCDB0C /* AvailableHapticFeedback.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/AvailableHapticFeedback";
+				IBSC_MODULE = AvailableHapticFeedback;
+				INFOPLIST_FILE = "Target Support Files/AvailableHapticFeedback/ResourceBundle-AvailableHapticFeedback-AvailableHapticFeedback-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = AvailableHapticFeedback;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		D742316D7BE748AA8CB3C26F1A644EA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71C537869A4D2B6E1C75B0C6CBF78F6E /* SweeterSwift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SweeterSwift";
+				IBSC_MODULE = SweeterSwift;
+				INFOPLIST_FILE = "Target Support Files/SweeterSwift/ResourceBundle-SweeterSwift-SweeterSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = SweeterSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		E062E7D1C82D2C19069FD9FC23045C5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4595A882730CA18A72125F587FFFBF85 /* Pods-trainig-trainigUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E994EC02B5F357B640486C6A925AF10B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F73B6C99598291FCA2A828CD414A11A6 /* SweeterSwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SweeterSwift";
+				IBSC_MODULE = SweeterSwift;
+				INFOPLIST_FILE = "Target Support Files/SweeterSwift/ResourceBundle-SweeterSwift-SweeterSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = SweeterSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		F0AD073D15E3DA2B1EFFC56DEB4CDD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D040041D7D272DE1BB4761FA41A8865D /* MultiSlider.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MultiSlider/MultiSlider-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/MultiSlider/MultiSlider-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = "Target Support Files/MultiSlider/MultiSlider.modulemap";
+				PRODUCT_MODULE_NAME = MultiSlider;
+				PRODUCT_NAME = MultiSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		06A28462CE66F1D198DC0409871297EA /* Build configuration list for PBXNativeTarget "SweeterSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03B17922EFB7F4A023E5D7A0AE0B542F /* Debug */,
+				46ECD3305A5B522990770579CC4289AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17AAE207DD73038F80D3D2A22520F2CD /* Build configuration list for PBXNativeTarget "Pods-trainigTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F72C6C3BD47AF2BF1F0CF6031B202A88 /* Debug */,
-				E0ECD40772D45F8C3878B690A33A0D19 /* Release */,
+				A1288D1268526B78D023A2046AE1ACD2 /* Debug */,
+				7C2875C50D91477F82C7D2C53F536F2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FF7EB2DDE1B506450E8505104EEDBE /* Build configuration list for PBXNativeTarget "SweeterSwift-SweeterSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E994EC02B5F357B640486C6A925AF10B /* Debug */,
+				D742316D7BE748AA8CB3C26F1A644EA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44B095A1E7FD86A619175ABBC69A77C4 /* Build configuration list for PBXNativeTarget "Pods-trainig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E683B6C7C4E4BF2FE7128E8E657A757 /* Debug */,
+				19513138DD6F768225323AC514C3E99B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -739,26 +2127,53 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A0DC1C2C814704734F83EAB35BB20B21 /* Debug */,
-				44A4B2FB6211B90C1949A44A381F6D1F /* Release */,
+				25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */,
+				CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		535AEA17025664AC9CEA79C82325BAF6 /* Build configuration list for PBXNativeTarget "Pods-trainig-trainigUITests" */ = {
+		960C1BBB9ACA67289081A8D136B8ABE4 /* Build configuration list for PBXNativeTarget "MultiSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				20448FCDA63FEBA32EB3E4E6B12437FA /* Debug */,
-				2FF33B1710256E7A5DD18F5FAD483874 /* Release */,
+				5D1A490621CFD69DF2F7A9CDF7514783 /* Debug */,
+				F0AD073D15E3DA2B1EFFC56DEB4CDD5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADC8AF5A35FE6F1E8869382A392BCF64 /* Build configuration list for PBXNativeTarget "Pods-trainig" */ = {
+		A3EC62A4F45D383A4C5CBE15BFF10712 /* Build configuration list for PBXAggregateTarget "AgoraRtcEngine_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8CEB0B9330C22012492A40FF275FCED /* Debug */,
-				A52364F8836659F24927A0726F484E13 /* Release */,
+				588BD4725DB344E662DDFFDB2476D382 /* Debug */,
+				1FE9A3F95DE19358F2D08D8EE5B21279 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B678C14743B5FE6D9218CFF8215D8B6D /* Build configuration list for PBXNativeTarget "Pods-trainig-trainigUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E062E7D1C82D2C19069FD9FC23045C5F /* Debug */,
+				0E40F9C6D8ACD7C432CD8416306252A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D989F950386BFBB3984E2F94D2DF21EA /* Build configuration list for PBXNativeTarget "AvailableHapticFeedback" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0DD31D5EAE1D0D5D3DE945443B78A9 /* Debug */,
+				3E62BEA33D89941E523598FF45C79F9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8ABD4563F76A0106134B504D16BD9A4 /* Build configuration list for PBXNativeTarget "AvailableHapticFeedback-AvailableHapticFeedback" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C575AD121158B48E3BB47D235FBC9C78 /* Debug */,
+				37F62AA01BD631AD9375E7BB26D4CC68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

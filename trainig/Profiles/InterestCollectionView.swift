@@ -84,7 +84,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
         cell.setBack(with: interestsList[indexPath.row])
         //InterestCollection.reloadData()
     }
-
+    
     // MARK: UICollectionViewDelegate
 
     /*

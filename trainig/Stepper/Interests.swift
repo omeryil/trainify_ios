@@ -42,6 +42,8 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title="Interests"
+        
         question.text=String(localized: "what_are_u_interested")
         desc.text=String(localized: "select_int_desc")
         addData()

@@ -59,10 +59,13 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aH-U8-vEE" customClass="CustomButton" customModule="trainig" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="231" width="329" height="45.666666666666686"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Sign Inrrrr" cornerStyle="large">
+                            <buttonConfiguration key="configuration" style="filled" title="Sign In" cornerStyle="large">
                                 <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="baseBackgroundColor" red="0.99215686270000003" green="0.43921568630000002" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="sign_in_cl:" destination="-1" eventType="touchUpInside" id="Ktb-os-b8Y"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Veya" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8y5-qd-apu">
                             <rect key="frame" x="0.0" y="276.66666666666669" width="329" height="73"/>

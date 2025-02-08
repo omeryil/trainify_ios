@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpView" customModule="trainig" customModuleProvider="target">
             <connections>
-                <outlet property="sign_up" destination="0h6-Ke-mhE" id="RbR-EQ-jI1"/>
+                <outlet property="sign_up" destination="0h6-Ke-mhE" id="T8w-YW-eV8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -78,10 +78,13 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h6-Ke-mhE" customClass="CustomButton" customModule="trainig" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="304" width="329" height="76"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Sign In" cornerStyle="large">
-                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                            <buttonConfiguration key="configuration" style="filled" cornerStyle="large">
+                                <attributedString key="attributedTitle"/>
                                 <color key="baseBackgroundColor" red="0.99215686270000003" green="0.43921568630000002" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="sign_up_cl:" destination="-1" eventType="touchUpInside" id="SXe-Sh-IUV"/>
+                            </connections>
                         </button>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="oet-Q4-MNd"/>

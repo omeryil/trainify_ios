@@ -13,6 +13,7 @@ class UpdateAboutViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = String(localized: "about")
         aboutTextView.delegate = self
         aboutTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
@@ -32,6 +33,17 @@ class UpdateAboutViewController: UIViewController {
 
         self.countLabel.text = "\((0) + cCount)/1000"
      }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
+    }
     /*
     // MARK: - Navigation
 
