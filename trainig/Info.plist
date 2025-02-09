@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>For the purpose of using the microphone. For example, for a call or live interactive streaming session.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>For the purpose of using the camera. For example, for a call or live interactive streaming session.</string>
 </dict>
 </plist>
