@@ -126,7 +126,7 @@ class MeetingController: UIViewController {
            // Use a temporary Token to join the channel
            // Replace <#Your Token#> and <#Your Channel Name#> with your project's Token and channel name
            // If you set uid=0, the engine generates a uid internally; on success, it triggers didJoinChannel callback
-           agoraKit.joinChannel(byToken: "007eJxTYIi/zfjgj8Uas/5P9jLnuJ99KM19v1CVrbHy0sJIw9dbPj5RYDA2STM2TzI2TjI1NzJJNTS3NDY3MDQzTjYwSTUws0wxy9m0Ir0hkJEh2PAPIyMDBIL4LAwlqcUlDAwAywAg8Q==", channelId: "test", uid: 0, mediaOptions: options)
+           agoraKit.joinChannel(byToken: "007eJxTYPhyQcsy4Whe16VpIvOMzLI/e0qu+r7lieetKecNii4f1W9QYDA2STM2TzI2TjI1NzJJNTS3NDY3MDQzTjYwSTUws0wx09m3Ml2Aj4Ghf0VzPyMDBIL4bAwpqXmpuakMDADTXSA4", channelId: "deneme", uid: 0, mediaOptions: options)
        }
    }
    // Extension for implementing AgoraRtcEngineDelegate methods

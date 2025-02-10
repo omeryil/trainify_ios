@@ -2643,7 +2643,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="26.666666666666668"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dumbbell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pmJ-0g-sI6">
-                                                                            <rect key="frame" x="0.0" y="7.6666666666666599" width="17.666666666666668" height="11.666666666666668"/>
+                                                                            <rect key="frame" x="0.0" y="7.6666666666666625" width="17.666666666666668" height="11.666666666666666"/>
                                                                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="pmJ-0g-sI6" secondAttribute="height" multiplier="1:1" id="2eE-gp-99r"/>
@@ -4391,13 +4391,13 @@
         <image name="video.fill" catalog="system" width="128" height="81"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="CamButtonBack">
-            <color white="0.10364965557241115" alpha="0.79778042218543044" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.10400000214576721" alpha="0.79799997806549072" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="CamButtonRedBack">
-            <color red="0.72744535195707072" green="0.16138435298844542" blue="0.12731236524243897" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.72699999809265137" green="0.16099999845027924" blue="0.12700000405311584" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="CamButtonViewBack">
-            <color red="0.033692267130721709" green="0.033692267130721709" blue="0.033692267130721709" alpha="0.79778042218543044" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.034000001847743988" green="0.034000001847743988" blue="0.034000001847743988" alpha="0.79799997806549072" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="DarkBack">
             <color red="0.067000001668930054" green="0.067000001668930054" blue="0.067000001668930054" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
