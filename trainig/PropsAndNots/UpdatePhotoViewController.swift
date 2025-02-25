@@ -13,11 +13,14 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
     let imagePickerController = UIImagePickerController()
     @IBOutlet weak var pickBtn: UIButton!
     var imageURL: URL?
+    let functions = Functions()
+    var userData:NSDictionary!
+    var fileURL:URL!
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController.delegate=self
         self.title=String(localized:"profile_photo")
-       
+        userData=CacheData.getUserData()!
     }
     @IBAction func pickImage(_ sender: Any) {
         imagePickerController.allowsEditing = true
@@ -30,6 +33,10 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
+        let editedImage = info[.editedImage] as! UIImage
+        fileURL = Statics.saveImageToTempDirectory(image: editedImage)
+        
+        
         let img=selectedImage.resize(Int(imgView.frame.width), Int(imgView.frame.height))
         imgView.image = img
         imgView.contentMode = .scaleToFill
@@ -42,13 +49,26 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+        
+        
+        let imageUrl:String? = userData["photo"] as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            imgView.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        }
 
     }
     override func viewDidAppear(_ animated: Bool) {
        
     }
     @objc func update(_ button: UIBarButtonItem?) {
-        
+        functions.upload(data: fileURL, onCompleteWithData: {(result,error) in
+            let r = result as! response
+            if r.ResponseCode == 200 {
+                print("OK")
+            }else {
+                print(error!)
+            }
+        })
     }
     /*
     // MARK: - Navigation

@@ -6,16 +6,22 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserHomeViewController: UIViewController {
 
     @IBOutlet weak var recommendedTable: UITableView!
     @IBOutlet weak var upcomingCollection: UICollectionView!
     
+    @IBOutlet weak var fullname: UILabel!
+    @IBOutlet weak var profile_image: RoundedImage!
     var upcomingList: [UpcomingItem] = []
     var recommendedList: [RecommendedItem] = []
+    var userData:NSDictionary!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         upcomingCollection.delegate = self
         upcomingCollection.dataSource = self
         
@@ -32,6 +38,16 @@ class UserHomeViewController: UIViewController {
         upcomingCollection.collectionViewLayout=layout
         
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        userData=CacheData.getUserData()!
+        let imageUrl:String? = userData["photo"] as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            profile_image.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            profile_image.image = UIImage(named: "person")
+        }
+        fullname.text=String(localized:"hi") + "! " + (userData["name"] as! String)
     }
     func loadUpcomingList(){
         upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))

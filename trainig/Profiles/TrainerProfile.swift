@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class TrainerProfile: UIViewController {
 
     @IBOutlet weak var total_title: UILabel!
@@ -17,9 +17,21 @@ class TrainerProfile: UIViewController {
     @IBOutlet weak var segment: CustomSegmented!
     @IBOutlet weak var vc: UIView!
     var position: Int = 0
+    let functions=Functions()
+    var userData:NSDictionary!
+    @IBOutlet weak var profile_photo: RoundedImage!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        userData=CacheData.getUserData()!
+        
+        let imageUrl:String? = userData["photo"] as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            profile_photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            profile_photo.image = UIImage(named: "person")
+        }
+       
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
         self.segment.setTitle(String(localized: "about"), forSegmentAt: 0)
@@ -52,8 +64,7 @@ class TrainerProfile: UIViewController {
         vc.bringSubviewToFront(views[0].view)
         total_title.text=String(localized: "total_profit")
         monthly_title.text=String(localized: "monthly_profit")
-        total_text.text="₺168.750"
-        monthly_text.text="₺18.000"
+        getProfit()
         // Do any additional setup after loading the view.
     }
     
@@ -85,6 +96,8 @@ class TrainerProfile: UIViewController {
         let trns=storyboard?.instantiateViewController(withIdentifier: "trainings") as! TrainingTableViewController
         let ints=storyboard?.instantiateViewController(withIdentifier: "intsCol") as! InterestCollectionView
         let comment=storyboard?.instantiateViewController(withIdentifier: "comTab") as! CommentController
+        comment.forTrainer=true
+        ints.forTrainer=true
         views.append(about)
         views.append(trns)
         views.append(comment)
@@ -100,6 +113,50 @@ class TrainerProfile: UIViewController {
         views[index].view.alpha = 1
         
         vc.bringSubviewToFront(views[index].view)
+        views[index].viewWillAppear(false)
+        
+    }
+    @IBAction func settings_cl(_ sender: Any) {
+        let n = storyboard?.instantiateViewController(withIdentifier: "sett") as! SettingsController
+        n.forTrainer=true
+        self.navigationController!.pushViewController(n, animated: true)
+        
+    }
+    func getProfit(){
+        let id = userData["id"]
+        let data : Any =
+        [
+            "where": [
+                "collectionName": "users",
+                "and":[
+                    "id": id
+                ]
+            ],
+            "related": [
+                "relationName": "trainerProfitRelation",
+                "where": [
+                    "collectionName": "trainerProfit"
+                ]
+            ]
+        ]
+        functions.getRelationsOneContent(data: data, listItem:"trainerProfit", onCompleteWithData: { (contentData,error) in
+            if contentData != nil {
+                let content=contentData as! NSDictionary
+                let currency=content["currency"] as! String
+                let totalprofit=String(content["totalprofit"] as! Int64)
+                let profit=String(content["profit"] as! Int64)
+                DispatchQueue.main.async {
+                    self.total_text.text=currency+totalprofit
+                    self.monthly_text.text=currency+profit
+                }
+            }else{
+                print(error!)
+            }
+            DispatchQueue.main.async {
+                //self.view.dismissLoader()
+            }
+        })
+        
     }
     /*
     // MARK: - Navigation

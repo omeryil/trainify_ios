@@ -32,6 +32,11 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
         let cell = collectionView.cellForItem(at: indexPath) as! InterestsCell
         interestsList[indexPath.row].selected.toggle()
         cell.setBack(with: interestsList[indexPath.row])
+        if isStepperOn{
+            let selectedItems=interestsList.filter { $0.selected }.map{$0.interest ?? ""}
+            stepperData["items"]=selectedItems
+            stepperDelegate?.interests(data: stepperData)
+        }
         //InterestCollection.reloadData()
     }
 
@@ -39,6 +44,9 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var desc: UITextView!
     var interestsList:[InterestItem]=[]
+    var isStepperOn:Bool=false
+    var stepperDelegate:StepperDelegate?
+    var stepperData:[String:Any]=["items":[]]
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     override func viewDidLoad() {
         super.viewDidLoad()

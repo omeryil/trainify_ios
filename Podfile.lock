@@ -39,6 +39,7 @@ PODS:
   - AgoraRtcEngine_iOS/VirtualBackground (4.4.0)
   - AgoraRtcEngine_iOS/VQA (4.4.0)
   - AvailableHapticFeedback (1.0.5)
+  - FSCalendar (2.8.4)
   - MultiSlider (1.11.2):
     - AvailableHapticFeedback
     - SweeterSwift
@@ -46,21 +47,24 @@ PODS:
 
 DEPENDENCIES:
   - AgoraRtcEngine_iOS (= 4.4.0)
+  - FSCalendar
   - MultiSlider
 
 SPEC REPOS:
   trunk:
     - AgoraRtcEngine_iOS
     - AvailableHapticFeedback
+    - FSCalendar
     - MultiSlider
     - SweeterSwift
 
 SPEC CHECKSUMS:
   AgoraRtcEngine_iOS: 8f579495aafaf383346241a419718e9775723493
   AvailableHapticFeedback: a5eb92c61e72823579ae8db81195bfd6b4159324
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   MultiSlider: 944d00877d371bbb5ce0a512fec517de87958775
   SweeterSwift: 1eca266517c703d7376e723a21926f5cb2ba4d0f
 
-PODFILE CHECKSUM: eef0bf97e138922b09e678c6f93323421ed7307d
+PODFILE CHECKSUM: d319e50d98b840bcf54c40bdcadce60c1ba3fde8
 
 COCOAPODS: 1.16.2

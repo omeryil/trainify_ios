@@ -21,6 +21,12 @@
 			</array>
 		</dict>
 	</dict>
+    <key>applicationId</key>
+    <string>d3528058-c161-4f11-8304-0e00f77dfbde</string>
+    <key>organizationId</key>
+    <string>64cce65f97fb307ad6f3d1e9</string>
+    <key>secretKey</key>
+    <string>zv5bqnq95kxz6ai7ln7zy6kq56bvp4ag9qz1s82qxnf6epk8</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>For the purpose of using the microphone. For example, for a call or live interactive streaming session.</string>
 	<key>NSCameraUsageDescription</key>

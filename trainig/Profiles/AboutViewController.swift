@@ -10,15 +10,49 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var aboutText: UITextView!
+    var userData:NSDictionary!
+    let functions=Functions()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = String(localized:"about")
-        // Do any additional setup after loading the view.
+        userData = CacheData.getUserData()!
+        getAboutText()
     }
+   
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        userData = CacheData.getUserData()!
+        getAboutText()
+        
     }
-
+    func getAboutText(){
+        let id=userData["id"]
+        let data:Any=[
+                "where": [
+                    "collectionName": "users",
+                    "and":[
+                        "id":id
+                    ]
+                ],
+                "related": [
+                    "relationName": "trainerAboutRelation",
+                    "where": [
+                        "collectionName": "trainerAbout"
+                    ]
+                ]
+        ]
+        functions.getRelationsOneContent(data: data,listItem:"trainerAbout", onCompleteWithData: { (contentData,error) in
+            if contentData != nil {
+                let content=contentData as! NSDictionary
+                DispatchQueue.main.async {
+                    self.aboutText.text=content["about"] as? String
+                }
+            }else{
+                print(error!)
+            }
+            DispatchQueue.main.async {
+                //self.view.dismissLoader()
+            }
+        })
+    }
     /*
     // MARK: - Navigation
 

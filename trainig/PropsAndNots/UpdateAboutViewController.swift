@@ -11,8 +11,14 @@ class UpdateAboutViewController: UIViewController {
     var placeholderLabel : UILabel!
     @IBOutlet weak var aboutTextView: CustomTextViewBorder8!
     @IBOutlet weak var countLabel: UILabel!
+    let functions = Functions()
+    var userData:NSDictionary!
+    var aboutId=""
+    var isStepperOn:Bool = false
+    var delegate:StepperDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
+        userData = CacheData.getUserData()!
         self.title = String(localized: "about")
         aboutTextView.delegate = self
         aboutTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
@@ -25,10 +31,48 @@ class UpdateAboutViewController: UIViewController {
         aboutTextView.addSubview(placeholderLabel)
         placeholderLabel.frame.origin = CGPoint(x: 16, y: 16)
         placeholderLabel.isHidden = !aboutTextView.text.isEmpty
+        getAboutText()
         // Do any additional setup after loading the view.
     }
-    
+    func getAboutText(){
+        let id=userData["id"]
+        let data:Any=[
+                "where": [
+                    "collectionName": "users",
+                    "and":[
+                        "id":id
+                    ]
+                ],
+                "related": [
+                    "relationName": "trainerAboutRelation",
+                    "where": [
+                        "collectionName": "trainerAbout"
+                    ]
+                ]
+        ]
+        functions.getRelations(data: data,listItem:"trainerAbout", onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                for item in resData{
+                    let itemDic = item as! NSDictionary
+                    self.aboutId = itemDic["id"] as! String
+                    let content = itemDic["content"] as! NSDictionary
+                    DispatchQueue.main.async {
+                        self.aboutTextView.text=content["about"] as? String
+                        self.placeholderLabel.isHidden = !self.aboutTextView.text.isEmpty
+                        self.updateCharacterCount()
+                    }
+                }
+               
+            }else{
+                print(error!)
+                
+            }
+        })
+        
+    }
     func updateCharacterCount() {
+        delegate?.about(data: self.aboutTextView.text ?? "")
         let cCount = self.aboutTextView.text.count
 
         self.countLabel.text = "\((0) + cCount)/1000"
@@ -37,12 +81,35 @@ class UpdateAboutViewController: UIViewController {
         navigationItem.rightBarButtonItem = nil
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+        if !isStepperOn {
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+        }
+       
 
     }
     @objc func update(_ button: UIBarButtonItem?) {
-        
+        var data : Any = [
+            "where": [
+                "collectionName": "trainerAbout",
+                "and": [
+                    "id": self.aboutId
+                ]
+            ],
+            "fields": [
+                [
+                    "field": "about",
+                    "value": aboutTextView.text!
+                ]
+            ]
+        ]
+        functions.update(data: data, onCompleteBool: { (success,error) in
+            if success! {
+                print(success!)
+            }else {
+                print(error!)
+            }
+        })
     }
     /*
     // MARK: - Navigation

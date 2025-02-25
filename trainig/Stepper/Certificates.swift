@@ -35,6 +35,10 @@ class Certificates: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var certificatesTable: UITableView!
     
     var certificates:[CertificateItem]=[]
+    
+    var isStepperOn:Bool=false
+    var stepperDelegate:StepperDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         certificatesTable.delegate=self

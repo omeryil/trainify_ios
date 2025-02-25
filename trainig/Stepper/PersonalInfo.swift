@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -36,11 +37,15 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         let cell = collectionView.cellForItem(at: indexPath) as! GenderCell
         genders=cell.configureSelect(index: indexPath.row, genders: genders, list: strGenders)
         genderCollection.reloadData()
+        let gender=genders.filter { $0.selected }.first?.gender ?? ""
+        stepperData["gender"]=gender
+        stepperDelegate?.personalInfo(data: stepperData)
     }
     
 
     
     
+    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var birthDateTF: CustomTextField!
     @IBOutlet weak var heightTF: CustomTextFieldBorder!
     @IBOutlet weak var weightTF: CustomTextFieldBorder!
@@ -53,9 +58,23 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
     var hPicker = UIPickerView()
     var heights: [String] = []
     var weights: [String] = []
+    var isStepperOn:Bool=false
+    var stepperDelegate:StepperDelegate?
+    var userData:NSDictionary!
+    var stepperData:[String:Any]=[
+        "gender":"",
+        "height":"",
+        "weight":"",
+        "birthDate":0
+    ]
+    @IBOutlet weak var fullname: UILabel!
+    let imagePickerController = UIImagePickerController()
+    @IBOutlet weak var pickBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        imagePickerController.delegate = self
+        userData = CacheData.getUserData()!
+        fullname.text=userData["name"] as? String ?? ""
         self.addData()
         genderCollection.dataSource=self
         genderCollection.delegate=self
@@ -80,6 +99,26 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         createWeightPicker()
         bindPickers()
 
+    }
+    @IBAction func pickImage(_ sender: Any) {
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.mediaTypes = ["public.image"]
+
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        let img=selectedImage.resize(Int(imgView.frame.width), Int(imgView.frame.height))
+        imgView.image = img
+        let editedImage = info[.editedImage] as! UIImage
+        let fileURL = Statics.saveImageToTempDirectory(image: editedImage)
+        stepperData["photo"]=fileURL
+        stepperDelegate?.personalInfo(data: stepperData)
+        imgView.contentMode = .scaleToFill
+        dismiss(animated: true, completion: nil)
     }
     var selectedTextField: UITextField?
     @IBAction func t_up(_ sender: Any) {
@@ -172,7 +211,7 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         
         pickerToolbar?.items = [cancelButton, flexSpace, doneButton]
             
-        }
+    }
     @objc func cancelBtnClicked(_ button: UIBarButtonItem?) {
         birthDateTF?.resignFirstResponder()
         weightTF?.resignFirstResponder()
@@ -185,10 +224,17 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         heightTF?.resignFirstResponder()
         if selectedTextField == birthDateTF {
             birthDateTF.text = formatDate(date: datePicker.date)
+            let secondsStamp = Int(datePicker.date.timeIntervalSince1970*1000)
+            stepperData["birthDate"]=secondsStamp
+            stepperDelegate?.personalInfo(data: stepperData)
         }else if selectedTextField == weightTF{
             weightTF.text = weights[wPicker.selectedRow(inComponent: 0)]
+            stepperData["weight"]=weights[wPicker.selectedRow(inComponent: 0)]
+            stepperDelegate?.personalInfo(data: stepperData)
         }else if selectedTextField == heightTF{
             heightTF.text = heights[hPicker.selectedRow(inComponent: 0)]
+            stepperData["height"]=heights[hPicker.selectedRow(inComponent: 0)]
+            stepperDelegate?.personalInfo(data: stepperData)
         }
         
     }

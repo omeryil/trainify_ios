@@ -14,7 +14,7 @@ class BorderedView: UIView {
         let height:CGFloat=self.frame.height;
         layer.cornerRadius = height/2
         clipsToBounds=true
-        self.backgroundColor=UIColor(named: "DarkBack")
+        //self.backgroundColor=UIColor(named: "DarkBack")
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
     }

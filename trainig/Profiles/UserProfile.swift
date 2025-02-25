@@ -9,6 +9,8 @@ import UIKit
 
 class UserProfile: UIViewController {
     
+    @IBOutlet weak var fullname: UILabel!
+    @IBOutlet weak var profile_photo: RoundedImage!
     @IBOutlet weak var ageTitle: UILabel!
     @IBOutlet weak var weightTitle: UILabel!
     @IBOutlet weak var heightTitle: UILabel!
@@ -19,9 +21,11 @@ class UserProfile: UIViewController {
     @IBOutlet weak var segment: CustomSegmented!
     @IBOutlet weak var vc: UIView!
     var position: Int = 0
+    var userData:NSDictionary!
+    let functions=Functions()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
         self.segment.setTitle(String(localized: "interests"), forSegmentAt: 0)
@@ -58,8 +62,23 @@ class UserProfile: UIViewController {
         heightText.text="172 cm"
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        userData=CacheData.getUserData()!
+        getUserFeatures()
+       
+        let imageUrl:String? = userData["photo"] as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            profile_photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            profile_photo.image = UIImage(named: "person")
+        }
+       
+        fullname.text=(userData["name"] as! String)
+    }
     @IBAction func settings_cl(_ sender: Any) {
         let n = storyboard?.instantiateViewController(withIdentifier: "sett") as! SettingsController
+        n.forTrainer=false
         self.navigationController!.pushViewController(n, animated: true)
     }
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer)
@@ -101,6 +120,41 @@ class UserProfile: UIViewController {
         views[index].view.alpha = 1
         
         vc.bringSubviewToFront(views[index].view)
+        views[index].viewWillAppear(false)
+    }
+    func getUserFeatures(){
+        self.view.showLoader(nil)
+        let id=userData["id"]
+        let data:Any=[
+                "where": [
+                    "collectionName": "users",
+                    "and":[
+                        "id":id
+                    ]
+                ],
+                "related": [
+                    "relationName": "userFeatureRelation",
+                    "where": [
+                        "collectionName": "userFeature"
+                    ]
+                ]
+        ]
+        functions.getRelationsOneContent(data: data,listItem:"userFeature", onCompleteWithData: { (contentData,error) in
+            if contentData != nil {
+                let content=contentData as! NSDictionary
+                DispatchQueue.main.async {
+                    self.heightText.text=content["height"] as? String
+                    self.weightText.text=content["weight"] as? String
+                    self.ageText.text=Statics.yearsDifference(from: content["birthdate"] as! TimeInterval)! + " " + String(localized:"yrs_short")
+                }
+            }else{
+                print(error!)
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
+            }
+        })
+       
     }
     /*
     // MARK: - Navigation

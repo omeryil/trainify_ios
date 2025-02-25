@@ -18,6 +18,7 @@ class InterestsCell: UICollectionViewCell {
     }
     func configure(with interest_item:InterestItem){
         interest.text = interest_item.interest
+        setBack(with: interest_item)
     }
     func setBack(with interest_item:InterestItem){
         if interest_item.selected{

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class CommentCell: UITableViewCell {
 
     
@@ -28,7 +28,13 @@ class CommentCell: UITableViewCell {
         rating.text = String(comment.rating)
         desc.text = comment.comment
         title.text = comment.username
-        icon.image = UIImage(named: comment.photo as! String)
+        
+        let imageUrl:String? = comment.photo as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            icon.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            icon.image = UIImage(named: "person")
+        }
         
     }
     

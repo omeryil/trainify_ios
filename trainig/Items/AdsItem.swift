@@ -14,4 +14,5 @@ struct AdsItem {
     var _repeat: String!
     var price: String!
     var isActive: Bool!
+    var record_id: String!
 }

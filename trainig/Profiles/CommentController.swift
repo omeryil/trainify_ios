@@ -10,26 +10,83 @@ import UIKit
 class CommentController: UITableViewController {
 
     var comments: [CommentItem] = []
+    let functions=Functions()
+    var userData:NSDictionary!
+    var forTrainer=false
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userData = CacheData.getUserData()!
+        
+    
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight=300
         self.tableView.rowHeight = UITableView.automaticDimension
-        addData()
+        if forTrainer{
+            addDataTrainer()
+        }else {
+            addData()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+   
     func addData() {
-        var comitem = CommentItem(username:"Nancy May",comment:"asdasdad asdasdads asdasdasd asdasda sdad werw erwer wedsfsf ewrwer wer dsdf sdf we rwerwer",rating:2.5,photo: "acb")
-        comments.append(comitem)
-        comitem = CommentItem(username:"Nancy May",comment:"asdasdad asdasdads asdasdasd asdasda sdad werw erwer wedsfsf ewrwer wer dsdf sdf we rwerwer",rating:2.5,photo: "acb")
-        comments.append(comitem)
-        comitem = CommentItem(username:"Nancy May",comment:"asdasdad asdasdads asdasdasd asdasda sdad werw erwer wedsfsf ewrwer wer dsdf sdf we rwerwer",rating:2.5,photo: "acb")
-        comments.append(comitem)
+        
+        let id=userData["id"]
+        let data:Any=[
+            "uid":id
+        ]
+        functions.executeUserComment(data: data, onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                for item in resData{
+                    let itemTop = item as! NSDictionary
+                    let itemDic = itemTop["user_comments"] as! NSDictionary
+                    let content = itemDic["content"] as! NSDictionary
+                    let comitem = CommentItem(username:itemDic["trainer_name"] as? String ?? "" ,comment:content["comment"] as? String ?? "",rating:content["rating"] as? Float ?? 0,photo: itemDic["trainer_photo"] as? String ?? "")
+                    self.comments.append(comitem)
+                }
+                DispatchQueue.main.async {
+                    self.tableView?.reloadData()
+                }
+            }else{
+                print(error!)
+                
+            }
+        })
+        
+        
+    }
+    func addDataTrainer() {
+        
+        let id=userData["id"]
+        let data:Any=[
+            "tid":id
+        ]
+        functions.executeTrainerComment(data: data, onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                for item in resData{
+                    let itemTop = item as! NSDictionary
+                    let itemDic = itemTop["trainer_comments"] as! NSDictionary
+                    let content = itemDic["content"] as! NSDictionary
+                    let comitem = CommentItem(username:itemDic["user_name"] as? String ?? "" ,comment:content["comment"] as? String ?? "",rating:content["rating"] as? Float ?? 0,photo: itemDic["user_photo"] as? String ?? "")
+                    self.comments.append(comitem)
+                }
+                DispatchQueue.main.async {
+                    self.tableView?.reloadData()
+                }
+            }else{
+                print(error!)
+                
+            }
+        })
+        
         
     }
     // MARK: - Table view data source

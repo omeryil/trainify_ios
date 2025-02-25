@@ -19,6 +19,17 @@ class UpdateCertificateTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        
+    }
     func addData() {
         let descStrs:[String] = ["About Yoga","About Meditation","About Mindfulness","About Mindfulness","About Mindfulness"]
         for i in descStrs {

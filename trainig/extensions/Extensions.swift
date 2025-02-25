@@ -100,5 +100,17 @@ public extension UIImage {
         return resized
     }
 }
+extension UIView{
+    func showLoader(_ color:UIColor?) -> Indicator?{
+        let indicator=Bundle.main.loadNibNamed("Indicator", owner: self, options: nil)?.first as? Indicator
+        indicator?.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        indicator?.tag = -888754
+        self.addSubview(indicator!)
+        return indicator
+    }
 
+    func dismissLoader(){
+        self.viewWithTag(-888754)?.removeFromSuperview()
+    }
+}
 

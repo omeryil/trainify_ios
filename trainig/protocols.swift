@@ -18,3 +18,19 @@ protocol filterDelegate{
 protocol sliderChangedDelegate{
     func sliderChanged(slider:RangeSlider,values:[CGFloat])
 }
+protocol indicatorDelegate
+{
+    func showIndicator()
+    func hideIndicator()
+}
+protocol StepperDelegate{
+    func personalInfo(data:Any)
+    func interests(data:Any)
+    func provideo(data:Any)
+    func about(data:Any)
+    func certificate(data:Any)
+}
+protocol PassDataDelegate
+{
+    func passData(data:Any)
+}

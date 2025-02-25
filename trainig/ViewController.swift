@@ -7,14 +7,31 @@
 
 import UIKit
 
-class ViewController: UIViewController,sign_in_up_delegate {
+class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
+    func showIndicator() {
+        let ind = self.view.showLoader(nil) as? Indicator
+        ind!.lbl.text=String(localized:"wait")
+    }
+    
+    func hideIndicator() {
+        self.view.dismissLoader()
+    }
+    
     func sign_up() {
-        let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        let n = storyboard?.instantiateViewController(withIdentifier: "vpager") as! ViewPager
         self.navigationController!.pushViewController(n, animated: true)
     }
     
     func sign_in() {
-        let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        let userData=CacheData.getUserData()!
+        var n:UIViewController!
+        let role=userData["role"] as! String
+        if role=="user"{
+            n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        }else{
+            n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+        }
+        //let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
         self.navigationController!.pushViewController(n, animated: true)
     }
     
@@ -30,9 +47,11 @@ class ViewController: UIViewController,sign_in_up_delegate {
         for v in views{
             if v is SignInView{
                 (v as! SignInView).delegate = self
+                (v as! SignInView).indicatorDelegate = self
             }
             if v is SignUpView{
                 (v as! SignUpView).delegate = self
+                (v as! SignUpView).indicatorDelegate = self
             }
             vc.addSubview(v.view)
         }

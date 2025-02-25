@@ -14,13 +14,19 @@ class SettingsController: UITableViewController {
     var personalInfo:[ForwardItem] = []
     var about:[ForwardItem] = []
     @IBOutlet weak var ni: UINavigationItem!
-    var headers:[String] = ["Notifications","Comments","Personal Info","About"]
+    var headers:[String] = []
+    var forTrainer=false
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwitch()
         addForward()
         data.append(not)
-        data.append(coms)
+        if forTrainer{
+            data.append(coms)
+            headers = [String(localized:"notifications"),String(localized:"comments"),String(localized:"personal_info"),String(localized:"about_app")]
+        }else{
+            headers = [String(localized:"notifications"),String(localized:"personal_info"),String(localized:"about_app")]
+        }
         data.append(personalInfo)
         data.append(about)
         tableView.sectionHeaderTopPadding=16
@@ -41,7 +47,7 @@ class SettingsController: UITableViewController {
     }
     func addSwitch() {
         not.append(SwitchItem(title: "Allow/Reject Notifications",checked: true))
-        coms.append(SwitchItem(title: "Allow/Reject Comments",checked: false))
+        coms.append(SwitchItem(title: "Allow/Reject Comments",checked: true))
     }
     func addForward() {
         
@@ -50,12 +56,20 @@ class SettingsController: UITableViewController {
         let ints = storyboard?.instantiateViewController(withIdentifier: "upInterests") as! UpdateInterestCollectionViewController
         let photo = storyboard?.instantiateViewController(withIdentifier: "upPhoto") as! UpdatePhotoViewController
         let video = storyboard?.instantiateViewController(withIdentifier: "upVideo") as! UpdateVideoViewController
-        
-        personalInfo.append(ForwardItem(title: String(localized:"personal_info"),controller: pi))
+        let cert = storyboard?.instantiateViewController(withIdentifier: "upCert") as! UpdateCertificateTableViewController
+        if !forTrainer {
+            personalInfo.append(ForwardItem(title: String(localized:"personal_info"),controller: pi))
+        }
         personalInfo.append(ForwardItem(title: String(localized:"profile_photo"),controller: photo ))
-        personalInfo.append(ForwardItem(title: String(localized:"promotion_video"),controller: video ))
-        personalInfo.append(ForwardItem(title: String(localized:"about"),controller: ab ))
-        personalInfo.append(ForwardItem(title: String(localized:"interests"),controller: ints ))
+        if forTrainer {
+            personalInfo.append(ForwardItem(title: String(localized:"promotion_video"),controller: video ))
+            personalInfo.append(ForwardItem(title: String(localized:"about"),controller: ab ))
+            personalInfo.append(ForwardItem(title: String(localized:"specialities"),controller: ints ))
+            personalInfo.append(ForwardItem(title: String(localized:"certificates"),controller: cert ))
+        }else {
+            personalInfo.append(ForwardItem(title: String(localized:"interests"),controller: ints ))
+        }
+        
     
     }
     // MARK: - Table view data source
@@ -117,7 +131,9 @@ class SettingsController: UITableViewController {
         case is [ForwardItem]:
             let fItems=cellModel as! [ForwardItem]
             let item = fItems[indexPath.row]
-            self.navigationController?.pushViewController(item.controller as! UIViewController, animated: true)
+            let controller = item.controller as! UIViewController
+            controller.title = item.title
+            self.navigationController?.pushViewController(controller, animated: true)
         default: break
             
         }

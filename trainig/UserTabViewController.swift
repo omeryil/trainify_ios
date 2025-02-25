@@ -9,7 +9,7 @@ import UIKit
 
 class UserTabViewController: UITabBarController {
     var icons:[String]=["homekit","magnifyingglass","calendar","person"]
-    var texts:[String]=["home","Search","Calendar","Profile"]
+    var texts:[String]=[String(localized:"home"),String(localized:"search"),String(localized:"calendar"),String(localized:"profile")]
     override func viewDidLoad() {
         super.viewDidLoad()
         for index in 0..<icons.count{
