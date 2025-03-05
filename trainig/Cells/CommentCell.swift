@@ -25,7 +25,7 @@ class CommentCell: UITableViewCell {
     }
     func configure(with comment: CommentItem){
        
-        rating.text = String(comment.rating)
+        rating.text = String(format: "%.1f", comment.rating)
         desc.text = comment.comment
         title.text = comment.username
         

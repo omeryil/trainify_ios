@@ -13,14 +13,17 @@ class UserHomeViewController: UIViewController {
     @IBOutlet weak var recommendedTable: UITableView!
     @IBOutlet weak var upcomingCollection: UICollectionView!
     
+    @IBOutlet weak var noresult: UILabel!
     @IBOutlet weak var fullname: UILabel!
     @IBOutlet weak var profile_image: RoundedImage!
     var upcomingList: [UpcomingItem] = []
-    var recommendedList: [RecommendedItem] = []
+    var recommendedList: [RecommendedTrainerItem] = []
     var userData:NSDictionary!
+    var interests:[String]=[]
+    let functions = Functions()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        userData=CacheData.getUserData()!
         
         upcomingCollection.delegate = self
         upcomingCollection.dataSource = self
@@ -28,9 +31,9 @@ class UserHomeViewController: UIViewController {
         recommendedTable.delegate = self
         recommendedTable.dataSource = self
         
-        loadUpcomingList()
-        loadrecommendedList()
-        
+        //loadUpcomingList()
+        getUpcomingData()
+        getInterestData()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
@@ -48,6 +51,111 @@ class UserHomeViewController: UIViewController {
             profile_image.image = UIImage(named: "person")
         }
         fullname.text=String(localized:"hi") + "! " + (userData["name"] as! String)
+        
+    }
+    func getUpcomingData(){
+        indicator = self.view.showLoader(nil)
+        indicator?.lbl.text = String(localized:"wait")
+        let now = Statics.currentTimeInMilliSeconds()
+        let d = Date()
+        let afterThreeDaysDate = Calendar.current.date(byAdding: .day, value: 3, to: d)
+        let afterThreeDaysDateInMilliSeconds = Statics.currentTimeInMilliSeconds(date: afterThreeDaysDate!)
+        let dta:Any=[
+            "usid":userData["id"],
+            "start":now,
+            "finish":afterThreeDaysDateInMilliSeconds
+        ]
+        functions.executeUserUpcoming(data: dta, onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                for item in resData{
+                    let itemTop = item as! NSDictionary
+                    let content = itemTop["content"] as! NSDictionary
+                    let adscontent = itemTop["adscontent"] as! NSDictionary
+                    let usercontent = itemTop["usercontent"] as! NSDictionary
+                    let training_name = adscontent["training_title"] as? String ?? ""
+                    let trainer_name = usercontent["name"] as? String ?? ""
+                    let startDate = content["startDate"] as! Int64
+                    let endDate = content["endDate"] as! Int64
+                    let time = "\(adscontent["date"] as? String ?? "") \(adscontent["start_time"] as? String ?? "") - \(adscontent["end_time"] as? String ?? "") "
+                    let photo = usercontent["photo"]
+                    
+                    self.upcomingList.append(UpcomingItem( training_name:training_name,trainer_name: trainer_name, duration: "", time: time,photo: photo))
+                }
+                DispatchQueue.main.async {
+                    self.upcomingCollection.reloadData()
+                }
+            }else{
+                print(error!)
+                
+            }
+        })
+    }
+    var indicator:Indicator!
+    func getInterestData(){
+       
+        let id=userData["id"]
+        let data:Any=[
+            "where": [
+                "collectionName": "users",
+                "and":[
+                    "id":id
+                ]
+            ],
+            "related": [
+                "relationName": "userInterestRelation",
+                "where": [
+                    "collectionName": "userInterest"
+                ]
+            ]
+        ]
+        functions.getRelations(data: data,listItem:"userInterest", onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                
+                for item in resData{
+                    let itemDic = item as! NSDictionary
+                    let content = itemDic["content"] as! NSDictionary
+                    let i=content["interest"] as? String ?? ""
+                    self.interests.append(i)
+                }
+                
+            }else{
+                print(error!)
+                
+            }
+            DispatchQueue.main.async {
+                //self.addData()
+                self.getFeatured()
+            }
+        })
+        
+    }
+    
+    func getFeatured(){
+        let data : Any = [
+            "interests":interests
+        ]
+        recommendedList.removeAll()
+        functions.featured(data: data, onCompleteWithData: { (data,error) in
+            DispatchQueue.main.async {
+                self.loadsearchList(data as! [NSDictionary])
+                self.view.dismissLoader()
+            }
+            
+        })
+    }
+    func loadsearchList(_ data:[NSDictionary]){
+        
+        if data.count==0{
+            noresult.isHidden=false
+        }else {
+            noresult.isHidden=true
+        }
+        for item in data{
+            recommendedList.append(RecommendedTrainerItem(trainer_title: item["trainertitle"] as? String, trainer_name: item["trainername"] as? String, exps: item["trainerExps"] as? [String], photo: item["trainerphoto"], rating: item["trainerrating"] as? Float,trainerId: item["trainerid"] as? String))
+        }
+        recommendedTable.reloadData()
     }
     func loadUpcomingList(){
         upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
@@ -56,13 +164,7 @@ class UserHomeViewController: UIViewController {
         upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
         upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
     }
-    func loadrecommendedList(){
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "35 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "30 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1,5 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "40 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-    }
+    
 
     /*
     // MARK: - Navigation
@@ -99,21 +201,30 @@ extension UserHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recCell", for: indexPath) as? RecommendedCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recTCell", for: indexPath) as? RecommendedTrainerCell else {
             return UITableViewCell()
         }
         cell.configure(with: recommendedList[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedTrainerCell {
             cell.backgroundColor = UIColor(named: "DarkCellBack")
           }
     }
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedTrainerCell {
             cell.backgroundColor = UIColor.clear
           }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = recommendedList[indexPath.row]
+        let n = storyboard?.instantiateViewController(withIdentifier: "t_ownprofile") as! TrainerProfileOwn
+        n.trainerId = item.trainerId
+        n.trainerName = item.trainer_name
+        n.trainerTitle = item.trainer_title
+        n.trainerPhoto = item.photo
+        self.navigationController!.pushViewController(n, animated: true)
     }
           
     

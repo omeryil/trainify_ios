@@ -30,27 +30,44 @@ class Filter: UIViewController, sliderChangedDelegate {
     var trainingTypes:[InterestItem]=[]
     var gender:[InterestItem]=[]
     var experience:[InterestItem]=[]
+    var expItems:[[Int]]=[[1,5],[5,10],[10]]
+    var ages : [CGFloat]!
+    var prices : [CGFloat]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
        
         ageRange.delegate=self
         priceRange.delegate=self
+        if prices != nil && prices.count > 0 {
+            priceRange.minValue=prices[0]
+            priceRange.maxValue=prices[1]
+        }
         
-        priceRange.minValue=500.0
-        priceRange.maxValue=2500.0
         if filterItem.priceRange.count > 0 {
             priceRange.value=filterItem.priceRange
         }else {
-            priceRange.value=[750.0, 1200.0]
+            let firstPrice:CGFloat=prices[0]+((prices[1] - prices[0])/4)
+            let secondPrice:CGFloat=prices[0]+((prices[1] - prices[0])/4*3)
+            if prices.count > 0 {
+                priceRange.value=[firstPrice, secondPrice]
+            }
+            
         }
         
-        ageRange.minValue=18.0
-        ageRange.maxValue=60.0
+        if ages != nil && ages.count > 0 {
+            ageRange.minValue = ages[0]
+            ageRange.maxValue = ages[1]
+        }
+       
         if filterItem.ageRange.count > 0 {
             ageRange.value=filterItem.ageRange
         }else {
-            ageRange.value=[23.0, 32.0]
+            let firstAge:CGFloat=ages[0]+((ages[1] - ages[0])/4)
+            let secondAge:CGFloat=ages[0]+((ages[1] - ages[0])/4*3)
+            if ages.count > 0 {
+                ageRange.value=[firstAge, secondAge]
+            }
         }
         
         training_types.delegate=self
@@ -91,9 +108,10 @@ class Filter: UIViewController, sliderChangedDelegate {
         }
     }
     func addExp() {
-        let items: [String] = ["1 Year", "2-5 Years", "5-10 Years", "+10 Years"]
-        for i in items {
-            experience.append(InterestItem(interest: i, selected: filterItem.experience.firstIndex(of:i) ?? -1 >= 0 ? true : false))
+        let items: [String] = ["1-5 Years", "5-10 Years", "+10 Years"]
+        for i in 0..<items.count {
+            let e = items[i]
+            experience.append(InterestItem(interest: e, selected: filterItem.experience.firstIndex(of:expItems[i]) ?? -1 >= 0 ? true : false))
         }
     }
     /*
@@ -171,9 +189,9 @@ extension Filter: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
         }else if collectionView == experiences{
             let cell = collectionView.cellForItem(at: indexPath) as! OneItem
             if !experience[indexPath.row].selected{
-                filterItem.experience.append(experience[indexPath.row].interest)
+                filterItem.experience.append(expItems[indexPath.row])
             }else{
-                if let index = filterItem.experience.firstIndex(of:experience[indexPath.row].interest) {
+                if let index = filterItem.experience.firstIndex(of:expItems[indexPath.row]) {
                     filterItem.experience.remove(at: index)
                 }
             }

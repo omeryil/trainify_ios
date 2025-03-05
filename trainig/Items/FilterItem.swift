@@ -14,5 +14,5 @@ struct FilterItem {
     var gender:[String]=[]
     var priceRange: [CGFloat]=[]
     var ageRange: [CGFloat]=[]
-    var experience:[String]=[]
+    var experience:[[Int]]=[]
 }

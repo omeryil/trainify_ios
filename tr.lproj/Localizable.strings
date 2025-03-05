@@ -73,7 +73,7 @@
 "time_range" = "Time Range";
 "price" = "Price";
 "training_title_ph" = "Ex: Yoga,Pilates";
-"choose_date_ph" = "Day-Mounth_Year";
+"choose_date_ph" = "Day-Mounth-Year";
 "repetition_interval_ph" = "Daily, Weekly, Monthly";
 "duration_ph" = "Min(1 hour)";
 "equipments_ph" = "Equipments for training";
@@ -95,3 +95,18 @@
 "deactivate" = "De-activate Ad";
 "activate_ads" = "Do you want to activate this ad";
 "activate" = "Activate Ad";
+"start_time_greater_than_end_time" = "Start Time cannot be greater than End Time";
+"start_time_60_errro" = "Training duration must be at least 60 mins";
+"delete" = "Delete";
+"delete_ask" = "Are you sure you want to delete?";
+"ad_publish_time_error" = "To schedule, there must be at least 48 hours between creation and realization";
+"text_count_error"="must be at least xxx characters";
+"search_results"="Search Results";
+"no_result"="No results found";
+"hour"="Hour";
+"hours"="Hours";
+"mins"="Mins";
+"min"="Min";
+"add_new_time"="Add New Time for Ad";
+"select_time"="Please select a time";
+"error_adding_reservation"="This seasion reserved by another user. If you want you can try in 3 minutes or choose another session";

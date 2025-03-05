@@ -18,9 +18,20 @@ class SignInView: UIViewController {
     public var delegate: sign_in_up_delegate?
     public var indicatorDelegate: indicatorDelegate?
     let functions = Functions()
+    var ld = 0
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        if ld == 0 {
+            email.text = "omer_yildirim@outlook.com.tr"
+            password.text = "3299538"
+        }else if ld == 1{
+            email.text = "a@a.com"
+            password.text = "Aa123456"
+        }else{
+            email.text = ""
+            password.text = ""
+        }
         forgot_btn.setTitle(String(localized: "forgot_pass"), for: .normal)
         sign_in_button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         sign_in_button.titleLabel?.text = String(localized: "sign_in")

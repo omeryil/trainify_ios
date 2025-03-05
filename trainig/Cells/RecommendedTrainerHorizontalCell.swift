@@ -7,26 +7,32 @@
 
 import UIKit
 
-class RecommendedHorizontalCell: UICollectionViewCell {
+class RecommendedTrainerHorizontalCell: UICollectionViewCell {
 
     
    
-    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var trainer_name: UILabel!
     @IBOutlet weak var photo: RoundedImage!
-    @IBOutlet weak var training_name: UILabel!
-    @IBOutlet weak var duration: UILabel!
+    @IBOutlet weak var exps: UILabel!
+    @IBOutlet weak var trainer_title: UILabel!
     @IBOutlet weak var rating: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    func configure(with recommended: RecommendedItem){
-        time.text = recommended.time
+    func configure(with recommended: RecommendedTrainerItem){
+        exps.text = ""
+        for i in 0..<recommended.exps.count{
+            let str = recommended.exps[i]
+            if i < recommended.exps.count-1{
+                exps.text?.append("\(str), ")
+            }else{
+                exps.text?.append("\(str)")
+            }
+        }
         trainer_name.text = recommended.trainer_name
-        training_name.text = recommended.training_name
-        duration.text = recommended.duration
+        trainer_title.text = recommended.trainer_title
         rating.text = String(format: "%.1f", recommended.rating)
         let imageUrl:String? = recommended.photo as? String ?? nil
         if let urlString = imageUrl, let url = URL(string: urlString) {

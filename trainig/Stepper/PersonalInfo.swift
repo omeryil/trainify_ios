@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UITextFieldDelegate {
     
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -45,15 +45,20 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
 
     
     
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var careerLbl: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var birthDateTF: CustomTextField!
     @IBOutlet weak var heightTF: CustomTextFieldBorder!
     @IBOutlet weak var weightTF: CustomTextFieldBorder!
+    @IBOutlet weak var expTF: CustomTextFieldBorder!
+    @IBOutlet weak var titleTF: CustomTextFieldBorder!
     @IBOutlet weak var genderCollection: UICollectionView!
     var genders: [GenderItem] = []
     let strGenders=["man","woman","trans", "nonbin"]
     var pickerToolbar: UIToolbar?
     var datePicker: UIDatePicker!
+    var eDatePicker: UIDatePicker!
     var wPicker = UIPickerView()
     var hPicker = UIPickerView()
     var heights: [String] = []
@@ -65,15 +70,31 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         "gender":"",
         "height":"",
         "weight":"",
-        "birthDate":0
+        "birthDate":0,
+        "expStarted":0,
+        "title":"",
+        "rating":CGFloat(0)
     ]
     @IBOutlet weak var fullname: UILabel!
     let imagePickerController = UIImagePickerController()
     @IBOutlet weak var pickBtn: UIButton!
+    var role:String!
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController.delegate = self
         userData = CacheData.getUserData()!
+        role = userData["role"] as? String
+        titleTF.delegate=self
+        if role == "user" {
+            careerLbl.isHidden=true
+            expTF.isHidden=true
+            titleTF.isHidden=true
+            titleLbl.isHidden=true
+        }
+        else{
+            titleTF.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        }
         fullname.text=userData["name"] as? String ?? ""
         self.addData()
         genderCollection.dataSource=self
@@ -94,12 +115,17 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         genderCollection!.collectionViewLayout = layout
         createUIToolBar()
         createDatePicker()
-        
+        createExpDatePicker()
         createHeightPicker()
         createWeightPicker()
         bindPickers()
 
     }
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        stepperData["title"]=textField.text?.trimmingCharacters(in: .whitespaces)
+        stepperDelegate?.personalInfo(data: stepperData)
+    }
+   
     @IBAction func pickImage(_ sender: Any) {
         imagePickerController.allowsEditing = true
         imagePickerController.sourceType = .photoLibrary
@@ -183,7 +209,26 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         datePicker.trailingAnchor.constraint(equalTo: frameView.trailingAnchor).isActive = true
         birthDateTF.inputView = frameView
     }
-    
+    func createExpDatePicker() {
+        let frameView = UIView()
+        frameView.layer.masksToBounds = true
+        frameView.backgroundColor = UIColor(named: "DarkBack")
+        frameView.frame.size = CGSize(width: 0, height: 300)
+        eDatePicker = UIDatePicker()
+        eDatePicker.datePickerMode = .date
+        eDatePicker.preferredDatePickerStyle = .wheels
+        eDatePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        let max = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+        //datePicker.maximumDate = max
+        expTF?.inputAccessoryView = pickerToolbar
+        frameView.addSubview(eDatePicker)
+        eDatePicker.translatesAutoresizingMaskIntoConstraints = false
+        eDatePicker.topAnchor.constraint(equalTo: frameView.topAnchor).isActive = true
+        eDatePicker.bottomAnchor.constraint(equalTo: frameView.bottomAnchor).isActive = true
+        eDatePicker.leadingAnchor.constraint(equalTo: frameView.leadingAnchor).isActive = true
+        eDatePicker.trailingAnchor.constraint(equalTo: frameView.trailingAnchor).isActive = true
+        expTF.inputView = frameView
+    }
     func formatDate(date: Date) -> String
     {
         let formatter = DateFormatter()
@@ -216,16 +261,23 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         birthDateTF?.resignFirstResponder()
         weightTF?.resignFirstResponder()
         heightTF?.resignFirstResponder()
+        expTF?.resignFirstResponder()
     }
         
     @objc func doneBtnClicked(_ button: UIBarButtonItem?) {
         birthDateTF?.resignFirstResponder()
         weightTF?.resignFirstResponder()
         heightTF?.resignFirstResponder()
+        expTF?.resignFirstResponder()
         if selectedTextField == birthDateTF {
             birthDateTF.text = formatDate(date: datePicker.date)
             let secondsStamp = Int(datePicker.date.timeIntervalSince1970*1000)
             stepperData["birthDate"]=secondsStamp
+            stepperDelegate?.personalInfo(data: stepperData)
+        }else if selectedTextField == expTF {
+            expTF.text = formatDate(date: eDatePicker.date)
+            let secondsStamp = Int(eDatePicker.date.timeIntervalSince1970*1000)
+            stepperData["expStarted"]=secondsStamp
             stepperDelegate?.personalInfo(data: stepperData)
         }else if selectedTextField == weightTF{
             weightTF.text = weights[wPicker.selectedRow(inComponent: 0)]

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UpcomingCell: UICollectionViewCell {
 
@@ -26,7 +27,12 @@ class UpcomingCell: UICollectionViewCell {
         time.text = upcoming.time
         trainer_name.text = upcoming.trainer_name
         training_name.text = upcoming.training_name
-        photo.image=UIImage(named: upcoming.photo as! String)
+        let imageUrl:String? = upcoming.photo as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            photo.image = UIImage(named: "person")
+        }
         
     }
     

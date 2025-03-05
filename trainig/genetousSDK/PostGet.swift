@@ -50,6 +50,12 @@ public enum URL_TYPE:CustomStringConvertible {
     case login
     case getUserComment
     case getTrainerComment
+    case search
+    case getFeatured
+    case getFilters
+    case insertData
+    case addMultiCollection
+    case getUpcoming
     
     public var description : String {
         switch self {
@@ -72,6 +78,12 @@ public enum URL_TYPE:CustomStringConvertible {
         case .login: return "dataservice/login"
         case .getUserComment: return "dataservice/execute/getCommentsByUserId"
         case .getTrainerComment: return "dataservice/execute/getCommentsByTrainerId"
+        case .search: return "searchservice/search"
+        case .getFeatured: return "searchservice/featured"
+        case .getFilters: return "searchservice/filters"
+        case .insertData: return "searchservice/create"
+        case .addMultiCollection: return "dataservice/add/multicollection"
+        case .getUpcoming: return "dataservice/execute/getUpcoming"
         }
     }
 }
@@ -165,30 +177,34 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
                             callback(res.createResponse())
                         }
                     }else if(self.return_type == RETURN_TYPE.JSONARRAY){
-                        if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: myData, options: []) as? [[String:AnyObject]] {
+                        if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: data!, options: []) as? [[String: Any]] {
                             let ja:[NSDictionary] = jsonOutput as [NSDictionary]
                             
                             res.setJsonArray(ja)
                                 .setExceptionData("")
+                                .setResponseCode(httpResponse!.statusCode)
                             callback(res.createResponse())
                         }else{
                             res.setExceptionData("Hata")
+                                .setResponseCode(httpResponse!.statusCode)
                             callback(res.createResponse())
                         }
                     }else if(self.return_type == RETURN_TYPE.STRING){
                         let str = String(decoding: data!, as: UTF8.self)
                         res.setJsonData(jsonData:str)
                             .setExceptionData("")
+                            .setResponseCode(httpResponse!.statusCode)
                         callback(res.createResponse())
                         
                     }else if(self.return_type == RETURN_TYPE.DATA){
                         if let myData = data {
                             
-                            res.setData(myData)
+                            res.setData(data!)
                                 .setExceptionData("")
+                                .setResponseCode(httpResponse!.statusCode)
                             callback(res.createResponse())
                         }else{
-                            res.setExceptionData("Hata")
+                            res.setExceptionData("Hata").setResponseCode(httpResponse!.statusCode)
                             callback(res.createResponse())
                         }
                     }

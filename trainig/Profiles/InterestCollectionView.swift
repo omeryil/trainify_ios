@@ -14,7 +14,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     
     var interestsList:[InterestItem]=[]
     let functions=Functions()
-    var userData:NSDictionary!
+    var id:String!
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     var forTrainer:Bool=false
     override func viewDidLoad() {
@@ -35,8 +35,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
         layout.minimumLineSpacing = 10
         self.collectionView!.collectionViewLayout = layout
        
-        userData = CacheData.getUserData()!
-        forTrainer = userData["role"] as! String == "user" ? false : true
+        
         if forTrainer{
             addTrainerData()
         }
@@ -47,7 +46,6 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     }
    
     func addData(){
-        let id=userData["id"]
         let data:Any=[
             "where": [
                 "collectionName": "users",
@@ -82,7 +80,6 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
         
     }
     func addTrainerData(){
-        let id=userData["id"]
         let data:Any=[
             "where": [
                 "collectionName": "users",
@@ -118,8 +115,6 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     }
     override func viewWillAppear(_ animated: Bool) {
         interestsList.removeAll()
-        userData = CacheData.getUserData()!
-        forTrainer = userData["role"] as! String == "user" ? false : true
         if forTrainer{
             addTrainerData()
         }

@@ -93,11 +93,15 @@ class TrainerProfile: UIViewController {
     }
     func setViewControllers(){
         let about=storyboard?.instantiateViewController(withIdentifier: "about") as! AboutViewController
+        about.id = userData["id"] as? String
         let trns=storyboard?.instantiateViewController(withIdentifier: "trainings") as! TrainingTableViewController
+        
         let ints=storyboard?.instantiateViewController(withIdentifier: "intsCol") as! InterestCollectionView
-        let comment=storyboard?.instantiateViewController(withIdentifier: "comTab") as! CommentController
-        comment.forTrainer=true
+        ints.id = userData["id"] as? String
         ints.forTrainer=true
+        let comment=storyboard?.instantiateViewController(withIdentifier: "comTab") as! CommentController
+        comment.id = userData["id"] as? String
+        comment.forTrainer=true
         views.append(about)
         views.append(trns)
         views.append(comment)

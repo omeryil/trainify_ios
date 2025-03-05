@@ -31,10 +31,12 @@ class Schedule: UIViewController {
     var timePickerEnd:UIDatePicker!
     var pickerToolBar:UIToolbar!
     var repetitionPicker:UIPickerView!
-    var repetitions:[String]=[String(localized:"norep"),String(localized:"daily"),String(localized:"weekly"),String(localized:"monthly")]
+    var repetitions:[String]=["norep","daily","weekly","monthly"]
     let functions = Functions()
     var indicatorDelegate:indicatorDelegate!
     var passDataDelegate:PassDataDelegate!
+    var selectedRepition:String!
+    var duration:String!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +47,7 @@ class Schedule: UIViewController {
         training_title_lbl.text = String(localized:"training_title")
         choose_date_lbl.text = String(localized:"choose_date")
         repetition_interval_lbl.text = String(localized:"repetition_interval")
-        duration_lbl.text = String(localized:"duration")
+        
         equipments_lbl.text = String(localized:"equipments")
         time_range_lbl.text = String(localized:"time_range")
         price_lbl.text = String(localized:"price")
@@ -53,7 +55,7 @@ class Schedule: UIViewController {
         training_title_txt.placeholder = String(localized:"training_title_ph")
         choose_date_txt.placeholder = String(localized:"choose_date_ph")
         repetition_interval_txt.placeholder = String(localized:"repetition_interval_ph")
-        duration_txt.placeholder = String(localized:"duration_ph")
+        
         
         time_start_txt.placeholder = String(localized:"start_time")
         time_finish_txt.placeholder = String(localized:"end_time")
@@ -105,7 +107,8 @@ class Schedule: UIViewController {
             choose_date_txt.text = Statics.formatDate(date: datePicker.date)
             let secondsStamp = Int(datePicker.date.timeIntervalSince1970*1000)
         }else if selectedTextField == repetition_interval_txt {
-            repetition_interval_txt.text = repetitions[repetitionPicker.selectedRow(inComponent: 0)]
+            selectedRepition = repetitions[repetitionPicker.selectedRow(inComponent: 0)]
+            repetition_interval_txt.text = String(localized:String.LocalizationValue(selectedRepition))
         }
         else if selectedTextField == time_start_txt {
             let formatter = DateFormatter()
@@ -128,7 +131,21 @@ class Schedule: UIViewController {
         self.dismiss(animated: true , completion: nil)
     }
     @IBAction func schedule_action(_ sender: Any) {
-        let check : Any = checktxts()
+        var check : Any = checktxts()
+        if let error_message = check as? String {
+            functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
+                                  
+                })
+            return
+        }
+        check = checkTimes()
+        if let error_message = check as? String {
+            functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
+                                  
+                })
+            return
+        }
+        check = true
         if let error_message = check as? String {
             functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
                                   
@@ -139,14 +156,46 @@ class Schedule: UIViewController {
     }
     func checktxts() -> Any {
         let check : [UITextField] = [training_title_txt,choose_date_txt,repetition_interval_txt,time_start_txt,time_finish_txt,price_txt]
+        let minCount : [Int] = [3,-1,-1,-1,-1,2]
+        let titles:[String] = [String(localized:"training_title"),"","","","",String(localized:"price")]
         let error_messages:[String] = [String(localized:"enter_training_title"),String(localized:"enter_date"),String(localized:"enter_repetition"),String(localized:"enter_start"),String(localized:"enter_end"),String(localized:"enter_price")]
         for c in 0..<check.count {
             let i : UITextField = check[c]
             if i.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 return error_messages[c]
             }
+            if minCount[c] > -1 && i.text!.count < minCount[c] {
+                var str=String(localized:"text_count_error")
+                let mCountStr:String = String(minCount[c])
+                str = str.replacingOccurrences(of: "xxx", with: mCountStr)
+                str = titles[c] + " " + str
+                return str
+            }
         }
         return true
+    }
+    func checkTimes() -> Any{
+        let start=time_start_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: ":")
+        let end = time_finish_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: ":")
+        let starttime = Int(start![0])!*60+Int(start![1])!
+        let endtime = Int(end![0])!*60+Int(end![1])!
+        if starttime>=endtime{
+            let error_message:String = String(localized:"start_time_greater_than_end_time")
+            return error_message
+        }else if endtime - starttime < 60{
+            let error_message:String = String(localized:"start_time_60_errro")
+            return error_message
+        }
+        duration = Statics.formatMinutesToHoursMinutes(endtime - starttime)
+        return true
+    }
+    func checkHourDifference() -> Any {
+        let d:String = "\(choose_date_txt.text!.trimmingCharacters(in: .whitespacesAndNewlines)) \(time_start_txt.text!.trimmingCharacters(in: .whitespacesAndNewlines))"
+        if Statics.calculateHourDifference(dateString: d, hour: 48) {
+            return true
+        }else{
+            return String(localized:"ad_publish_time_error")
+        }
     }
     func send(){
         indicatorDelegate?.showIndicator()
@@ -156,11 +205,12 @@ class Schedule: UIViewController {
                 "trainer_id":userData["id"]!,
                 "training_title":training_title_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                 "date":choose_date_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-                "repetition":repetition_interval_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-                "equipmnets":equipments_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                "repetition":selectedRepition,
+                "equipments":equipments_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                 "start_time":time_start_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                 "end_time":time_finish_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                 "price":price_txt.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                "duration":duration,
                 "isActive":true
             ]
         ]
@@ -202,7 +252,7 @@ extension Schedule:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if(pickerView == repetitionPicker){
-            return String(repetitions[row])
+            return String(localized:String.LocalizationValue(repetitions[row]))
         }
         return nil
     }

@@ -205,6 +205,9 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                         "birthdate": dict["birthDate"],
                         "height": dict["height"],
                         "weight": dict["weight"],
+                        "expstarted": dict["expStarted"],
+                        "title": dict["title"],
+                        "rating":dict["rating"],
                         "createdDate": Int64(Date().timeIntervalSince1970*1000)
                     ]
                 ]

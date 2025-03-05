@@ -16,4 +16,11 @@ struct RecommendedItem {
     var time: String!
     var photo: Any!
     var rating: Float!
+    var trainerId: String!
+    var trainer_title: String!
+    var price: String!
+    var equipments:String!
+    var ads_id:String!
+    var startDate:Int64!
+    var endDate:Int64!
 }

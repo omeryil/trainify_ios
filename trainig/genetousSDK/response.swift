@@ -11,7 +11,7 @@ public enum HttpSuccess{
     case FAIL
 }
 public class response:NSObject{
-    internal init(ResponseCode: Int? = nil, Data: String? = nil, MapperData: Any? = nil, JsonObject: NSDictionary? = nil, JsonArray: [NSDictionary]? = nil, ExceptionData: String? = nil, RequestCode: Int? = nil, Result: HttpSuccess? = nil,VData:Any?=nil) {
+    internal init(ResponseCode: Int? = nil, Data: String? = nil, MapperData: Any? = nil, JsonObject: NSDictionary? = nil, JsonArray: [NSDictionary]? = nil, ExceptionData: String? = nil, RequestCode: Int? = nil, Result: HttpSuccess? = nil,VData:Data?=nil) {
         self.ResponseCode = ResponseCode
         self.Data = Data
         self.MapperData = MapperData
@@ -28,7 +28,7 @@ public class response:NSObject{
     public private(set) var MapperData:Any!
     public private(set) var JsonObject:NSDictionary!
     public private(set) var JsonArray:[NSDictionary]!
-    public private(set) var VData:Any!
+    public private(set) var VData:Data!
     public private(set) var ExceptionData:String!
     public private(set) var RequestCode:Int!
     public private(set) var Result:HttpSuccess!

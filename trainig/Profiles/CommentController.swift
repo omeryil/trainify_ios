@@ -11,12 +11,10 @@ class CommentController: UITableViewController {
 
     var comments: [CommentItem] = []
     let functions=Functions()
-    var userData:NSDictionary!
     var forTrainer=false
+    var id:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        userData = CacheData.getUserData()!
         
     
         self.tableView.delegate = self
@@ -37,7 +35,6 @@ class CommentController: UITableViewController {
    
     func addData() {
         
-        let id=userData["id"]
         let data:Any=[
             "uid":id
         ]
@@ -64,7 +61,6 @@ class CommentController: UITableViewController {
     }
     func addDataTrainer() {
         
-        let id=userData["id"]
         let data:Any=[
             "tid":id
         ]

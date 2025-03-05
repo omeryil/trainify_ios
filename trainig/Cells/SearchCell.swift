@@ -7,7 +7,7 @@
 
 import UIKit
 import Kingfisher
-class RecommendedCell: UITableViewCell {
+class SearchCell: UITableViewCell {
 
     
    

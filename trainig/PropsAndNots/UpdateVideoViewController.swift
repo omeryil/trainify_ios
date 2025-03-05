@@ -67,21 +67,26 @@ class UpdateVideoViewController: UIViewController, UIImagePickerControllerDelega
         if !isStepperOn {
             self.navigationController?.setNavigationBarHidden(false, animated: false)
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
+            getVideo()
         }
-        functions.getVideo(url: userData["video"] as! String, onCompleteWithData: {(result,error) in
-            let r = result as! response
-            //let playerItem = CachingPlayerItem.init(data: data, mimeType: "audio/mpeg", fileExtension: ".mp3")
-              //  player = AVPlayer(playerItem: playerItem)
-                //guard let player = player else { return }
-                //player.play()
+    }
+    func getVideo(){
+        var videoUrl:String? = userData["video"] as? String ?? nil
+        videoUrl = videoUrl?.replacingOccurrences(of: "download?", with: "watch?")
+        functions.getVideo(url: videoUrl!, onCompleteWithData: {(result,error) in
+            if let url = String(data: result as! Data, encoding: .utf8) {
+                videoUrl = url
+            } else {
+                return
+            }
+            DispatchQueue.main.async {
+                if let urlString = videoUrl, let url = URL(string: urlString) {
+                    self.videoURL = url
+                    self.addVideoPlayer(videoUrl: url, to: self.view)
+                    self.plyBtn.isHidden = false
+                }
+            }
         })
-        let videoUrl:String? = userData["video"] as? String ?? nil
-        if let urlString = videoUrl, let url = URL(string: urlString) {
-            self.videoURL = url
-            addVideoPlayer(videoUrl: url, to: view)
-            plyBtn.isHidden = false
-        }
-
     }
     @objc func update(_ button: UIBarButtonItem?) {
         functions.upload(data: videoURL, onCompleteWithData: {(result,error) in

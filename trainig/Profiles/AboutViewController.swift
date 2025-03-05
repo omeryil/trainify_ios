@@ -10,21 +10,19 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var aboutText: UITextView!
-    var userData:NSDictionary!
     let functions=Functions()
+    var id:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        userData = CacheData.getUserData()!
+        
         getAboutText()
     }
    
     override func viewWillAppear(_ animated: Bool) {
-        userData = CacheData.getUserData()!
         getAboutText()
         
     }
     func getAboutText(){
-        let id=userData["id"]
         let data:Any=[
                 "where": [
                     "collectionName": "users",

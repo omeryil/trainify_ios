@@ -9,15 +9,25 @@ import UIKit
 
 class SearchHomeViewController: UIViewController {
     @IBOutlet weak var InterestCollection: UICollectionView!
+    @IBOutlet weak var searchbar: DesignableUITextField!
     @IBOutlet weak var recommendedTable: UITableView!
     
-    var recommendedList: [RecommendedItem] = []
+    var recommendedList: [RecommendedTrainerItem] = []
     var interestsList:[InterestItem]=[]
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
+    let functions = Functions()
+    var interests:[String]=[]
+    var userData:NSDictionary!
+    @IBOutlet weak var noResult: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        addData()
-        loadrecommendedList()
+        noResult.text = String(localized: "no_result")
+        userData = CacheData.getUserData()!
+        searchbar.delegate = self
+        searchbar.returnKeyType = .search
+        
+        getInterestData()
+        
         
         
         InterestCollection.dataSource=self
@@ -28,17 +38,97 @@ class SearchHomeViewController: UIViewController {
         
         self.InterestCollection.register(UINib(nibName: "InterestsCell", bundle: nil), forCellWithReuseIdentifier: "intCell")
     }
+    func getFeatured(){
+        let data : Any = [
+            "interests":interests
+        ]
+        recommendedList.removeAll()
+        functions.featured(data: data, onCompleteWithData: { (data,error) in
+            DispatchQueue.main.async {
+                self.loadsearchList(data as! [NSDictionary])
+                self.view.dismissLoader()
+            }
+            
+        })
+    }
+    var indicator:Indicator!
+    func getInterestData(){
+        indicator = self.view.showLoader(nil)
+        indicator?.lbl.text = String(localized:"wait")
+        let id=userData["id"]
+        let data:Any=[
+            "where": [
+                "collectionName": "users",
+                "and":[
+                    "id":id
+                ]
+            ],
+            "related": [
+                "relationName": "userInterestRelation",
+                "where": [
+                    "collectionName": "userInterest"
+                ]
+            ]
+        ]
+        functions.getRelations(data: data,listItem:"userInterest", onCompleteWithData: { (contentData,error) in
+            let resData=contentData as? NSArray ?? []
+            if error!.isEmpty {
+                
+                for item in resData{
+                    let itemDic = item as! NSDictionary
+                    let content = itemDic["content"] as! NSDictionary
+                    let i=content["interest"] as? String ?? ""
+                    self.interests.append(i)
+                    if !self.interestsList.contains(where: { $0.interest == i }){
+                        self.interestsList.append(InterestItem(interest: i ,selected: false ))
+                    }
+                }
+                
+            }else{
+                print(error!)
+                
+            }
+            DispatchQueue.main.async {
+                self.addData()
+                self.getFeatured()
+            }
+        })
+        
+    }
     func addData(){
-        for i in ints{
-            interestsList.append(InterestItem(interest: i,selected: false ))
+        
+    }
+    func loadsearchList(_ data:[NSDictionary]){
+        
+        if data.count==0{
+            noResult.isHidden=false
+        }else {
+            noResult.isHidden=true
+        }
+        for item in data{
+            recommendedList.append(RecommendedTrainerItem(trainer_title: item["trainertitle"] as? String, trainer_name: item["trainername"] as? String, exps: item["trainerExps"] as? [String], photo: item["trainerphoto"], rating: item["trainerrating"] as? Float,trainerId: item["trainerid"] as? String))
+        }
+        InterestCollection.reloadData()
+        recommendedTable.reloadData()
+    }
+    @IBAction func searchbar_changed(_ sender: Any) {
+        
+    }
+    func performSearch() {
+        guard let searchText = searchbar.text, !searchText.isEmpty else { return }
+        let str=searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if str.count>2{
+            let n = storyboard?.instantiateViewController(withIdentifier: "sResult") as! SearchResultsViewController
+            n.searchStr=str
+            n.interests=interests
+            n.recommendedList=recommendedList
+            self.navigationController!.pushViewController(n, animated: true)
         }
     }
-    func loadrecommendedList(){
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "35 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "30 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "1,5 hour(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
-        recommendedList.append(RecommendedItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "40 min(s)", time: "22/01 10:30 - 11:00",photo: "acb",rating:4.5))
+    func search(_ str:String){
+        functions.search(start: "0", text: str, onCompleteWithData: { (data,error) in
+            print(data);
+        })
     }
     /*
     // MARK: - Navigation
@@ -51,7 +141,7 @@ class SearchHomeViewController: UIViewController {
     */
 
 }
-extension SearchHomeViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+extension SearchHomeViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -81,11 +171,16 @@ extension SearchHomeViewController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         let cell = collectionView.cellForItem(at: indexPath) as! InterestsCell
-        interestsList[indexPath.row].selected.toggle()
-        cell.setBack(with: interestsList[indexPath.row])
+        searchbar.text = interestsList[indexPath.row].interest
+        performSearch()
         //InterestCollection.reloadData()
     }
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == searchbar {
+                performSearch()
+            }
+            return true
+    }
     
 }
 extension SearchHomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -94,22 +189,30 @@ extension SearchHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recCell", for: indexPath) as? RecommendedCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recTCell", for: indexPath) as? RecommendedTrainerCell else {
             return UITableViewCell()
         }
         cell.configure(with: recommendedList[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedTrainerCell {
             cell.backgroundColor = UIColor(named: "DarkCellBack")
           }
     }
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedTrainerCell {
             cell.backgroundColor = UIColor.clear
           }
     }
-          
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = recommendedList[indexPath.row]
+        let n = storyboard?.instantiateViewController(withIdentifier: "t_ownprofile") as! TrainerProfileOwn
+        n.trainerId = item.trainerId
+        n.trainerName = item.trainer_name
+        n.trainerTitle = item.trainer_title
+        n.trainerPhoto = item.photo
+        self.navigationController!.pushViewController(n, animated: true)
+    }
     
 }

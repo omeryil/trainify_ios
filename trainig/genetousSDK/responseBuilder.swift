@@ -11,7 +11,7 @@ public class responseBuilder:NSObject {
     public private(set) var jsonData:String!
     public private(set) var jsonObject:NSDictionary!
     public private(set) var jsonArray:[NSDictionary]!
-    public private(set) var vData:Any!
+    public private(set) var vData:Data!
     public private(set) var exceptionData:String!
     public private(set) var requestCode:Int!
     public private(set) var result:HttpSuccess!
@@ -51,7 +51,7 @@ public class responseBuilder:NSObject {
         self.jsonArray = jsonArray
         return self
     }
-    public func setData(_ vData:Any) -> responseBuilder {
+    public func setData(_ vData:Data) -> responseBuilder {
         self.vData = vData
         return self
     }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -16,6 +16,7 @@
 			dependencies = (
 			);
 			name = AgoraRtcEngine_iOS;
+			productName = AgoraRtcEngine_iOS;
 		};
 /* End PBXAggregateTarget section */
 
@@ -23,7 +24,7 @@
 		000D44DCEB008B41B0613BF7E66BFEF3 /* FSCalendarExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6473CD6E2020F59649E4E8A6D9FAAF6F /* FSCalendarExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F532FA152DD2270DBAC7A0C1F2D3D1 /* FSCalendarDelegationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E68CE8EFF15E3AD5C4BB6619A39C8B /* FSCalendarDelegationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		063EB674D963F7C9F74C027D53020920 /* Pods-trainig-trainigUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93B0E387E20DAC83C681B80B3D292B /* Pods-trainig-trainigUITests-dummy.m */; };
-		06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback-AvailableHapticFeedback in Resources */ = {isa = PBXBuildFile; fileRef = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */; };
+		06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback.bundle */; };
 		0838275DED2B6E1CF7FBA3D845DD0CCB /* FSCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = EF390370AF31A78D21EFB38F2884DCB3 /* FSCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08C9B1F678123F3F352B3BCE9C85E8A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FF5CBFDBB86D2F50FA7B1AFDB7ACFD /* UIKit.framework */; };
 		091F090B2A52373B1D05305EAB339BF8 /* DateFormatter+Sweeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E8391001B0C795961C74552424303A /* DateFormatter+Sweeter.swift */; };
@@ -91,7 +92,7 @@
 		E40FC0107AA1F6ABD26F7BA882CDC66C /* FSCalendarSeparatorDecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 607DDBB47EA54D3ACE9017C6575D4741 /* FSCalendarSeparatorDecorationView.m */; };
 		ED52AD75E46E9BB7ABAEAAB5334E8211 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BFD05D8621E70E5B78DEC33CBB99ED /* FSCalendarAppearance.m */; };
 		F07ADDF878459E91D34D6AB2A07E07B0 /* FSCalendarTransitionCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = D50453942DFF072C0C66EE3AA53A058E /* FSCalendarTransitionCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F39D017E4246CBA011AD31229B0DAD2C /* SweeterSwift-SweeterSwift in Resources */ = {isa = PBXBuildFile; fileRef = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */; };
+		F39D017E4246CBA011AD31229B0DAD2C /* SweeterSwift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift.bundle */; };
 		F4F9D6460A103152A4B9AF67BA903EA1 /* Pods-trainig-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20295517C0E3E3F5FCE67158D84D3A2F /* Pods-trainig-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F58A90100B69314E2E03EC8DA445D863 /* FSCalendar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D0EAB9C3C6D564D00A836E632CF63694 /* FSCalendar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6ABF6F11A13B1A3F6A372D42492BED4 /* Pods-trainig-trainigUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0031362BF41F18CAC09E7CCA1E911 /* Pods-trainig-trainigUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -220,7 +221,7 @@
 		156CE73D7CF5F210AEE4D4FA48FB2FEA /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarWeekdayView.m; path = FSCalendar/FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		1740F9A34424ADAC34141ABA2BE3DC00 /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MultiSlider+Drag.swift"; path = "Sources/MultiSlider+Drag.swift"; sourceTree = "<group>"; };
 		18A4212BDCAF9D2C59CC61CE4B46B4A2 /* Pods-trainig-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-trainig-frameworks.sh"; sourceTree = "<group>"; };
-		1A40E5BDA35AFAE8C51229E8F65BCF0C /* AgoraVideoAv1DecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1DecoderExtension.xcframework; sourceTree = "<group>"; };
+		1A40E5BDA35AFAE8C51229E8F65BCF0C /* AgoraVideoAv1DecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoAv1DecoderExtension.xcframework; sourceTree = "<group>"; };
 		1BA480BC672D88415D0D3E13A85FD687 /* TimeInterval+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimeInterval+Sweeter.swift"; path = "Source/TimeInterval+Sweeter.swift"; sourceTree = "<group>"; };
 		1C53BE081242DE19C33261DD38025A35 /* SweeterSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SweeterSwift-Info.plist"; sourceTree = "<group>"; };
 		1E077C6DEF6AD4AC8D15CCA22F0E34AB /* SweeterSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SweeterSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -239,96 +240,96 @@
 		2EA0031362BF41F18CAC09E7CCA1E911 /* Pods-trainig-trainigUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainig-trainigUITests-umbrella.h"; sourceTree = "<group>"; };
 		2FF6B2DE42FE8FA0506F5C2CDD796010 /* Codable+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Codable+Sweeter.swift"; path = "Source/Codable+Sweeter.swift"; sourceTree = "<group>"; };
 		301C60948BA7B9A0E2C461A0F78D3740 /* NSObject+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Sweeter.swift"; path = "Source/NSObject+Sweeter.swift"; sourceTree = "<group>"; };
-		31FAACEC1ABE66811CAA96980BA98E44 /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
+		31FAACEC1ABE66811CAA96980BA98E44 /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
 		32A16E25DED21305166BEC31E80712EE /* Pods-trainig-trainigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3542A5B639679F655ACF11962AD22CB9 /* SweeterSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SweeterSwift.release.xcconfig; sourceTree = "<group>"; };
 		37E6692DA399BD4EEBCBC0C10CC9DEAF /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionView.h; path = FSCalendar/FSCalendarCollectionView.h; sourceTree = "<group>"; };
-		38A0F2ADE894E4C677E3EF8439058581 /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
-		38B2FA5418820738432E858C61731375 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
+		38A0F2ADE894E4C677E3EF8439058581 /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
+		38B2FA5418820738432E858C61731375 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
 		3A87707367F1F3B2F24E63C856F748F3 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarTransitionCoordinator.m; path = FSCalendar/FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		3E58FCBE75715CB160521DC02B4C2AB9 /* SweeterSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SweeterSwift.debug.xcconfig; sourceTree = "<group>"; };
 		3FC99FCBDAF2C89E4218EA7175232D0B /* Pods-trainigTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainigTests-Info.plist"; sourceTree = "<group>"; };
-		40BA81F396FB9287EBD1A27ABD54B40E /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
-		40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainig-trainigUITests"; path = Pods_trainig_trainigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40BA81F396FB9287EBD1A27ABD54B40E /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
+		40F43BDAAF90CE788E6D40380FBDC130 /* Pods_trainig_trainigUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig_trainigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4595A882730CA18A72125F587FFFBF85 /* Pods-trainig-trainigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig-trainigUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainigTests"; path = Pods_trainigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		481AF4B8B8FAA2CE2737227A2D594B02 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
+		47F96F33BD52C2882FF042DDF5ED0D10 /* Pods_trainigTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		481AF4B8B8FAA2CE2737227A2D594B02 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
 		4C2F3DC56F6FC5B2217FD581FBE1AFBB /* AvailableHapticFeedback-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AvailableHapticFeedback-prefix.pch"; sourceTree = "<group>"; };
-		4CB708DC595D5255DF0F1752D2FF1A0A /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
+		4CB708DC595D5255DF0F1752D2FF1A0A /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
 		50DFAF07B8D3C09F2DC367613D981D48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		522A70908F59646E2BFC2FECDF3BC52D /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarStickyHeader.h; path = FSCalendar/FSCalendarStickyHeader.h; sourceTree = "<group>"; };
 		52EE6107E1F38DB7773AFF7B906B9FE9 /* Swift+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Swift+Sweeter.swift"; path = "Source/Swift+Sweeter.swift"; sourceTree = "<group>"; };
 		547A8AEB38B20B61FB423A353478B5B5 /* AvailableHapticFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AvailableHapticFeedback-dummy.m"; sourceTree = "<group>"; };
 		54A39D72349DAC2A0D2860FDCA933BA5 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDynamicHeader.h; path = FSCalendar/FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
-		563FDFB15E0FCE994D21F97B2EECBF11 /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
+		563FDFB15E0FCE994D21F97B2EECBF11 /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
 		56E8391001B0C795961C74552424303A /* DateFormatter+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+Sweeter.swift"; path = "Source/DateFormatter+Sweeter.swift"; sourceTree = "<group>"; };
-		5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "AvailableHapticFeedback-AvailableHapticFeedback"; path = AvailableHapticFeedback.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		5988CDB8C48380B16BF06BCDCD9E92A7 /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
+		5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvailableHapticFeedback.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5988CDB8C48380B16BF06BCDCD9E92A7 /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
 		5D6BFBDEE1BCD37914FB511A8E569BE4 /* Pods-trainigTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-trainigTests-umbrella.h"; sourceTree = "<group>"; };
 		5DA44AA5199D7FFBF017534AF74FAD9C /* Pods-trainig-trainigUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-trainigUITests-Info.plist"; sourceTree = "<group>"; };
 		5F20E71A602558E3DEACE36FB4904319 /* Pods-trainigTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainigTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5F9847ED361EE8067C6DB9645837B9E8 /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_dec.xcframework; sourceTree = "<group>"; };
+		5F9847ED361EE8067C6DB9645837B9E8 /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = video_dec.xcframework; sourceTree = "<group>"; };
 		607DDBB47EA54D3ACE9017C6575D4741 /* FSCalendarSeparatorDecorationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarSeparatorDecorationView.m; path = FSCalendar/FSCalendarSeparatorDecorationView.m; sourceTree = "<group>"; };
 		6161F64D8E1769F3D368F3F808D50DFB /* FSCalendarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarConstants.h; path = FSCalendar/FSCalendarConstants.h; sourceTree = "<group>"; };
 		6299194F9748BC04F90627F035A58AB3 /* Pods-trainigTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainigTests.modulemap"; sourceTree = "<group>"; };
 		6473CD6E2020F59649E4E8A6D9FAAF6F /* FSCalendarExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarExtensions.h; path = FSCalendar/FSCalendarExtensions.h; sourceTree = "<group>"; };
 		6687055A2C523B152FDFA0F95F32BAC1 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionViewLayout.m; path = FSCalendar/FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
-		686C59FFF9E074328E8C803BE3088D7D /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
+		686C59FFF9E074328E8C803BE3088D7D /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
 		6938954BAEEDA9D8C96351E5293EBB6E /* AvailableHapticFeedback-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AvailableHapticFeedback-Info.plist"; sourceTree = "<group>"; };
-		69ED0E4B32785BC976F1CCE4CC33CD19 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
+		69ED0E4B32785BC976F1CCE4CC33CD19 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
 		6A0131A132F540344C0FF4733A5D6867 /* NSAttributedString+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Sweeter.swift"; path = "Source/NSAttributedString+Sweeter.swift"; sourceTree = "<group>"; };
-		6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "SweeterSwift-SweeterSwift"; path = SweeterSwift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E5E1A0FBC7298C8597B86B923DCAD08 /* AgoraVideoDecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoDecoderExtension.xcframework; sourceTree = "<group>"; };
+		6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SweeterSwift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E5E1A0FBC7298C8597B86B923DCAD08 /* AgoraVideoDecoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoDecoderExtension.xcframework; sourceTree = "<group>"; };
 		71F6F1D03DABF88B215800E87DEEAA60 /* Pods-trainigTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainigTests-dummy.m"; sourceTree = "<group>"; };
-		72D0D933A7E04294DF57B1D0E3C27FE3 /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
+		72D0D933A7E04294DF57B1D0E3C27FE3 /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
 		730395A565A397AC43D5BE10BAC505F4 /* MultiSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MultiSlider.release.xcconfig; sourceTree = "<group>"; };
-		730A539971146E66C69A4D90645CD297 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
+		730A539971146E66C69A4D90645CD297 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
 		74E68CE8EFF15E3AD5C4BB6619A39C8B /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDelegationFactory.h; path = FSCalendar/FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
 		775501A317DE037200999A2D7AF0DD89 /* AvailableHapticFeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AvailableHapticFeedback.release.xcconfig; sourceTree = "<group>"; };
 		787428DB5D8D19F32993DCA4D1EC2336 /* Pods-trainigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.release.xcconfig"; sourceTree = "<group>"; };
-		7A227A4F44871373C129401B8A702C6C /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_enc.xcframework; sourceTree = "<group>"; };
+		7A227A4F44871373C129401B8A702C6C /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = video_enc.xcframework; sourceTree = "<group>"; };
 		7AFBB2AC3CD5E3B3EE796CF6EA41F391 /* MultiSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MultiSlider.debug.xcconfig; sourceTree = "<group>"; };
 		7E842F59222F6B4D0A1E06616FE349EB /* SweeterSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SweeterSwift-dummy.m"; sourceTree = "<group>"; };
 		7FE59192F1EED64EFB01E0D23E307952 /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarDelegationProxy.m; path = FSCalendar/FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
 		8579E61F52CB136B917379B315B1CB87 /* Pods-trainig-trainigUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig-trainigUITests.modulemap"; sourceTree = "<group>"; };
-		86096F09EBED42942AFBAD6B0C7FAE0E /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
-		8624C1126262D23EC5F05E37CB297CDA /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = aosl.xcframework; sourceTree = "<group>"; };
+		86096F09EBED42942AFBAD6B0C7FAE0E /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
+		8624C1126262D23EC5F05E37CB297CDA /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = aosl.xcframework; sourceTree = "<group>"; };
 		8A9D563DE64F304D6606407768BE4273 /* FSCalendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar-dummy.m"; sourceTree = "<group>"; };
 		8C8D61DC8AD46FC5563460162252D36D /* ResourceBundle-SweeterSwift-SweeterSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SweeterSwift-SweeterSwift-Info.plist"; sourceTree = "<group>"; };
 		8CB3B67D33BE9EB86C3734AD88F0F0B3 /* FSCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-prefix.pch"; sourceTree = "<group>"; };
-		8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-trainig"; path = Pods_trainig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods_trainig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9053CB34F55EF83358283B21D09794F8 /* AvailableHapticFeedback-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AvailableHapticFeedback-umbrella.h"; sourceTree = "<group>"; };
 		945EC2E8A1F80D9BA8962238890F7EE8 /* FSCalendarCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCalculator.m; path = FSCalendar/FSCalendarCalculator.m; sourceTree = "<group>"; };
-		95209B8BB966524BC76543F99C75F5FE /* FSCalendar */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSCalendar; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFF9FAE162E16FB7684236599321F53 /* FSCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FSCalendar.modulemap; sourceTree = "<group>"; };
 		9BFAF149448BD853FBB5AA79855D9F46 /* Pods-trainig-trainigUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-trainig-trainigUITests-frameworks.sh"; sourceTree = "<group>"; };
-		9CC9AC2644AA95CB0BA0B6408FF54BE0 /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9CC9AC2644AA95CB0BA0B6408FF54BE0 /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F38578858F293006B534FA52B88293C /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarHeaderView.h; path = FSCalendar/FSCalendarHeaderView.h; sourceTree = "<group>"; };
 		A2531F5A52382D6AB05C045EC0C77825 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionViewLayout.h; path = FSCalendar/FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
 		A78040BC9E1B3DB5647B8738EB6FD3C8 /* UIApplication+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Sweeter.swift"; path = "Source/UIApplication+Sweeter.swift"; sourceTree = "<group>"; };
 		A88C7CBD9A81BD97B483D4ACA1DBD2A2 /* Pods-trainig-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-trainig-dummy.m"; sourceTree = "<group>"; };
-		AC9FAEE734BEFDB46D35FCC81FE2A42A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		AC9FAEE734BEFDB46D35FCC81FE2A42A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B3C0D1F792F2181133AB93B9970F1A39 /* Pods-trainig-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-acknowledgements.plist"; sourceTree = "<group>"; };
 		B46FD9B5DE3B38FF14B229BC455C28F5 /* FSCalendarCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCell.m; path = FSCalendar/FSCalendarCell.m; sourceTree = "<group>"; };
 		B6902E64398E2D282BC5F83D08AFF8C3 /* Pods-trainig-trainigUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-trainigUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SweeterSwift; path = SweeterSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B76CD9F952582A6A4387D799501B3950 /* SweeterSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SweeterSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8774DF300A8A65C0785D4AA89DA8916 /* AvailableHapticFeedback.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AvailableHapticFeedback.modulemap; sourceTree = "<group>"; };
 		BA38FA9394EB27E49683CC66D4F9C5F1 /* MultiSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MultiSlider-Info.plist"; sourceTree = "<group>"; };
 		BA391D02191EAE6B693A350DB8A93DF3 /* AgoraRtcEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.release.xcconfig; sourceTree = "<group>"; };
-		BC0C7B28E02522D98489B5DF01AC15B0 /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
-		BCD48C82C6F62E8DD09AA24ECBE6200A /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
+		BC0C7B28E02522D98489B5DF01AC15B0 /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
+		BCD48C82C6F62E8DD09AA24ECBE6200A /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
 		BD1E80CE274391D137E0A04BF3229413 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		BF5FF8C268FE6C3A84FCA5E81AAD1574 /* MultiSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiSlider.swift; path = Sources/MultiSlider.swift; sourceTree = "<group>"; };
-		C0F7E9A3AA46B25220C7760254CBEBDB /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
-		C4D9738C48F009D59DC453AE2C3AA28F /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
+		C0F7E9A3AA46B25220C7760254CBEBDB /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
+		C4D9738C48F009D59DC453AE2C3AA28F /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
 		C8926941554F3B655F169BE5EF238179 /* Pods-trainig.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-trainig.modulemap"; sourceTree = "<group>"; };
 		CD88169D168FF771339C88D664ED8103 /* SweeterSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SweeterSwift-umbrella.h"; sourceTree = "<group>"; };
 		CF282442EC4C705AF80EA1E4F1F82A62 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarAppearance.h; path = FSCalendar/FSCalendarAppearance.h; sourceTree = "<group>"; };
 		CF2FB469FF6AFF465B803C144D8D6396 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarExtensions.m; path = FSCalendar/FSCalendarExtensions.m; sourceTree = "<group>"; };
 		D0EAB9C3C6D564D00A836E632CF63694 /* FSCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-umbrella.h"; sourceTree = "<group>"; };
 		D1AC5672DEA57EEF44EDAB61CF60C5AD /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarStickyHeader.m; path = FSCalendar/FSCalendarStickyHeader.m; sourceTree = "<group>"; };
-		D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AvailableHapticFeedback; path = AvailableHapticFeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AvailableHapticFeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38A4629B07DD64D8369A213D552D9E6 /* NSManagedObjectContext+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectContext+Sweeter.swift"; path = "Source/NSManagedObjectContext+Sweeter.swift"; sourceTree = "<group>"; };
 		D50453942DFF072C0C66EE3AA53A058E /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarTransitionCoordinator.h; path = FSCalendar/FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
 		D845C9CF1DCE989A507647BA5A955601 /* MultiSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MultiSlider-dummy.m"; sourceTree = "<group>"; };
@@ -338,7 +339,7 @@
 		DEDCE16FEA807024B3BBA95D1482A2EA /* Pods-trainigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainigTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E347E4862CC15812BBD2ED0B488A3BF4 /* Pods-trainig-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-trainig-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E55BD93849DD42406464E2C941725F63 /* FSCalendarSeparatorDecorationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarSeparatorDecorationView.h; path = FSCalendar/FSCalendarSeparatorDecorationView.h; sourceTree = "<group>"; };
-		E5D95BEBDF1D63B5EAAA7AD642F88AE3 /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
+		E5D95BEBDF1D63B5EAAA7AD642F88AE3 /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
 		E76EDC3B0484A0D72A40FA5D68A5A104 /* Pods-trainig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-trainig.release.xcconfig"; sourceTree = "<group>"; };
 		E7793D913DCC5B5608DD8921C9F39BE3 /* AvailableHapticFeedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AvailableHapticFeedback.swift; path = Sources/AvailableHapticFeedback.swift; sourceTree = "<group>"; };
 		E80C77248117A6A79BCA8DFD317B3281 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCalculator.h; path = FSCalendar/FSCalendarCalculator.h; sourceTree = "<group>"; };
@@ -347,15 +348,15 @@
 		EE261F8B7A3F0CB928300F6A6FC4F85C /* FSCalendar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FSCalendar-Info.plist"; sourceTree = "<group>"; };
 		EF390370AF31A78D21EFB38F2884DCB3 /* FSCalendar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendar.h; path = FSCalendar/FSCalendar.h; sourceTree = "<group>"; };
 		EF6B89708E0BA514ACFE94DF5CFBDC33 /* Pods-trainig-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-trainig-Info.plist"; sourceTree = "<group>"; };
-		F13560DC3C56BE0076D81D4C025E7342 /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
+		F13560DC3C56BE0076D81D4C025E7342 /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
 		F1BFD05D8621E70E5B78DEC33CBB99ED /* FSCalendarAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarAppearance.m; path = FSCalendar/FSCalendarAppearance.m; sourceTree = "<group>"; };
 		F26EAFAC71922C746489DF50BC1C26F2 /* MultiSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MultiSlider-umbrella.h"; sourceTree = "<group>"; };
 		F2D59A3673F1FDB47DAC706D41CCF235 /* MultiSlider+Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MultiSlider+Internal.swift"; path = "Sources/MultiSlider+Internal.swift"; sourceTree = "<group>"; };
 		F5026B86AC27C796392B83135801D590 /* FSCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSCalendar.debug.xcconfig; sourceTree = "<group>"; };
-		F5900260CCBF07ED65C363AED2EDF3D0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Source/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F5900260CCBF07ED65C363AED2EDF3D0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Source/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F5FF8FF618F1674FE5CF0E69F27FA094 /* UIViewController+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Sweeter.swift"; path = "Source/UIViewController+Sweeter.swift"; sourceTree = "<group>"; };
 		FAE9C0918BB678552A8EC35A043C6043 /* UIStackView+Sweeter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStackView+Sweeter.swift"; path = "Source/UIStackView+Sweeter.swift"; sourceTree = "<group>"; };
-		FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MultiSlider; path = MultiSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB710FE125F9F03098F08A750214F3A2 /* MultiSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MultiSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD6F05089261378EB312704AAE322BE4 /* MultiSliderExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiSliderExtensions.swift; path = Sources/MultiSliderExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -671,7 +672,6 @@
 				FD6F05089261378EB312704AAE322BE4 /* MultiSliderExtensions.swift */,
 				A1D0F6D0B28E9E1F6FE335B8BF32167D /* Support Files */,
 			);
-			name = MultiSlider;
 			path = MultiSlider;
 			sourceTree = "<group>";
 		};
@@ -833,7 +833,6 @@
 				5A3FA05645EFF68DAE9032CE2E962E85 /* VirtualBackground */,
 				D032CA0F6F0606CCB715FF46E1ABC5B6 /* VQA */,
 			);
-			name = AgoraRtcEngine_iOS;
 			path = AgoraRtcEngine_iOS;
 			sourceTree = "<group>";
 		};
@@ -852,7 +851,6 @@
 				97D6287307281A4C96E0FEA36ED190E1 /* Resources */,
 				31A77D71B28991B8DB058092C6C61AC7 /* Support Files */,
 			);
-			name = AvailableHapticFeedback;
 			path = AvailableHapticFeedback;
 			sourceTree = "<group>";
 		};
@@ -917,7 +915,6 @@
 				156CE73D7CF5F210AEE4D4FA48FB2FEA /* FSCalendarWeekdayView.m */,
 				8E84FF2086D19FC742B4AE8B696531DE /* Support Files */,
 			);
-			name = FSCalendar;
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
@@ -941,22 +938,21 @@
 				67AA5E099946E376E29FBDF518043FFD /* Resources */,
 				FB61714CE5AA43516DF4B2EB3804A3BF /* Support Files */,
 			);
-			name = SweeterSwift;
 			path = SweeterSwift;
 			sourceTree = "<group>";
 		};
 		CAACD6F3CFD96AC51E6CF4951657F072 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */,
-				5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */,
-				95209B8BB966524BC76543F99C75F5FE /* FSCalendar */,
-				FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */,
-				8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */,
-				40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */,
-				47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */,
-				B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */,
-				6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */,
+				D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback.framework */,
+				5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback.bundle */,
+				95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */,
+				FB710FE125F9F03098F08A750214F3A2 /* MultiSlider.framework */,
+				8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods_trainig.framework */,
+				40F43BDAAF90CE788E6D40380FBDC130 /* Pods_trainig_trainigUITests.framework */,
+				47F96F33BD52C2882FF042DDF5ED0D10 /* Pods_trainigTests.framework */,
+				B76CD9F952582A6A4387D799501B3950 /* SweeterSwift.framework */,
+				6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1161,7 +1157,7 @@
 			);
 			name = "Pods-trainigTests";
 			productName = Pods_trainigTests;
-			productReference = 47F96F33BD52C2882FF042DDF5ED0D10 /* Pods-trainigTests */;
+			productReference = 47F96F33BD52C2882FF042DDF5ED0D10 /* Pods_trainigTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		13285D54682BEAD805960F9E6EEB9949 /* FSCalendar */ = {
@@ -1179,7 +1175,7 @@
 			);
 			name = FSCalendar;
 			productName = FSCalendar;
-			productReference = 95209B8BB966524BC76543F99C75F5FE /* FSCalendar */;
+			productReference = 95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		1983B503ED76448415D8C36BFC740644 /* AvailableHapticFeedback-AvailableHapticFeedback */ = {
@@ -1196,7 +1192,7 @@
 			);
 			name = "AvailableHapticFeedback-AvailableHapticFeedback";
 			productName = AvailableHapticFeedback;
-			productReference = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback-AvailableHapticFeedback */;
+			productReference = 5737766315DE28C3D61114EFF7FAE21C /* AvailableHapticFeedback.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		3512EBC5B210EF5D4D638A864E7E2A40 /* AvailableHapticFeedback */ = {
@@ -1215,7 +1211,7 @@
 			);
 			name = AvailableHapticFeedback;
 			productName = AvailableHapticFeedback;
-			productReference = D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback */;
+			productReference = D306F3B73B0E0A789613827FE76170DA /* AvailableHapticFeedback.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4D4D88BD8F45F312B63020B8BDD359A6 /* Pods-trainig */ = {
@@ -1238,7 +1234,7 @@
 			);
 			name = "Pods-trainig";
 			productName = Pods_trainig;
-			productReference = 8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods-trainig */;
+			productReference = 8DFC40ECDB8FDDDCD5E5DE41927BFDE6 /* Pods_trainig.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6819F499159C87193DDD7D51504DD6C1 /* SweeterSwift */ = {
@@ -1257,7 +1253,7 @@
 			);
 			name = SweeterSwift;
 			productName = SweeterSwift;
-			productReference = B76CD9F952582A6A4387D799501B3950 /* SweeterSwift */;
+			productReference = B76CD9F952582A6A4387D799501B3950 /* SweeterSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6AC06A0352BD0093A0EFD2CDDF7680D8 /* SweeterSwift-SweeterSwift */ = {
@@ -1274,7 +1270,7 @@
 			);
 			name = "SweeterSwift-SweeterSwift";
 			productName = SweeterSwift;
-			productReference = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift-SweeterSwift */;
+			productReference = 6C6EAAFEC412666C35242FAC324BAA94 /* SweeterSwift.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8A3B14A037C11CF9B5B35C4558F8215F /* Pods-trainig-trainigUITests */ = {
@@ -1297,7 +1293,7 @@
 			);
 			name = "Pods-trainig-trainigUITests";
 			productName = Pods_trainig_trainigUITests;
-			productReference = 40F43BDAAF90CE788E6D40380FBDC130 /* Pods-trainig-trainigUITests */;
+			productReference = 40F43BDAAF90CE788E6D40380FBDC130 /* Pods_trainig_trainigUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F69984ED0D5D3CC1B9D170E4AC78A24E /* MultiSlider */ = {
@@ -1317,7 +1313,7 @@
 			);
 			name = MultiSlider;
 			productName = MultiSlider;
-			productReference = FB710FE125F9F03098F08A750214F3A2 /* MultiSlider */;
+			productReference = FB710FE125F9F03098F08A750214F3A2 /* MultiSlider.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1338,8 +1334,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = CAACD6F3CFD96AC51E6CF4951657F072 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1371,7 +1365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F39D017E4246CBA011AD31229B0DAD2C /* SweeterSwift-SweeterSwift in Resources */,
+				F39D017E4246CBA011AD31229B0DAD2C /* SweeterSwift.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1387,7 +1381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback-AvailableHapticFeedback in Resources */,
+				06F3406E721725BCDF1F99C800A47E72 /* AvailableHapticFeedback.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1952,7 +1946,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/FSCalendar/FSCalendar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2215,7 +2209,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/FSCalendar/FSCalendar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

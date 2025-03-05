@@ -25,6 +25,7 @@ class UserProfile: UIViewController {
     let functions=Functions()
     override func viewDidLoad() {
         super.viewDidLoad()
+        userData=CacheData.getUserData()!
         
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
@@ -44,8 +45,8 @@ class UserProfile: UIViewController {
         vc.addGestureRecognizer(leftSwipe)
         vc.addGestureRecognizer(rightSwipe)
         
-        
         setViewControllers()
+       
        
         for i in 0 ..< views.count {
             let v=views[i]
@@ -64,8 +65,9 @@ class UserProfile: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        userData=CacheData.getUserData()!
+       
         getUserFeatures()
+       
        
         let imageUrl:String? = userData["photo"] as? String ?? nil
         if let urlString = imageUrl, let url = URL(string: urlString) {
@@ -106,7 +108,9 @@ class UserProfile: UIViewController {
     }
     func setViewControllers(){
         let ints=storyboard?.instantiateViewController(withIdentifier: "intsCol") as! InterestCollectionView
+        ints.id = userData["id"] as? String
         let comment=storyboard?.instantiateViewController(withIdentifier: "comTab") as! CommentController
+        comment.id = userData["id"] as? String
         views.append(ints)
         views.append(comment)
     }
@@ -122,8 +126,10 @@ class UserProfile: UIViewController {
         vc.bringSubviewToFront(views[index].view)
         views[index].viewWillAppear(false)
     }
+    var indicator:Indicator!
     func getUserFeatures(){
-        self.view.showLoader(nil)
+        indicator = self.view.showLoader(nil)
+        indicator?.lbl.text = String(localized:"wait")
         let id=userData["id"]
         let data:Any=[
                 "where": [
