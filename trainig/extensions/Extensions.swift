@@ -101,10 +101,11 @@ public extension UIImage {
     }
 }
 extension UIView{
-    func showLoader(_ color:UIColor?) -> Indicator?{
+    func showLoader(_ message:String) -> Indicator?{
         let indicator=Bundle.main.loadNibNamed("Indicator", owner: self, options: nil)?.first as? Indicator
         indicator?.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         indicator?.tag = -888754
+        indicator!.lbl.text = message
         self.addSubview(indicator!)
         return indicator
     }

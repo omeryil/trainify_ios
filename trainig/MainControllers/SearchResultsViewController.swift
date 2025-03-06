@@ -63,10 +63,8 @@ class SearchResultsViewController: UIViewController,filterDelegate {
             search()
         }
     }
-    var indicator:Indicator!
     func search(){
-        indicator = self.view.showLoader(nil)
-        indicator?.lbl.text = String(localized:"wait")
+        self.view.showLoader(String(localized:"wait"))
         searchList.removeAll()
         functions.search(start: "0", text: searchStr, onCompleteWithData: { (data,error) in
             DispatchQueue.main.async {
@@ -128,8 +126,7 @@ class SearchResultsViewController: UIViewController,filterDelegate {
             data["exps"] = expData
         }
         print(data)
-        indicator = self.view.showLoader(nil)
-        indicator?.lbl.text = String(localized:"wait")
+        self.view.showLoader(String(localized:"wait"))
         searchList.removeAll()
         functions.searchFilter(data: data,start: "0", text: searchStr, onCompleteWithData: { (data,error) in
             DispatchQueue.main.async {

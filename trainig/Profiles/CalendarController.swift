@@ -6,28 +6,116 @@
 //
 
 import UIKit
+import FSCalendar
 
-class CalendarController: UIViewController {
+class CalendarController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
 
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectedDate=Statics.formatDate(date: date)
+//        let d =  Statics.createDate(year: Calendar.current.component(.year, from: date), month: Calendar.current.component(.month, from: date), day: Calendar.current.component(.day, from: date))
+//        var seenIds: Set<String> = []
+//        let ads_id=self.adsCalendar.filter { $0.date == d && seenIds.insert($0.ads_id).inserted }.map { $0.ads_id }
+        getSold(selectedDate)
+        
+    }
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+//        let currentPageDate = calendar.currentPage
+//        let month = Calendar.current.component(.month, from: currentPageDate)
+//        let year = Calendar.current.component(.year, from: currentPageDate)
+//        let mStr=month<10 ? "0"+String(month):String(month)
+//        dateString = "00-"+mStr+"-"+String(year)
+//        getTrainerDates(date: dateString)
+    }
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return eventDates.contains(date) ? 1 : 0
+    }
+    
+    
+    
     @IBOutlet weak var calendarTable: UITableView!
     @IBOutlet weak var picker: UIDatePicker!
     
+    @IBOutlet weak var calendar: FSCalendar!
     var items: [CalendarItem] = []
+    var userData:NSMutableDictionary!
+    let functions = Functions()
+    var eventDates: [Date] = []
+    var selectedDate:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        addData()
-        picker.overrideUserInterfaceStyle = .dark
+        
         calendarTable.delegate = self
         calendarTable.dataSource = self
-        // Do any additional setup after loading the view.
+        calendar.delegate = self
+        calendar.dataSource = self
     }
-    func addData() {
-        items.append(CalendarItem(trainer_name: "Frank Madison", training_name: "Functional Training", time: "01/03/2025 11:30 - 12:30", isActive: true))
-        items.append(CalendarItem(trainer_name: "Frank Madison", training_name: "Functional Training", time: "01/03/2025 11:30 - 12:30", isActive: true))
-        items.append(CalendarItem(trainer_name: "Frank Madison", training_name: "Functional Training", time: "01/03/2025 11:30 - 12:30", isActive: true))
-        items.append(CalendarItem(trainer_name: "Frank Madison", training_name: "Functional Training", time: "01/03/2025 11:30 - 12:30", isActive: true))
+    override func viewWillAppear(_ animated: Bool) {
+        userData = CacheData.getUserData()!
+        getSoldDates()
     }
-
+    func getSoldDates(){
+        let now = Statics.currentTimeInMilliSeconds()
+        let data : Any = [
+            "usid":userData["id"],
+            "start":now
+        ]
+        functions.executeUserSolDates(data: data, onCompleteWithData: {d,e in
+            let resData=d as? NSArray ?? []
+            if e!.isEmpty {
+                for item in resData{
+                    let itemTop = item as! NSDictionary
+                    let fulldate = itemTop["fulldate"] as! String
+                    let dateArray = fulldate.components(separatedBy: "-")
+                    let year = Int(dateArray[2])!
+                    let month = Int(dateArray[1])!
+                    let day = Int(dateArray[0])!
+                    let date = Statics.createDate(year: year, month: month, day: day)
+                    self.eventDates.append(date)
+                }
+                DispatchQueue.main.async {
+                    self.calendar.reloadData()
+                }
+            }else{
+                print(e!)
+                
+            }
+        })
+    }
+    func getSold(_ dateString:String){
+        items.removeAll()
+        self.calendarTable.reloadData()
+        let data : Any = [
+            "usid":"af6009c7-f18e-4770-9464-ffade8f37bc7",
+            "selected_date":dateString
+        ]
+        functions.executeUserBought(data: data, onCompleteWithData: {d,e in
+            let resData=d as? NSArray ?? []
+            if e!.isEmpty {
+                for item in resData{
+                    let itemTop = item as! NSDictionary
+                    let content = itemTop["content"] as! NSDictionary
+                    let adscontent = itemTop["adscontent"] as! NSDictionary
+                    let usercontent = itemTop["usercontent"] as! NSDictionary
+                    let training_name = adscontent["training_title"] as? String ?? ""
+                    let trainer_name = usercontent["name"] as? String ?? ""
+                    let startDate = content["startDate"] as! Int64
+                    let endDate = content["endDate"] as! Int64
+                    let time = "\(adscontent["date"] as? String ?? "") \(adscontent["start_time"] as? String ?? "") - \(adscontent["end_time"] as? String ?? "") "
+                    let adsIsActive = adscontent["isActive"] as! Bool
+                    let photo = usercontent["photo"]
+                    if !self.items.contains(where: { $0.time == time && $0.trainer_name == trainer_name }){
+                        self.items.append(CalendarItem(trainer_name: trainer_name, training_name: training_name, time: time, isActive: adsIsActive))
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.calendarTable.reloadData()
+                }
+            }else{
+                print(e!)
+                
+            }
+        })
+    }
     /*
     // MARK: - Navigation
 

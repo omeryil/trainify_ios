@@ -173,6 +173,13 @@ public class Statics {
         formatter.dateFormat = "dd-MM-yyyy HH:mm"
         return formatter.string(from: date)
     }
+    public static func formatDateFromLong(timestamp: Int64) -> String
+    {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp)/1000)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: date)
+    }
     public static func formatTimeFromLong(timestamp: Int64) -> String
     {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp)/1000)

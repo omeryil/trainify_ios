@@ -25,7 +25,7 @@ class Schedule: UIViewController {
     @IBOutlet weak var time_finish_txt: CustomTextField!
     @IBOutlet weak var price_txt: CustomTextField!
     @IBOutlet weak var titleLbl: UILabel!
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var datePicker:UIDatePicker!
     var timePickerStart:UIDatePicker!
     var timePickerEnd:UIDatePicker!

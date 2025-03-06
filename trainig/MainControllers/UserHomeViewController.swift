@@ -18,7 +18,7 @@ class UserHomeViewController: UIViewController {
     @IBOutlet weak var profile_image: RoundedImage!
     var upcomingList: [UpcomingItem] = []
     var recommendedList: [RecommendedTrainerItem] = []
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var interests:[String]=[]
     let functions = Functions()
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class UserHomeViewController: UIViewController {
         recommendedTable.dataSource = self
         
         //loadUpcomingList()
-        getUpcomingData()
+        getUpcomingData(ind: true)
         getInterestData()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -51,11 +51,13 @@ class UserHomeViewController: UIViewController {
             profile_image.image = UIImage(named: "person")
         }
         fullname.text=String(localized:"hi") + "! " + (userData["name"] as! String)
+        getUpcomingData(ind: false)
         
     }
-    func getUpcomingData(){
-        indicator = self.view.showLoader(nil)
-        indicator?.lbl.text = String(localized:"wait")
+    func getUpcomingData(ind:Bool){
+        if ind{
+            self.view.showLoader(String(localized:"wait"))
+        }
         let now = Statics.currentTimeInMilliSeconds()
         let d = Date()
         let afterThreeDaysDate = Calendar.current.date(byAdding: .day, value: 3, to: d)
@@ -75,12 +77,24 @@ class UserHomeViewController: UIViewController {
                     let usercontent = itemTop["usercontent"] as! NSDictionary
                     let training_name = adscontent["training_title"] as? String ?? ""
                     let trainer_name = usercontent["name"] as? String ?? ""
-                    let startDate = content["startDate"] as! Int64
-                    let endDate = content["endDate"] as! Int64
-                    let time = "\(adscontent["date"] as? String ?? "") \(adscontent["start_time"] as? String ?? "") - \(adscontent["end_time"] as? String ?? "") "
+//                    let time = "\(adscontent["date"] as? String ?? "") \(adscontent["start_time"] as? String ?? "") - \(adscontent["end_time"] as? String ?? "") "
                     let photo = usercontent["photo"]
                     
-                    self.upcomingList.append(UpcomingItem( training_name:training_name,trainer_name: trainer_name, duration: "", time: time,photo: photo))
+                    let startD = content["startDate"] as! Int64
+                    let endD = content["endDate"] as! Int64
+                    let startHHmm = Statics.formatTimeFromLong(timestamp: startD)
+                    let endHHmm = Statics.formatTimeFromLong(timestamp: endD)
+                    let strdate = Statics.formatDateFromLong(timestamp: startD)
+                    
+//                    let adscontent = itemTop["adscontent"] as! NSDictionary
+//                    let usercontent = itemTop["usercontent"] as! NSDictionary
+                    
+                    let time = "\(strdate) \(startHHmm) - \(endHHmm) "
+                    
+                    if !self.upcomingList.contains(where: { $0.time == time && $0.trainer_name == trainer_name }){
+                        self.upcomingList.append(UpcomingItem( training_name:training_name,trainer_name: trainer_name, duration: "", time: time,photo: photo))
+                    }
+                   
                 }
                 DispatchQueue.main.async {
                     self.upcomingCollection.reloadData()
@@ -91,7 +105,6 @@ class UserHomeViewController: UIViewController {
             }
         })
     }
-    var indicator:Indicator!
     func getInterestData(){
        
         let id=userData["id"]

@@ -9,8 +9,7 @@ import UIKit
 
 class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
     func showIndicator() {
-        let ind = self.view.showLoader(nil) as? Indicator
-        ind!.lbl.text=String(localized:"wait")
+        self.view.showLoader(String(localized:"wait"))
     }
     
     func hideIndicator() {

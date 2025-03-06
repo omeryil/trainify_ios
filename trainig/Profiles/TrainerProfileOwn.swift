@@ -8,8 +8,11 @@
 import UIKit
 import Kingfisher
 import AVFoundation
-class TrainerProfileOwn: UIViewController {
-
+class TrainerProfileOwn: UIViewController,CallMainDelegate {
+    
+    func callMain(viewController:UIViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
    
     @IBOutlet weak var plyBtn: UIButton!
     @IBOutlet weak var vView: BorderedViewNoBack!
@@ -160,7 +163,9 @@ class TrainerProfileOwn: UIViewController {
         let about=storyboard?.instantiateViewController(withIdentifier: "about") as! AboutViewController
         about.id = trainerId
         let trns=storyboard?.instantiateViewController(withIdentifier: "trainings") as! TrainingTableViewController
-        
+        trns.id = trainerId
+        trns.forTrainer=false
+        trns.delegate=self
         let ints=storyboard?.instantiateViewController(withIdentifier: "intsCol") as! InterestCollectionView
         ints.id = trainerId
         ints.forTrainer=true

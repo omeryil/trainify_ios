@@ -110,3 +110,4 @@
 "add_new_time"="Add New Time for Ad";
 "select_time"="Please select a time";
 "error_adding_reservation"="This seasion reserved by another user. If you want you can try in 3 minutes or choose another session";
+"sold"="Sold";

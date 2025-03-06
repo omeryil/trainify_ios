@@ -29,8 +29,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     
     var ind:Indicator!
     func showIndicator() {
-        ind = self.view.showLoader(nil)!
-        ind!.lbl.text=String(localized:"wait")
+        ind = self.view.showLoader(String(localized:"wait"))!
     }
     
     func hideIndicator() {
@@ -45,7 +44,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     @IBOutlet weak var pageControl: UIPageControl!
     var views: [UIViewController] = []
     var position:Int=0
-    var userData : NSDictionary!
+    var userData : NSMutableDictionary!
     var personalInfoData : Any!
     var interestData : Any!
     var videoData : Any!
@@ -53,6 +52,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     var aboutData : Any!
     let functions = Functions()
     var mFields:[Any] = []
+    var isTrainer:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +60,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         actionBtn.setTitle(String(localized: "next"), for: .selected)
         
         userData = CacheData.getUserData()!
-        
+        isTrainer = userData["role"] as! String == "trainer"
         scrollView.delegate=self
         scrollView.isPagingEnabled = true
         self.scrollView.frame.size.width = self.view.frame.width
@@ -97,7 +97,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         }else if position < views.count-1 {
             next()
         }else {
-            if userData["role"] as! String == "trainer" {
+            if isTrainer{
                 startTrainer()
             }else{
                 start()
@@ -126,8 +126,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         })
     }
     func start(){
-        ind = self.view.showLoader(nil)!
-        ind!.lbl.text=String(localized:"wait")
+        ind = self.view.showLoader(String(localized:"wait"))!
         let id = userData["id"] as! String
         let dict = personalInfoData as! NSDictionary
         var mFields:[Any] = []
@@ -147,8 +146,8 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                     mFields.append(d)
                     var ud : [String:Any] = self.userData as! [String : Any]
                     ud["photo"] = photo
-                    CacheData.saveUserData(data: ud as NSDictionary)
-                    self.userData = ud as NSDictionary
+                    CacheData.saveUserData(data: ud as! NSMutableDictionary)
+                    self.userData = ud as! NSMutableDictionary
                     self.updatePhotoOrVideo(id: id, dict: mFields as Any, onCompleteBool: { (success,error) in
                         if success! {
                             DispatchQueue.main.async {
@@ -189,43 +188,58 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     }
     func addFeatures(id:String,dict:NSDictionary,onCompleteBool:@escaping Functions.OnCompleteBool)
     {
+        
         let data : Any = [
-            "relations": [
-                [
-                    "id": id,
-                    "collectionName":"users",
-                    "relationName": "userFeatureRelation"
+            "where": [
+                "collectionName": "users",
+                "and": [
+                    "id": userData["id"]
                 ]
             ],
-            "contents": [
+            "fields":[
                 [
-                    "collectionName": "userfeature",
-                    "content": [
-                        "gender": dict["gender"],
-                        "birthdate": dict["birthDate"],
-                        "height": dict["height"],
-                        "weight": dict["weight"],
-                        "expstarted": dict["expStarted"],
-                        "title": dict["title"],
-                        "rating":dict["rating"],
-                        "createdDate": Int64(Date().timeIntervalSince1970*1000)
-                    ]
+                    "field": "gender",
+                    "value":dict["gender"],
+                ],
+                [
+                    "field": "birthdate",
+                    "value":dict["birthDate"],
+                ],
+                [
+                    "field": "height",
+                    "value":dict["height"],
+                ],
+                [
+                    "field": "weight",
+                    "value":dict["weight"],
+                ],
+                [
+                    "field": "expstarted",
+                    "value":dict["expstarted"],
+                ],
+                [
+                    "field": "title",
+                    "value":dict["title"],
+                ],
+                [
+                    "field": "rating",
+                    "value":dict["rating"],
                 ]
             ]
         ]
-        functions.addRelations(data: data, onCompleteBool: {(success, error) in
+        functions.update(data: data, onCompleteBool: {(success, error) in
             onCompleteBool(success!,error!)
         })
     }
     func addInterests(id:String,onCompleteBool:@escaping Functions.OnCompleteBool)
     {
-        let role=userData["role"] as! String
+
         let dict = interestData as! NSDictionary
         let arr = dict["items"] as! NSArray
         var fields:[Any] = []
         for i in arr {
             var c : Any = []
-            if role == "trainer" {
+            if isTrainer {
                 c = [
                     "spec": i,
                     "year":0,
@@ -238,7 +252,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 ]
             }
             let d : Any = [
-                "collectionName": role == "user" ? "userinterest" : "trainerSpecs",
+                "collectionName": !isTrainer ? "userinterest" : "trainerSpecs",
                 "content":c
             ]
             fields.append(d)
@@ -248,7 +262,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 [
                     "id": id,
                     "collectionName":"users",
-                    "relationName": role == "user" ? "userInterestRelation" : "trainerSpecsRelation"
+                    "relationName": !isTrainer ? "userInterestRelation" : "trainerSpecsRelation"
                 ]
             ],
             "contents": fields
@@ -259,8 +273,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     }
     
     func startTrainer(){
-        ind = self.view.showLoader(nil)!
-        ind!.lbl.text=String(localized:"wait")
+        ind = self.view.showLoader(String(localized:"wait"))!
         let id = userData["id"] as! String
         let dict = personalInfoData as! NSDictionary
         var mFields:[Any] = []
@@ -280,8 +293,8 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                     mFields.append(d)
                     var ud : [String:Any] = self.userData as! [String : Any]
                     ud["photo"] = photo
-                    CacheData.saveUserData(data: ud as NSDictionary)
-                    self.userData = ud as NSDictionary
+                    CacheData.saveUserData(data: ud as! NSMutableDictionary)
+                    self.userData = ud as! NSMutableDictionary
                     self.updatePhotoOrVideo(id: id, dict: mFields as Any, onCompleteBool: { (success,error) in
                         if success! {
                             DispatchQueue.main.async {
@@ -320,8 +333,8 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 mf.append(d)
                 var ud : [String:Any] = self.userData as! [String : Any]
                 ud["video"] = video
-                CacheData.saveUserData(data: ud as NSDictionary)
-                self.userData = ud as NSDictionary
+                CacheData.saveUserData(data: ud as! NSMutableDictionary)
+                self.userData = ud as! NSMutableDictionary
                 self.updatePhotoOrVideo(id: id, dict: mf as Any, onCompleteBool: { (success,error) in
                     if success! {
                         DispatchQueue.main.async {

@@ -14,14 +14,13 @@ class UpdatePersonalViewController: UIViewController {
     @IBOutlet weak var fullname: CustomTextFieldBorder8!
     
     let functions = Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var pickerToolbar: UIToolbar?
     var datePicker: UIDatePicker!
     var wPicker = UIPickerView()
     var hPicker = UIPickerView()
     var heights: [String] = []
     var weights: [String] = []
-    var userFeatureID:String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=String(localized:"personal_info")
@@ -140,43 +139,48 @@ class UpdatePersonalViewController: UIViewController {
         }
         let id = userData["id"] as! String
         updateName(id: id)
-        updatFeatures()
+        
     }
     func getUserFeatures(){
-        let id=userData["id"]
-        let data:Any=[
-                "where": [
-                    "collectionName": "users",
-                    "and":[
-                        "id":id
-                    ]
-                ],
-                "related": [
-                    "relationName": "userFeatureRelation",
-                    "where": [
-                        "collectionName": "userFeature"
-                    ]
-                ]
-        ]
-        functions.getRelations(data: data,listItem:"userFeature", onCompleteWithData: { (rdata,error) in
-            let items = rdata as! NSArray
-            if items.count > 0 {
-                let item=items[0] as! NSDictionary
-                let content=item["content"] as! NSDictionary
-                DispatchQueue.main.async {
-                    self.heightTF.text=content["height"] as? String
-                    self.weightTF.text=content["weight"] as? String
-                    self.fullname.text=self.userData["name"] as? String
-                    self.userFeatureID = item["id"] as? String
-                }
-            }else{
-                print(error!)
-            }
-        })
+        self.heightTF.text=userData["height"] as? String
+        self.weightTF.text=userData["weight"] as? String
+        self.fullname.text=self.userData["name"] as? String
+//        let data:Any=[
+//                "where": [
+//                    "collectionName": "users",
+//                    "and":[
+//                        "id":id
+//                    ]
+//                ],
+//                "related": [
+//                    "relationName": "userFeatureRelation",
+//                    "where": [
+//                        "collectionName": "userFeature"
+//                    ]
+//                ]
+//        ]
+//        functions.getRelations(data: data,listItem:"userFeature", onCompleteWithData: { (rdata,error) in
+//            let items = rdata as! NSArray
+//            if items.count > 0 {
+//                let item=items[0] as! NSDictionary
+//                let content=item["content"] as! NSDictionary
+//                DispatchQueue.main.async {
+//                    self.heightTF.text=content["height"] as? String
+//                    self.weightTF.text=content["weight"] as? String
+//                    self.fullname.text=self.userData["name"] as? String
+//                    self.userFeatureID = item["id"] as? String
+//                }
+//            }else{
+//                print(error!)
+//            }
+//        })
        
     }
     func updateName(id:String){
+        self.view.showLoader(String(localized:"wait"))
         let name = fullname.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let height = heightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let weight = weightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let data:Any = [
             "where": [
                 "collectionName": "users",
@@ -188,52 +192,58 @@ class UpdatePersonalViewController: UIViewController {
                 [
                     "field": "name",
                     "value": name
-                ]
-            ]
-        ]
-        functions.update(data: data, onCompleteBool: { (success,error) in
-            if success!{
-                var nUserData = Dictionary<String,Any>()
-                for (key, value) in self.userData {
-                    if key as! String == "name" {
-                        nUserData[key as! String] = name}
-                    else {
-                        nUserData[key as! String] = value
-                    }
-                }
-                CacheData.saveUserData(data: nUserData as NSDictionary)
-            }else {
-                print(error!)
-            }
-        })
-    }
-    func updatFeatures(){
-        let data:Any = [
-            "where": [
-                "collectionName": "userFeature",
-                "and": [
-                    "id": userFeatureID
-                ]
-            ],
-            "fields": [
+                ],
                 [
                     "field": "height",
-                    "value": heightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    "value": height
                 ],
                 [
                     "field": "weight",
-                    "value": weightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    "value": weight
                 ]
             ]
         ]
         functions.update(data: data, onCompleteBool: { (success,error) in
             if success!{
-                print(success!)
+                self.userData["name"]=name
+                self.userData["height"]=height
+                self.userData["weight"]=weight
+                CacheData.saveUserData(data: self.userData)
             }else {
                 print(error!)
             }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
+            }
         })
     }
+//    func updatFeatures(){
+//        let data:Any = [
+//            "where": [
+//                "collectionName": "users",
+//                "and": [
+//                    "id": userData["id"]
+//                ]
+//            ],
+//            "fields": [
+//                [
+//                    "field": "height",
+//                    "value": heightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//                ],
+//                [
+//                    "field": "weight",
+//                    "value": weightTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//                ]
+//            ]
+//        ]
+//        functions.update(data: data, onCompleteBool: { (success,error) in
+//            if success!{
+//                print(success!)
+//            }else {
+//                print(error!)
+//            }
+//        })
+//    }
     /*
     // MARK: - Navigation
 

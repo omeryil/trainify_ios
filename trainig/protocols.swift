@@ -6,6 +6,7 @@
 //
 
 import CoreFoundation
+import UIKit
 
 protocol sign_in_up_delegate
 {
@@ -33,4 +34,7 @@ protocol StepperDelegate{
 protocol PassDataDelegate
 {
     func passData(data:Any)
+}
+protocol CallMainDelegate {
+    func callMain(viewController:UIViewController)
 }

@@ -56,6 +56,11 @@ public enum URL_TYPE:CustomStringConvertible {
     case insertData
     case addMultiCollection
     case getUpcoming
+    case getUserBought
+    case getUserSoldDates
+    case getTrainerSold
+    case getAdsFromSearchService
+    case getTrainerUpcoming
     
     public var description : String {
         switch self {
@@ -84,6 +89,11 @@ public enum URL_TYPE:CustomStringConvertible {
         case .insertData: return "searchservice/create"
         case .addMultiCollection: return "dataservice/add/multicollection"
         case .getUpcoming: return "dataservice/execute/getUpcoming"
+        case .getUserBought: return "dataservice/execute/getUserBought"
+        case .getUserSoldDates: return "dataservice/execute/getSoldDates"
+        case .getTrainerSold: return "dataservice/execute/getTrainerSold"
+        case .getAdsFromSearchService: return "searchservice/get/ads"
+        case .getTrainerUpcoming: return "dataservice/execute/getTrainerUpcoming"
         }
     }
 }

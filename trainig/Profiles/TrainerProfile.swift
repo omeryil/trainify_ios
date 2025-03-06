@@ -9,6 +9,8 @@ import UIKit
 import Kingfisher
 class TrainerProfile: UIViewController {
 
+    @IBOutlet weak var trainerTitle: UILabel!
+    @IBOutlet weak var trainerName: UILabel!
     @IBOutlet weak var total_title: UILabel!
     @IBOutlet weak var monthly_title: UILabel!
     @IBOutlet weak var total_text: UILabel!
@@ -18,13 +20,14 @@ class TrainerProfile: UIViewController {
     @IBOutlet weak var vc: UIView!
     var position: Int = 0
     let functions=Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     @IBOutlet weak var profile_photo: RoundedImage!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         userData=CacheData.getUserData()!
-        
+        trainerName.text = userData["name"] as? String ?? ""
+        trainerTitle.text = userData["title"] as? String ?? ""
         let imageUrl:String? = userData["photo"] as? String ?? nil
         if let urlString = imageUrl, let url = URL(string: urlString) {
             profile_photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
@@ -35,7 +38,7 @@ class TrainerProfile: UIViewController {
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
         self.segment.setTitle(String(localized: "about"), forSegmentAt: 0)
-        self.segment.setTitle(String(localized: "trainings"), forSegmentAt: 1)
+        self.segment.setTitle(String(localized: "sold"), forSegmentAt: 1)
         self.segment.setTitle(String(localized: "comments"), forSegmentAt: 2)
         self.segment.setTitle(String(localized: "specialities"), forSegmentAt: 3)
         let font = UIFont.systemFont(ofSize: 14, weight: .bold)

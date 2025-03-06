@@ -52,44 +52,44 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
     }
     
     func showIndicator() {
-        let ind = self.view.showLoader(nil) as? Indicator
-        ind!.lbl.text=String(localized:"wait")
+       self.view.showLoader(String(localized:"wait")) as? Indicator
     }
     func getTrainerFeatures(){
-        let id=userData["id"]
-        let data:Any=[
-                "where": [
-                    "collectionName": "users",
-                    "and":[
-                        "id":id
-                    ]
-                ],
-                "related": [
-                    "relationName": "userFeatureRelation",
-                    "where": [
-                        "collectionName": "userFeature"
-                    ]
-                ]
-        ]
-        functions.getRelationsOneContent(data: data,listItem:"userFeature", onCompleteWithData: { (contentData,error) in
-            if contentData != nil {
-                let content=contentData as! NSDictionary
-                DispatchQueue.main.async {
-                    self.height=content["height"] as? String
-                    self.gender=content["gender"] as? String
-                    self.weight=content["weight"] as? String
-                    self.birthdate=content["birthdate"] as? Int64
-                    self.expStarted=content["expstarted"] as? Int64
-                    self.trainerTitle=content["title"] as? String
-                    self.rating=content["rating"] as? CGFloat
-                }
-            }else{
-                print(error!)
-            }
-            DispatchQueue.main.async {
-                self.view.dismissLoader()
-            }
-        })
+        self.height=userData["height"] as? String
+        self.gender=userData["gender"] as? String
+        self.weight=userData["weight"] as? String
+        self.birthdate=userData["birthdate"] as? Int64
+        self.expStarted=userData["expstarted"] as? Int64
+        self.trainerTitle=userData["title"] as? String
+        self.rating=userData["rating"] as? CGFloat
+//        let id=userData["id"]
+//        let data:Any=[
+//                "where": [
+//                    "collectionName": "users",
+//                    "and":[
+//                        "id":id
+//                    ]
+//                ],
+//                "related": [
+//                    "relationName": "userFeatureRelation",
+//                    "where": [
+//                        "collectionName": "userFeature"
+//                    ]
+//                ]
+//        ]
+//        functions.getRelationsOneContent(data: data,listItem:"userFeature", onCompleteWithData: { (contentData,error) in
+//            if contentData != nil {
+//                let content=contentData as! NSDictionary
+//                DispatchQueue.main.async {
+//                    
+//                }
+//            }else{
+//                print(error!)
+//            }
+//            DispatchQueue.main.async {
+//                self.view.dismissLoader()
+//            }
+//        })
     }
     func getSpecs(){
         specs.removeAll()
@@ -208,8 +208,10 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             "trainingStartDate": startTime,
             "trainingEndDate": endTime,
             "trainingDate": sData["date"] as! String,
-            "trainerExps": specs
+            "trainerExps": specs,
+            "trainingReps":sData["repetition"] as! String
         ]
+        print(data)
         functions.insertSearchData(data: data, onCompleteWithData: { d,e in
             if d as! Int == 200{
                 print("OK")
@@ -224,7 +226,7 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
     @IBOutlet weak var calendar: FSCalendar!
     var ads: [AdsItem] = []
     let functions = Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var dateString:String!
     var selectedDate:String!
     var height:String!

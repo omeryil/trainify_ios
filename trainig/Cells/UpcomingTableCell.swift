@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class UpcomingTableCell: UITableViewCell {
 
     
@@ -22,10 +22,14 @@ class UpcomingTableCell: UITableViewCell {
 
     func configure(with upcoming: UpcomingTrainerItem){
         time.text = upcoming.time
-        duration.text = upcoming.duration
         username.text = upcoming.username
         training_name.text = upcoming.training_name
-        photo.image=UIImage(named: upcoming.photo as! String)
+        let imageUrl:String? = upcoming.photo as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            photo.image = UIImage(named: "person")
+        }
     }
     
 

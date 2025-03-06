@@ -12,7 +12,7 @@ class UpdateAboutViewController: UIViewController {
     @IBOutlet weak var aboutTextView: CustomTextViewBorder8!
     @IBOutlet weak var countLabel: UILabel!
     let functions = Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var aboutId=""
     var isStepperOn:Bool = false
     var delegate:StepperDelegate?

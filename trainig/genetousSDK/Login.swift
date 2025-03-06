@@ -29,7 +29,7 @@ public class Login:NSObject{
     var applicationId:String!
     var organizationId:String!
     var secretKey:String!
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     public func process(withBlock callback: @escaping OnComplete){
         getServerResponseForUrlCallback = callback
         if(self.applicationId == nil || self.organizationId == nil || self.secretKey == nil){
@@ -68,7 +68,8 @@ public class Login:NSObject{
                                     "organizationId":self.organizationId,
                                     "id":id
                                 ]
-                                self.userData = (data as NSDictionary).value(forKey: "content") as? NSDictionary
+                                let dict = (data as NSDictionary).value(forKey: "content") as? NSDictionary
+                                self.userData = dict?.mutableCopy() as! NSMutableDictionary
                                 print(id ?? "")
                                 self.getClient(cdata){c_res in
                                     var obj:Dictionary=(c_res?.JsonObject) as! Dictionary<String, Any>

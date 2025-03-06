@@ -47,6 +47,12 @@ class RecommendedCell: UITableViewCell {
         rating.text = String(format: "%.1f", recommended.rating)
         
     }
+    func configureNoDuration(with recommended: RecommendedItem){
+        time.text = recommended.time
+        trainer_name.text = recommended.trainer_name
+        training_name.text = recommended.training_name
+        
+    }
     
 
 }

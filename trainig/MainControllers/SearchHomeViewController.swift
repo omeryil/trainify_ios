@@ -17,7 +17,7 @@ class SearchHomeViewController: UIViewController {
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     let functions = Functions()
     var interests:[String]=[]
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     @IBOutlet weak var noResult: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +51,9 @@ class SearchHomeViewController: UIViewController {
             
         })
     }
-    var indicator:Indicator!
+
     func getInterestData(){
-        indicator = self.view.showLoader(nil)
-        indicator?.lbl.text = String(localized:"wait")
+       self.view.showLoader(String(localized:"wait"))
         let id=userData["id"]
         let data:Any=[
             "where": [

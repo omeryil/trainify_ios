@@ -63,7 +63,7 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
     var cds:[CalendarTimeAndDate] = []
     let functions = Functions()
     var trainingTime:String!
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var soldItems:[SoldItem]=[]
     var selectedTimeIndexPathRow:Int!
     override func viewDidLoad() {
@@ -112,8 +112,7 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                 })
             return
         }
-        let ind = self.view.showLoader(nil)
-        ind!.lbl.text = String(localized: "wait")
+        self.view.showLoader(String(localized:"wait"))
         for i in selected {
             let d = Statics.formatDate(date: i.date)
             let t = i.time.components(separatedBy: "-")

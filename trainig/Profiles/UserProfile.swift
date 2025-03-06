@@ -21,8 +21,9 @@ class UserProfile: UIViewController {
     @IBOutlet weak var segment: CustomSegmented!
     @IBOutlet weak var vc: UIView!
     var position: Int = 0
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     let functions=Functions()
+    var first:Bool=true
     override func viewDidLoad() {
         super.viewDidLoad()
         userData=CacheData.getUserData()!
@@ -62,12 +63,18 @@ class UserProfile: UIViewController {
         weightText.text="55.0 kg"
         heightText.text="172 cm"
         
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        first=false
     }
     override func viewWillAppear(_ animated: Bool) {
         
-       
+        userData=CacheData.getUserData()!
         getUserFeatures()
-       
+        if(selectedIndex != -1 && !first){
+            views[selectedIndex].viewWillAppear(false)
+        }
        
         let imageUrl:String? = userData["photo"] as? String ?? nil
         if let urlString = imageUrl, let url = URL(string: urlString) {
@@ -113,6 +120,7 @@ class UserProfile: UIViewController {
         comment.id = userData["id"] as? String
         views.append(ints)
         views.append(comment)
+        selectedIndex = 0
     }
     @IBAction func segment_changed(_ sender: Any) {
         bringToFront(index: segment.selectedSegmentIndex)
@@ -125,41 +133,44 @@ class UserProfile: UIViewController {
         
         vc.bringSubviewToFront(views[index].view)
         views[index].viewWillAppear(false)
+        selectedIndex=index
     }
+    var selectedIndex:Int = -1
     var indicator:Indicator!
     func getUserFeatures(){
-        indicator = self.view.showLoader(nil)
-        indicator?.lbl.text = String(localized:"wait")
-        let id=userData["id"]
-        let data:Any=[
-                "where": [
-                    "collectionName": "users",
-                    "and":[
-                        "id":id
-                    ]
-                ],
-                "related": [
-                    "relationName": "userFeatureRelation",
-                    "where": [
-                        "collectionName": "userFeature"
-                    ]
-                ]
-        ]
-        functions.getRelationsOneContent(data: data,listItem:"userFeature", onCompleteWithData: { (contentData,error) in
-            if contentData != nil {
-                let content=contentData as! NSDictionary
-                DispatchQueue.main.async {
-                    self.heightText.text=content["height"] as? String
-                    self.weightText.text=content["weight"] as? String
-                    self.ageText.text=Statics.yearsDifference(from: content["birthdate"] as! TimeInterval)! + " " + String(localized:"yrs_short")
-                }
-            }else{
-                print(error!)
-            }
-            DispatchQueue.main.async {
-                self.view.dismissLoader()
-            }
-        })
+        self.heightText.text=userData["height"] as? String
+        self.weightText.text=userData["weight"] as? String
+        self.ageText.text=Statics.yearsDifference(from: userData["birthdate"] as! TimeInterval)! + " " + String(localized:"yrs_short")
+//        indicator = self.view.showLoader(nil)
+//        indicator?.lbl.text = String(localized:"wait")
+//        let id=userData["id"]
+//        let data:Any=[
+//                "where": [
+//                    "collectionName": "users",
+//                    "and":[
+//                        "id":id
+//                    ]
+//                ],
+//                "related": [
+//                    "relationName": "userFeatureRelation",
+//                    "where": [
+//                        "collectionName": "userFeature"
+//                    ]
+//                ]
+//        ]
+//        functions.getRelationsOneContent(data: data,listItem:"userFeature", onCompleteWithData: { (contentData,error) in
+//            if contentData != nil {
+//                let content=contentData as! NSDictionary
+//                DispatchQueue.main.async {
+//                   
+//                }
+//            }else{
+//                print(error!)
+//            }
+//            DispatchQueue.main.async {
+//                self.view.dismissLoader()
+//            }
+//        })
        
     }
     /*

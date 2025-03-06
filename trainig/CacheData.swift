@@ -29,11 +29,15 @@ public class CacheData {
         return UserDefaults.standard.string(forKey: cacheKey)
     }
     
-    public static func saveUserData(data: NSDictionary) {
+    public static func saveUserData(data: NSMutableDictionary) {
         UserDefaults.standard.set(data, forKey: userDataKey)
     }
-    public static func getUserData() -> NSDictionary? {
-        return UserDefaults.standard.object(forKey: userDataKey) as? NSDictionary
+    public static func getUserData() -> NSMutableDictionary? {
+        if let d = UserDefaults.standard.object(forKey: userDataKey) as? NSDictionary {
+            let mutableDict = NSMutableDictionary(dictionary: d)
+            return mutableDict
+        }
+        return nil
     }
     public static func saveHasNotification() {
         UserDefaults.standard.set(true, forKey: hasNotificationKey)

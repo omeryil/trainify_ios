@@ -14,7 +14,7 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var pickBtn: UIButton!
     var imageURL: URL?
     let functions = Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var fileURL:URL!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,13 +60,46 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidAppear(_ animated: Bool) {
        
     }
+    
     @objc func update(_ button: UIBarButtonItem?) {
+        self.view.showLoader(String(localized:"wait"))
         functions.upload(data: fileURL, onCompleteWithData: {(result,error) in
             let r = result as! response
             if r.ResponseCode == 200 {
-                print("OK")
+                let d = r.JsonObject as NSDictionary
+                let data = d["data"] as! NSDictionary
+                let url = data["url"] as! String
+                self.updatePhoto(url)
             }else {
-                print(error!)
+                DispatchQueue.main.async {
+                    self.view.dismissLoader()
+                }
+               
+            }
+        })
+    }
+    func updatePhoto(_ url:String) {
+        let data : Any = [
+            "where": [
+                "collectionName": "users",
+                "and": [
+                    "id": userData["id"]
+                ]
+            ],
+            "fields": [
+                [
+                    "field": "photo",
+                    "value": Statics.osService + url
+                ]
+            ]
+        ]
+        functions.update(data: data as! [String : Any], onCompleteBool: {(success,error) in
+            if success! {
+                self.userData["photo"] = Statics.osService + url
+                CacheData.saveUserData(data: self.userData)
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
             }
         })
     }

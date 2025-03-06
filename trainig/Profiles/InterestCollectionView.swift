@@ -164,8 +164,8 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! InterestsCell
-        interestsList[indexPath.row].selected.toggle()
-        cell.setBack(with: interestsList[indexPath.row])
+        //interestsList[indexPath.row].selected.toggle()
+        //cell.setBack(with: interestsList[indexPath.row])
         //InterestCollection.reloadData()
     }
     

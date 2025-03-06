@@ -138,6 +138,94 @@ public class Functions {
                 }
             }
     }
+    public func executeTrainerUpcoming(data:Any, onCompleteWithData:@escaping OnCompleteWithData) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.getTrainerUpcoming.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonObject as! NSDictionary
+                    let results=json["data"] as! NSArray
+            
+                    onCompleteWithData(results,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
+    public func executeUserBought(data:Any, onCompleteWithData:@escaping OnCompleteWithData) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.getUserBought.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonObject as! NSDictionary
+                    let results=json["data"] as! NSArray
+            
+                    onCompleteWithData(results,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
+    public func executeUserSolDates(data:Any, onCompleteWithData:@escaping OnCompleteWithData) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.getUserSoldDates.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonObject as! NSDictionary
+                    let results=json["data"] as! NSArray
+            
+                    onCompleteWithData(results,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
+    public func executeTrainerSold(data:Any, onCompleteWithData:@escaping OnCompleteWithData) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.getTrainerSold.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonObject as! NSDictionary
+                    let results=json["data"] as! NSArray
+            
+                    onCompleteWithData(results,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
     public func getVideo(url:String, onCompleteWithData:@escaping OnCompleteWithData) {
         PostGetBuilder()
             .setHost("")
@@ -333,6 +421,27 @@ public class Functions {
     }
     public func search(start:String,text:String,onCompleteWithData:@escaping OnCompleteWithData) {
         let url:String = URL_TYPE.search.description+"/\(start)/\(text)"
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setMethod(REQUEST_METHODS.GET)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONARRAY)
+            .setUrlType(url)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonArray!
+                    onCompleteWithData(json,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
+    public func getAdsFromSearcService(text:String,onCompleteWithData:@escaping OnCompleteWithData) {
+        let url:String = URL_TYPE.getAdsFromSearchService.description+"/\(text)"
         PostGetBuilder()
             .setHost(Statics.host)
             .setMethod(REQUEST_METHODS.GET)

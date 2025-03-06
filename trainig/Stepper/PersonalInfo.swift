@@ -65,7 +65,7 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
     var weights: [String] = []
     var isStepperOn:Bool=false
     var stepperDelegate:StepperDelegate?
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var stepperData:[String:Any]=[
         "gender":"",
         "height":"",

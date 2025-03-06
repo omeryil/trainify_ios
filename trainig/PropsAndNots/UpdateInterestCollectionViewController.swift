@@ -13,7 +13,7 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
     var interestsList:[InterestItem]=[]
     var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading","Aerial Yoga","Pilates","Cycling","Dancing","Boxing","Martial Arts","Jogging","Running","Yoga","Meditation","Stretching"]
     let functions=Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var forTrainer:Bool=false
     var existingIds:[String]=[]
     override func viewDidLoad() {
@@ -188,6 +188,7 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
         
     }
     @objc func update(_ button: UIBarButtonItem?) {
+        self.view.showLoader(String(localized:"wait"))
         deleteExsistingInterests(oNCompleteBool:{ (success,error) in
             if(success!){
                 self.insertDatas(oNCompleteBool: { (success2,error2) in
@@ -196,9 +197,14 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
                     }else {
                         print(error2!)
                     }
+                    DispatchQueue.main.async {
+                        self.view.dismissLoader()
+                    }
                 })
             }else {
-                print(error!)
+                DispatchQueue.main.async {
+                    self.view.dismissLoader()
+                }
             }
         })
     }

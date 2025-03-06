@@ -15,7 +15,7 @@ class UpdateVideoViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var pickButton: CustomButton!
     @IBOutlet weak var vView: UIView!
     let functions = Functions()
-    var userData:NSDictionary!
+    var userData:NSMutableDictionary!
     var isStepperOn:Bool = false
     var delegate:StepperDelegate?
     override func viewDidLoad() {
