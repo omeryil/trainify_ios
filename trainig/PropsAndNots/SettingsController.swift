@@ -13,22 +13,26 @@ class SettingsController: UITableViewController {
     var coms:[SwitchItem] = []
     var personalInfo:[ForwardItem] = []
     var about:[ForwardItem] = []
+    var exit:[MessageItem] = []
     @IBOutlet weak var ni: UINavigationItem!
     var headers:[String] = []
     var forTrainer=false
+    let functions = Functions()
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwitch()
         addForward()
+        addExit()
         data.append(not)
         if forTrainer{
             data.append(coms)
-            headers = [String(localized:"notifications"),String(localized:"comments"),String(localized:"personal_info"),String(localized:"about_app")]
+            headers = [String(localized:"notifications"),String(localized:"comments"),String(localized:"personal_info"),String(localized:"about_app"),String(localized: "exit")]
         }else{
-            headers = [String(localized:"notifications"),String(localized:"personal_info"),String(localized:"about_app")]
+            headers = [String(localized:"notifications"),String(localized:"personal_info"),String(localized:"about_app"),String(localized: "exit")]
         }
         data.append(personalInfo)
         data.append(about)
+        data.append(exit)
         tableView.sectionHeaderTopPadding=16
         self.title = "Settings"
        
@@ -49,6 +53,9 @@ class SettingsController: UITableViewController {
         not.append(SwitchItem(title: "Allow/Reject Notifications",checked: true))
         coms.append(SwitchItem(title: "Allow/Reject Comments",checked: true))
     }
+    func addExit() {
+        exit.append(MessageItem(title: String(localized:"exit"),message: String(localized:"exit_message"),yesNo: true))
+    }
     func addForward() {
         
         let pi = storyboard?.instantiateViewController(withIdentifier: "upPerson") as! UpdatePersonalViewController
@@ -65,7 +72,7 @@ class SettingsController: UITableViewController {
             personalInfo.append(ForwardItem(title: String(localized:"promotion_video"),controller: video ))
             personalInfo.append(ForwardItem(title: String(localized:"about"),controller: ab ))
             personalInfo.append(ForwardItem(title: String(localized:"specialities"),controller: ints ))
-            personalInfo.append(ForwardItem(title: String(localized:"certificates"),controller: cert ))
+//            personalInfo.append(ForwardItem(title: String(localized:"certificates"),controller: cert ))
         }else {
             personalInfo.append(ForwardItem(title: String(localized:"interests"),controller: ints ))
         }
@@ -106,6 +113,13 @@ class SettingsController: UITableViewController {
             let fItems=cellModel as! [ForwardItem]
             cell.configure(with: fItems[indexPath.row])
             return cell
+        case is [MessageItem]:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as? MessageCell else {
+                return UITableViewCell()
+            }
+            let mItems=cellModel as! [MessageItem]
+            cell.configure(with: mItems[indexPath.row])
+            return cell
         default:
             return UITableViewCell()
         }
@@ -134,6 +148,22 @@ class SettingsController: UITableViewController {
             let controller = item.controller as! UIViewController
             controller.title = item.title
             self.navigationController?.pushViewController(controller, animated: true)
+        case is [MessageItem]:
+            let mItems=cellModel as! [MessageItem]
+            let item = mItems[indexPath.row]
+            functions.createAlert(self: self, title:item.title, message: item.message, yesNo: item.yesNo, alertReturn: { (yesNo) in
+                if yesNo! {
+                    switch
+                    item.title {
+                        case "Logout":
+                        CacheData.clearAll()
+                        let loginout = self.storyboard?.instantiateViewController(withIdentifier: "loginout") as! ViewController
+                        self.navigationController?.pushViewController(loginout, animated: true)
+                    default:
+                        break
+                    }
+                }
+            })
         default: break
             
         }

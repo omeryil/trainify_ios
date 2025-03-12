@@ -14,7 +14,7 @@ protocol sign_in_up_delegate
     func sign_up()
 }
 protocol filterDelegate{
-    func returnFilter(filter:FilterItem)
+    func returnFilter(filter:FilterItem,isApply:Bool)
 }
 protocol sliderChangedDelegate{
     func sliderChanged(slider:RangeSlider,values:[CGFloat])

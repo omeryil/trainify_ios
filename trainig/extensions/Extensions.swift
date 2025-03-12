@@ -114,4 +114,40 @@ extension UIView{
         self.viewWithTag(-888754)?.removeFromSuperview()
     }
 }
+extension UITableView {
+    func addRefreshControl(target: Any, action: Selector) {
+        let refreshControl = UIRefreshControl()
+        
+//        let attributes: [NSAttributedString.Key: Any] = [
+//            .foregroundColor: UIColor.white
+//        ]
+//        refreshControl.attributedTitle = NSAttributedString(string:String(localized:"wait"), attributes: attributes)
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.startAnimating()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        let customView = UIView(frame: refreshControl.bounds)
+        customView.addSubview(spinner)
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: customView.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: customView.centerYAnchor)
+        ])
+        refreshControl.addSubview(customView)
+        refreshControl.addTarget(target, action: action, for: .valueChanged)
+        self.refreshControl = refreshControl
+//        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+//        self.refreshControl = refreshControl
+//        objc_setAssociatedObject(self, &AssociatedKeys.refreshAction, action, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    @objc private func handleRefresh() {
+        if let action = objc_getAssociatedObject(self, &AssociatedKeys.refreshAction) as? () -> Void {
+            action()
+        }
+        self.refreshControl?.endRefreshing()
+    }
+}
+
+private struct AssociatedKeys {
+    static var refreshAction = "refreshAction"
+}
 

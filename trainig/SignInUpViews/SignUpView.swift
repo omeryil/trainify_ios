@@ -38,10 +38,14 @@ class SignUpView: UIViewController {
         
         sign_up.setTitle(String(localized: "sign_up"), for: .normal)
         sign_up.setTitle(String(localized: "sign_up"), for: .selected)
-       
-        // Do any additional setup after loading the view.
+        setEmpty()
     }
-
+    func setEmpty() {
+        name.text = ""
+        mail.text = ""
+        password.text = ""
+        repassword.text = ""
+    }
     @IBAction func sign_up_cl(_ sender: Any) {
         if false {
             self.delegate?.sign_up()
@@ -87,6 +91,12 @@ class SignUpView: UIViewController {
             ]
         ]
         functions.getGuestToken(onCompleteBool: {(s,e) in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
                 if s! == false {
                     self.functions.createAlert(self: self, title: String(localized: "error"), message: e!, yesNo: false, alertReturn: { result in
                         

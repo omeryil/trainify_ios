@@ -64,6 +64,13 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
     @objc func update(_ button: UIBarButtonItem?) {
         self.view.showLoader(String(localized:"wait"))
         functions.upload(data: fileURL, onCompleteWithData: {(result,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             let r = result as! response
             if r.ResponseCode == 200 {
                 let d = r.JsonObject as NSDictionary
@@ -97,6 +104,36 @@ class UpdatePhotoViewController: UIViewController, UIImagePickerControllerDelega
             if success! {
                 self.userData["photo"] = Statics.osService + url
                 CacheData.saveUserData(data: self.userData)
+                self.updateSearchServicePhoto(Statics.osService + url)
+            }else{
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.view.dismissLoader()
+                }
+            }
+            
+        })
+    }
+    func updateSearchServicePhoto(_ url : String) {
+        let data : Any = [
+            "fields": [
+                "trainerPhoto":url
+            ],
+            "where":[
+                "trainerid":userData["id"]
+            ]
+        ]
+        functions.updateSearhPhoto(data: data, onCompleteBool: {(success,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
             }
             DispatchQueue.main.async {
                 self.view.dismissLoader()

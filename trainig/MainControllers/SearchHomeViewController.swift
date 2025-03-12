@@ -14,7 +14,6 @@ class SearchHomeViewController: UIViewController {
     
     var recommendedList: [RecommendedTrainerItem] = []
     var interestsList:[InterestItem]=[]
-    var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     let functions = Functions()
     var interests:[String]=[]
     var userData:NSMutableDictionary!
@@ -44,6 +43,13 @@ class SearchHomeViewController: UIViewController {
         ]
         recommendedList.removeAll()
         functions.featured(data: data, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.loadsearchList(data as! [NSDictionary])
                 self.view.dismissLoader()
@@ -84,7 +90,11 @@ class SearchHomeViewController: UIViewController {
                 }
                 
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
             DispatchQueue.main.async {
@@ -126,7 +136,12 @@ class SearchHomeViewController: UIViewController {
     }
     func search(_ str:String){
         functions.search(start: "0", text: str, onCompleteWithData: { (data,error) in
-            print(data);
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
     }
     /*

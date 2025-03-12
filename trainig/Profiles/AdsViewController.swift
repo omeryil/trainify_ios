@@ -43,7 +43,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 let id = ddata["id"] as! String
                 self.addTrainerAdsDate(sdata: ds,ads_id: id)
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
             }
             
             self.getAds(date: self.selectedDate)
@@ -61,7 +66,7 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         self.birthdate=userData["birthdate"] as? Int64
         self.expStarted=userData["expstarted"] as? Int64
         self.trainerTitle=userData["title"] as? String
-        self.rating=userData["rating"] as? CGFloat
+        self.rating=userData["rating"] as? CGFloat ?? CGFloat(0)
 //        let id=userData["id"]
 //        let data:Any=[
 //                "where": [
@@ -116,7 +121,11 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                     self.specs.append(content["spec"] as? String ?? "")
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -169,6 +178,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.getCollection(data: checkData, onCompleteWithData: { d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count<1 {
                     self.addTrainerAdsDate(data: data)
@@ -182,7 +197,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         let d = data as! NSDictionary
         let content = d["content"] as! NSDictionary
         functions.addCollection(data: data, onCompleteBool: { success,error in
-            print(success!)
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             self.getTrainerDates(date: self.dateString)
             self.addTrainerAdsSearchService(content["ads_id"] as! String)
         })
@@ -213,10 +233,14 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         ]
         print(data)
         functions.insertSearchData(data: data, onCompleteWithData: { d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d as! Int == 200{
                 print("OK")
-            }else {
-                print(e!)
             }
         })
     }
@@ -418,6 +442,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.getCollection(data: checkData, onCompleteWithData: { d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count<1 {
                     self.addTrainerAdsDate(data: data)
@@ -441,6 +471,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: { d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count>0 {
                    for i in d as! NSArray{
@@ -522,6 +558,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: {d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 
                 for i in d as! [[String:Any]] {
@@ -552,6 +594,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 ]
             ]
             functions.getCollection(data: data, onCompleteWithData: {d,e in
+                if e == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
                 if d != nil {
                     
                     for i in d as! [[String:Any]] {
@@ -583,6 +631,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.delete(data: data, onCompleteBool: {s,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if s! {
                 self.deleteAdsDateRecord(id: id)
             }
@@ -598,7 +652,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.delete(data: data, onCompleteBool: {s,e in
-            print(s!)
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             self.eventDates.removeAll()
             self.getTrainerDates(date: self.dateString)
         })
@@ -619,7 +678,12 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             ]
         ]
         functions.update(data: data, onCompleteBool: {s,e in
-            print(s!)
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
     }
     

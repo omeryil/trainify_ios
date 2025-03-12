@@ -9,8 +9,39 @@ import Foundation
 import UIKit
 
 public class Statics {
-    public static let host="http://192.168.0.26/"
-    public static let osService="http://192.168.0.26:5002/"
+    public static let tokentimeMax:TimeInterval=60*60*24*1000
+//    public static let host="http://192.168.0.26/"
+    public static let host="http://37.148.212.114/"
+    public static let osService="http://37.148.212.114:5002/"
+    public static let intList:[String] = ["Yoga",
+                                          "Hatha Yoga",
+                                          "Vinyasa",
+                                          "Ashtanga Yoga",
+                                          "Kundalini Yoga",
+                                          "Nefes Egzersizi",
+                                          "Meditasyon",
+                                          "Pilates",
+                                          "Modern Pilates",
+                                          "Mat Pilates Workout",
+                                          "Reformer Pilates Workout",
+                                          "HIIT Workout",
+                                          "Plyometric Training",
+                                          "Interval Training",
+                                          "Weight Training",
+                                          "Functional Training",
+                                          "Zumba",
+                                          "Acro Yoga",
+                                          "Trx Training",
+                                          "4d Pro Trainig",
+                                          "Step Aerobik Fitness",
+                                          "Bosu Training",
+                                          "Rope Jump",
+                                          "Resistance Band Workout",
+                                          "Cross Fit Training",
+                                          "Fitness",
+                                          "Home Ftiness",
+                                          "Balance Training",
+                                          "Endurance" ]
     
     public static func yearsDifference(from timestamp: TimeInterval) -> String? {
         let calendar = Calendar.current
@@ -28,6 +59,15 @@ public class Statics {
         
         let components = calendar.dateComponents([.minute], from: fromDate, to: toDate)
         let diff = components.minute! >= 3 ? true : false
+        return diff
+    }
+    public static func checkSecondsDifference(from timestamp: TimeInterval) -> Bool {
+        let calendar = Calendar.current
+        let fromDate = Date(timeIntervalSince1970: timestamp/1000)
+        let toDate = Date()
+        
+        let components = calendar.dateComponents([.second], from: fromDate, to: toDate)
+        let diff = components.second! >= Int(Statics.tokentimeMax) ? true : false
         return diff
     }
     public static func yearsDifferenceInt(from timestamp: TimeInterval) -> Int? {

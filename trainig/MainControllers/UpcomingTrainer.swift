@@ -52,8 +52,10 @@ class UpcomingTrainer: UIViewController {
             if error!.isEmpty {
                 for item in resData{
                     let itemTop = item as! NSDictionary
+                    let id = itemTop["id"] as! String
                     let content = itemTop["content"] as! NSDictionary
                     let adscontent = itemTop["adscontent"] as! NSDictionary
+                    let trainerId = adscontent["trainer_id"] as! String
                     let usercontent = itemTop["usercontent"] as! NSDictionary
                     let training_name = adscontent["training_title"] as? String ?? ""
                     let username = usercontent["name"] as? String ?? ""
@@ -67,7 +69,7 @@ class UpcomingTrainer: UIViewController {
                     let time = "\(strdate) \(startHHmm) - \(endHHmm) "
                     
                     if !self.upcomingList.contains(where: { $0.time == time && $0.username == username }){
-                        self.upcomingList.append(UpcomingTrainerItem( training_name:training_name,username: username, duration: "", time: time,photo: photo))
+                        self.upcomingList.append(UpcomingTrainerItem( training_name:training_name,username: username, duration: "", time: time,photo: photo, soldId: id,trainerId: trainerId))
                     }
                    
                 }
@@ -76,8 +78,78 @@ class UpcomingTrainer: UIViewController {
                     self.view.dismissLoader()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
+            }
+        })
+    }
+    func createMeetingToken(_ item:UpcomingTrainerItem){
+        let data : Any = [
+            "cname":item.trainerId,
+        ]
+        functions.createMeetingToken(data:data, onCompleteWithData: { r,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }else if !e!.isEmpty {
+                DispatchQueue.main.async {
+                    //unexpected error mesaj yaz
+                    self.view.dismissLoader()
+                }
+                return
+            }
+            if r != nil {
+                self.updateSold(item,r as! String)
+            }
+        })
+    }
+    func updateSold(_ item:UpcomingTrainerItem, _ token:String){
+        let data : Any = [
+            "where": [
+                "collectionName": "sold",
+                "and": [
+                    "id": item.soldId
+                ]
+            ],
+            "fields":[
+                [
+                    "field": "token",
+                    "value": token
+                ]
+            ]
+        ]
+        functions.update(data: data, onCompleteBool: {s,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
+            if s! {
+                DispatchQueue.main.async {
+                    self.view.dismissLoader()
+                    let n = self.storyboard?.instantiateViewController(withIdentifier: "meet") as! MeetingController
+                    n.token = token
+                    n.channel = item.trainerId
+                    self.navigationController?.pushViewController(n, animated: true)
+                }
+            }
+            else{
+                if e != nil {
+                    DispatchQueue.main.async {
+                        self.functions.createAlert(self: self, title: String(localized:"error"), message: String(localized:"unexpected_err"), yesNo: false, alertReturn: { result in
+                        })
+                        self.view.dismissLoader()
+                    }
+                    return
+                }
             }
         })
     }
@@ -103,5 +175,11 @@ extension UpcomingTrainer: UITableViewDataSource, UITableViewDelegate{
         }
         cell.configure(with: upcomingList[indexPath.row])
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let item = upcomingList[indexPath.row]
+        self.view.showLoader(String(localized:"wait"))
+        createMeetingToken(item)
     }
 }

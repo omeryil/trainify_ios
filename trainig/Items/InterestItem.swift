@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-struct InterestItem {
+public class InterestItem: Codable{
     var interest: String!
     var selected: Bool!
+    
+    init(interest: String!, selected: Bool!) {
+        self.interest = interest
+        self.selected = selected
+    }
 }

@@ -8,11 +8,15 @@
 import UIKit
 
 class SearchResultsViewController: UIViewController,filterDelegate {
-    func returnFilter(filter: FilterItem) {
-        self.filterItem=filter
-        self.searchFilter()
-        print(filter)
+    func returnFilter(filter: FilterItem, isApply: Bool) {
+        if isApply{
+            self.filterItem=filter
+            self.searchFilter()
+            print(filter)
+        }
     }
+    
+   
     var filterItem = FilterItem()
     @IBOutlet weak var recommendedCollection: UICollectionView!
     @IBOutlet weak var searchResultTable: UITableView!
@@ -67,6 +71,13 @@ class SearchResultsViewController: UIViewController,filterDelegate {
         self.view.showLoader(String(localized:"wait"))
         searchList.removeAll()
         functions.search(start: "0", text: searchStr, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.loadsearchList(data as! [NSDictionary])
                 self.view.dismissLoader()
@@ -129,6 +140,13 @@ class SearchResultsViewController: UIViewController,filterDelegate {
         self.view.showLoader(String(localized:"wait"))
         searchList.removeAll()
         functions.searchFilter(data: data,start: "0", text: searchStr, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.loadsearchList(data as! [NSDictionary])
                 self.view.dismissLoader()
@@ -141,12 +159,12 @@ class SearchResultsViewController: UIViewController,filterDelegate {
     func getFilters(){
         functions.getFilters(onCompleteWithData: { (data,error) in
             if let data = data as? NSDictionary{
-                let minPrice = data["min_price"] as! Int
-                let maxPrice = data["max_price"] as! Int
+                let minPrice = data["min_price"] as? Int ?? 0
+                let maxPrice = data["max_price"] as? Int ?? 0
                 self.prices.append(CGFloat(minPrice))
                 self.prices.append(CGFloat(maxPrice))
-                let maxAge = data["max_age"] as! Int64
-                let minAge = data["min_age"] as! Int64
+                let maxAge = data["max_age"] as? Int64 ?? 0
+                let minAge = data["min_age"] as? Int64 ?? 0
                 let intMinAge = Statics.yearsDifferenceInt(from: TimeInterval(minAge))
                 let intMaxAge = Statics.yearsDifferenceInt(from: TimeInterval(maxAge))
                 self.ages.append(CGFloat(intMinAge!))
@@ -161,6 +179,13 @@ class SearchResultsViewController: UIViewController,filterDelegate {
         ]
         recommendedList.removeAll()
         functions.featured(data: data, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.addData(data as! [NSDictionary])
             }

@@ -44,7 +44,11 @@ class TrainingTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
        
-        
+        if forTrainer{
+            getSoldTrainings()
+        }else {
+            getAds()
+        }
         //trainings.removeAll()
         //loadtrainings()
     }
@@ -52,6 +56,13 @@ class TrainingTableViewController: UITableViewController {
         self.searchList.removeAll()
         self.ads.removeAll()
         functions.getAdsFromSearcService(text: self.id, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.loadsearchList(data as! [NSDictionary])
                 self.view.dismissLoader()
@@ -60,6 +71,7 @@ class TrainingTableViewController: UITableViewController {
         })
     }
     func loadsearchList(_ data:[NSDictionary]){
+        searchList.removeAll()
         if data.count==0{
             self.tableView.reloadData()
             return
@@ -79,6 +91,7 @@ class TrainingTableViewController: UITableViewController {
     }
     
     func getSoldTrainings(){
+        self.trainings.removeAll()
         let now = Statics.currentTimeInMilliSeconds()
         let data : Any = [
             "tid":userData["id"],
@@ -102,15 +115,20 @@ class TrainingTableViewController: UITableViewController {
                     let name = itemTop["name"] as? String ?? ""
                     let time = "\(strdate) \(startHHmm) - \(endHHmm) "
                     let photo = itemTop["photo"]
-                    
-                    self.trainings.append(RecommendedItem( training_name:training_name,trainer_name: name, duration: "", time: time,photo: photo,rating:0))
+                    if !self.trainings.contains(where: { $0.time == time }){
+                        self.trainings.append(RecommendedItem( training_name:training_name,trainer_name: name, duration: "", time: time,photo: photo,rating:0))
+                    }
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.refreshControler.endRefreshing()
                 }
             }else{
-                print(e!)
+                if e == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -154,16 +172,26 @@ class TrainingTableViewController: UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if forTrainer { return }
-        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
-            cell.backgroundColor = UIColor(named: "DarkCellBack")
-          }
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor =  UIColor(named: "DarkCellBack")
+        }
+//        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
+//            cell.backgroundColor = UIColor(named: "DarkCellBack")
+//          }
+//        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+//            cell.backgroundColor = UIColor(named: "DarkCellBack")
+//          }
     }
     override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        if forTrainer { return }
-        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
-            cell.backgroundColor = UIColor.clear
-          }
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor.black
+        }
+//        if let cell = tableView.cellForRow(at: indexPath) as? AdsCell {
+//            cell.backgroundColor = UIColor.black
+//          }
+//        if let cell = tableView.cellForRow(at: indexPath) as? RecommendedCell {
+//            cell.backgroundColor = UIColor.black
+//          }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if forTrainer { return }

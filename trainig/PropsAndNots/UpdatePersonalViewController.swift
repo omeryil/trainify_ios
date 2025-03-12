@@ -210,7 +210,12 @@ class UpdatePersonalViewController: UIViewController {
                 self.userData["weight"]=weight
                 CacheData.saveUserData(data: self.userData)
             }else {
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
             }
             DispatchQueue.main.async {
                 self.view.dismissLoader()

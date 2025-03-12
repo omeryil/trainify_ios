@@ -22,18 +22,12 @@ class TrainerProfile: UIViewController {
     let functions=Functions()
     var userData:NSMutableDictionary!
     @IBOutlet weak var profile_photo: RoundedImage!
+    var first: Bool = true
+    var selectedIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         userData=CacheData.getUserData()!
-        trainerName.text = userData["name"] as? String ?? ""
-        trainerTitle.text = userData["title"] as? String ?? ""
-        let imageUrl:String? = userData["photo"] as? String ?? nil
-        if let urlString = imageUrl, let url = URL(string: urlString) {
-            profile_photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
-        } else {
-            profile_photo.image = UIImage(named: "person")
-        }
        
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected)
         self.segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
@@ -70,7 +64,23 @@ class TrainerProfile: UIViewController {
         getProfit()
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        first=false
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        userData=CacheData.getUserData()!
+        trainerName.text = userData["name"] as? String ?? ""
+        trainerTitle.text = userData["title"] as? String ?? ""
+        let imageUrl:String? = userData["photo"] as? String ?? nil
+        if let urlString = imageUrl, let url = URL(string: urlString) {
+            profile_photo.kf.setImage(with: url, placeholder: UIImage(named: "person"))
+        } else {
+            profile_photo.image = UIImage(named: "person")
+        }
+        if !first{
+            views[selectedIndex].viewWillAppear(false)
+        }
+    }
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer)
     {
         if sender.direction == .left
@@ -121,7 +131,7 @@ class TrainerProfile: UIViewController {
         
         vc.bringSubviewToFront(views[index].view)
         views[index].viewWillAppear(false)
-        
+        selectedIndex = index
     }
     @IBAction func settings_cl(_ sender: Any) {
         let n = storyboard?.instantiateViewController(withIdentifier: "sett") as! SettingsController
@@ -157,7 +167,12 @@ class TrainerProfile: UIViewController {
                     self.monthly_text.text=currency+profit
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
             }
             DispatchQueue.main.async {
                 //self.view.dismissLoader()

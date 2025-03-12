@@ -47,13 +47,17 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
     var isStepperOn:Bool=false
     var stepperDelegate:StepperDelegate?
     var stepperData:[String:Any]=["items":[]]
-    var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
+    var isTrainer:Bool=false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="Interests"
-        
         question.text=String(localized: "what_are_u_interested")
         desc.text=String(localized: "select_int_desc")
+        if isTrainer{
+            question.text=String(localized: "what_are_ur_expert")
+            desc.text=String(localized: "select_exp_desc")
+        }
+        
         addData()
         InterestCollection.dataSource=self
         InterestCollection.delegate=self
@@ -70,7 +74,7 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
         // Do any additional setup after loading the view.
     }
     func addData(){
-        for i in ints{
+        for i in Statics.intList{
             interestsList.append(InterestItem(interest: i,selected: false ))
         }
     }

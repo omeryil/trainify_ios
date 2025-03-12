@@ -13,6 +13,7 @@ class UserHomeViewController: UIViewController {
     @IBOutlet weak var recommendedTable: UITableView!
     @IBOutlet weak var upcomingCollection: UICollectionView!
     
+    @IBOutlet weak var noUpcoming: UILabel!
     @IBOutlet weak var noresult: UILabel!
     @IBOutlet weak var fullname: UILabel!
     @IBOutlet weak var profile_image: RoundedImage!
@@ -39,8 +40,14 @@ class UserHomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: self.view.frame.width*0.8, height: 122)
         upcomingCollection.collectionViewLayout=layout
+        noresult.text=String(localized:"no_result")
+        noUpcoming.text=String(localized:"no_upcoming")
         
+        recommendedTable.addRefreshControl(target: self, action: #selector(refreshData))
         // Do any additional setup after loading the view.
+    }
+    @objc func refreshData() {
+        self.getInterestData()
     }
     override func viewWillAppear(_ animated: Bool) {
         userData=CacheData.getUserData()!
@@ -72,8 +79,10 @@ class UserHomeViewController: UIViewController {
             if error!.isEmpty {
                 for item in resData{
                     let itemTop = item as! NSDictionary
+                    let soldId = itemTop["id"] as! String
                     let content = itemTop["content"] as! NSDictionary
                     let adscontent = itemTop["adscontent"] as! NSDictionary
+                    let trainerId = adscontent["trainer_id"] as! String
                     let usercontent = itemTop["usercontent"] as! NSDictionary
                     let training_name = adscontent["training_title"] as? String ?? ""
                     let trainer_name = usercontent["name"] as? String ?? ""
@@ -92,15 +101,20 @@ class UserHomeViewController: UIViewController {
                     let time = "\(strdate) \(startHHmm) - \(endHHmm) "
                     
                     if !self.upcomingList.contains(where: { $0.time == time && $0.trainer_name == trainer_name }){
-                        self.upcomingList.append(UpcomingItem( training_name:training_name,trainer_name: trainer_name, duration: "", time: time,photo: photo))
+                        self.upcomingList.append(UpcomingItem( training_name:training_name,trainer_name: trainer_name, duration: "", time: time,photo: photo,soldId: soldId,trainerId: trainerId))
                     }
                    
                 }
                 DispatchQueue.main.async {
+                    self.noUpcoming.isHidden = self.upcomingList.count > 0
                     self.upcomingCollection.reloadData()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -134,7 +148,11 @@ class UserHomeViewController: UIViewController {
                 }
                 
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
             DispatchQueue.main.async {
@@ -151,6 +169,13 @@ class UserHomeViewController: UIViewController {
         ]
         recommendedList.removeAll()
         functions.featured(data: data, onCompleteWithData: { (data,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.loadsearchList(data as! [NSDictionary])
                 self.view.dismissLoader()
@@ -169,13 +194,57 @@ class UserHomeViewController: UIViewController {
             recommendedList.append(RecommendedTrainerItem(trainer_title: item["trainertitle"] as? String, trainer_name: item["trainername"] as? String, exps: item["trainerExps"] as? [String], photo: item["trainerphoto"], rating: item["trainerrating"] as? Float,trainerId: item["trainerid"] as? String))
         }
         recommendedTable.reloadData()
+        recommendedTable.refreshControl?.endRefreshing()
     }
-    func loadUpcomingList(){
-        upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
-        upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
-        upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
-        upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
-        upcomingList.append(UpcomingItem( training_name:"Stretching",trainer_name: "Clara Schmidt", duration: "", time: "22/01 10:30 - 11:00",photo: "acb"))
+    func enterMeeting(_ item:UpcomingItem){
+        let data : Any = [
+            "where": [
+                "collectionName": "sold",
+                "and": [
+                    "id": item.soldId
+                ]
+            ]
+        ]
+        functions.getCollection(data: data, onCompleteWithData: { (d,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
+            if d != nil {
+                for i in d as! [[String:Any]] {
+                    let id = i["id"] as! String
+                    let content = i["content"] as! [String:Any]
+                    let token = content["token"] as! String
+                    if token.isEmpty{
+                        DispatchQueue.main.async {
+                            self.functions.createAlert(self: self, title: String(localized:"info"), message: String(localized:"meeting_not_started"), yesNo: false, alertReturn: { result in
+                            })
+                        }
+                        return
+                    }else{
+                        DispatchQueue.main.async {
+                            let n = self.storyboard?.instantiateViewController(withIdentifier: "meet") as! MeetingController
+                            n.channel = item.trainerId
+                            n.token = token
+                            self.navigationController?.pushViewController(n, animated: true)
+                        }
+                        
+                    }
+                    break
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.functions.createAlert(self: self, title: String(localized:"info"), message: String(localized:"meeting_not_started"), yesNo: false, alertReturn: { result in
+                    })
+                }
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
+            }
+           
+        })
     }
     
 
@@ -204,6 +273,10 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
         cell.configure(with: upcomingList[indexPath.row])
         return cell
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = upcomingList[indexPath.row]
+        enterMeeting(item)
     }
     
     

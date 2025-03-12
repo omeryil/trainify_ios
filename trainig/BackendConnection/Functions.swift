@@ -22,11 +22,11 @@ public class Functions {
                         onCompleteBool(false,"Unexpected Error")
                         return
                     }
-                    CacheData.saveToken(data: json.value(forKey: "token") as! String, duration: 3600)
+                    CacheData.saveToken(data: json.value(forKey: "token") as! String, duration: Statics.tokentimeMax)
                     
                     onCompleteBool(true,"")
                 }else {
-                    
+                   
                     onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
                     return
                 }
@@ -541,6 +541,41 @@ public class Functions {
                 }
             }
     }
+    public func updateSearhPhoto(data:Any,onCompleteBool:@escaping OnCompleteBool) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.updateSearchService.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+               onCompleteBool(true,"")
+            }
+    }
+    public func createMeetingToken(data:Any, onCompleteWithData:@escaping OnCompleteWithData) {
+        PostGetBuilder()
+            .setHost(Statics.host)
+            .setJsonPostData(data)
+            .setPost_type(POST_TYPE.JSON)
+            .setReturn_type(RETURN_TYPE.JSONOBJECT)
+            .setUrlType(URL_TYPE.createMeetingToken.description)
+            .setToken(CacheData.getToken()!)
+            .createPost()
+            .process(){response in
+                let statusCode = response?.ResponseCode
+                if statusCode == 200 {
+                    let json = response?.JsonObject as! NSDictionary
+                    let result=json["token"] as! String
+            
+                    onCompleteWithData(result,"")
+                    
+                }else {
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                }
+            }
+    }
     func getGuestToken(onCompleteBool:@escaping OnCompleteBool){
         let d = [] as Any
         LoginBuilder()
@@ -607,6 +642,9 @@ public class Functions {
         case 503:
             err = "Service Unavailable"
             break
+        case 777:
+            err = PostGet.no_connection
+            break
         case 406:
             err = "Not Acceptable"
             break
@@ -617,6 +655,31 @@ public class Functions {
         return err
     }
     public func createAlert(self:UIViewController,title: String, message: String, yesNo: Bool,alertReturn:@escaping onAlertReturn) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "DarkBack")
+        let attributedString = NSAttributedString(string: title, attributes: [
+                NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+        ])
+        let attributedStringMessage = NSAttributedString(string: message, attributes: [
+                NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+        ])
+        alert.setValue(attributedString, forKey: "attributedTitle")
+        alert.setValue(attributedStringMessage, forKey: "attributedMessage")
+        if yesNo {
+            alert.addAction(UIAlertAction(title: String(localized: "cancel"), style: .default, handler: { (action: UIAlertAction!) in
+                alertReturn(false)
+              }))
+        }
+        alert.addAction(UIAlertAction(title: String(localized: "ok"), style: .default, handler: { (action: UIAlertAction!) in
+            alertReturn(true)
+          }))
+        self.present(alert, animated: true, completion: {() -> Void in
+            alert.view.tintColor = .white})
+
+    }
+    public static func createAlertStatic(self:UIViewController,title: String, message: String, yesNo: Bool,alertReturn:@escaping onAlertReturn) {
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "DarkBack")
         let attributedString = NSAttributedString(string: title, attributes: [

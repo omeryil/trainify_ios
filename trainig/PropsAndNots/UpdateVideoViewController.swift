@@ -73,28 +73,79 @@ class UpdateVideoViewController: UIViewController, UIImagePickerControllerDelega
     func getVideo(){
         var videoUrl:String? = userData["video"] as? String ?? nil
         videoUrl = videoUrl?.replacingOccurrences(of: "download?", with: "watch?")
-        functions.getVideo(url: videoUrl!, onCompleteWithData: {(result,error) in
-            if let url = String(data: result as! Data, encoding: .utf8) {
-                videoUrl = url
-            } else {
+        if videoUrl != nil {
+            functions.getVideo(url: videoUrl!, onCompleteWithData: {(result,error) in
+                if error != nil && !(error!).isEmpty {
+                    if error == PostGet.no_connection {
+                        DispatchQueue.main.async {
+                            PostGet.noInterneterror(v: self)
+                        }
+                        return
+                    }
+                    return
+                }
+                if let url = String(data: result as! Data, encoding: .utf8) {
+                    videoUrl = url
+                } else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if let urlString = videoUrl, let url = URL(string: urlString) {
+                        self.videoURL = url
+                        self.addVideoPlayer(videoUrl: url, to: self.view)
+                        self.plyBtn.isHidden = false
+                    }
+                }
+            })
+        }
+        
+    }
+    @objc func update(_ button: UIBarButtonItem?) {
+        let ind = self.view.showLoader(String(localized:"wait"))!
+        functions.upload(data: videoURL, onCompleteWithData: {(result,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
                 return
             }
-            DispatchQueue.main.async {
-                if let urlString = videoUrl, let url = URL(string: urlString) {
-                    self.videoURL = url
-                    self.addVideoPlayer(videoUrl: url, to: self.view)
-                    self.plyBtn.isHidden = false
-                }
+            if result != nil {
+                let response = result as! response
+                let json = response.JsonObject
+                let dd = json!["data"] as! NSDictionary
+                let url = dd["url"] as! String
+                let video = Statics.osService + url
+                self.userData["video"] = video
+                CacheData.saveUserData(data: self.userData)
+                self.updateVideo(video)
             }
         })
     }
-    @objc func update(_ button: UIBarButtonItem?) {
-        functions.upload(data: videoURL, onCompleteWithData: {(result,error) in
-            let r = result as! response
-            if r.ResponseCode == 200 {
-                print("OK")
-            }else {
-                print(error!)
+    func updateVideo(_ url:String) {
+        let data : Any = [
+            "where": [
+                "collectionName": "users",
+                "and": [
+                    "id": userData["id"]
+                ]
+            ],
+            "fields": [
+                [
+                    "field": "video",
+                    "value": url
+                ]
+            ]
+        ]
+        functions.update(data: data as! [String : Any], onCompleteBool: {(success,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
             }
         })
     }

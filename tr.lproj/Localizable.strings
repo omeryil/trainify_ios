@@ -15,7 +15,9 @@
 "trans" = "Trans Gender";
 "nonbin" = "Non-Binary";
 "what_are_u_interested" = "What are you interested in?";
+"what_are_ur_expert" = "What are the categories in which you are an expert trainer?";
 "select_int_desc" = "Please select so we can personalize your training plans and provide recommendations tailored to your needs";
+"select_exp_desc" = "Please select so we can make it easier for users to find you based on the categories you expertise in";
 "yrs" = "year(s)";
 "yrs_short" = "yrs";
 "experiences"="Experiences";
@@ -111,3 +113,12 @@
 "select_time"="Please select a time";
 "error_adding_reservation"="This seasion reserved by another user. If you want you can try in 3 minutes or choose another session";
 "sold"="Sold";
+"no_upcoming"="No upcoming training";
+"exit"="Logout";
+"exit_message"="Are you sure you want to log out?";
+"choose_gender_error"= "Please select your gender!";
+"choose_personal_error"= "Please fill out your personal information completely!";
+"no_internet"= "No Internet Connection!";
+"info"= "Info";
+"meeting_not_started"= "This meeting has not yet been initiated by the Trainer.";
+"unexpected_err"= "Unexpected Error Qccured!";

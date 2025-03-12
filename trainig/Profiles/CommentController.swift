@@ -52,7 +52,11 @@ class CommentController: UITableViewController {
                     self.tableView?.reloadData()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -78,7 +82,11 @@ class CommentController: UITableViewController {
                     self.tableView?.reloadData()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })

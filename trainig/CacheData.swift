@@ -11,6 +11,7 @@ public class CacheData {
     static let cacheKey = "token"
     static let expiryKey = "tokenExpireDate"
     static let userDataKey = "userData"
+    static let InterestDataKey = "interestData"
     static let hasNotificationKey = "hasNotification"
     
 
@@ -39,11 +40,34 @@ public class CacheData {
         }
         return nil
     }
+    
+    public static func saveInterestData(interests: [InterestItem]) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(interests) {
+            UserDefaults.standard.set(encoded, forKey: InterestDataKey)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    public static func getInterestData() -> [InterestItem] {
+        if let savedData = UserDefaults.standard.data(forKey: InterestDataKey) {
+            let decoder = JSONDecoder()
+            if let loadedInterests = try? decoder.decode([InterestItem].self, from: savedData) {
+                return loadedInterests
+            }
+        }
+        return []
+    }
     public static func saveHasNotification() {
         UserDefaults.standard.set(true, forKey: hasNotificationKey)
     }
     public static func hasNotification() -> Bool? {
         return UserDefaults.standard.bool(forKey: hasNotificationKey)
     }
-    
+    public static func clearAll() -> Bool{
+        UserDefaults.standard.dictionaryRepresentation().keys.forEach { key in
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+        UserDefaults.standard.synchronize()
+        return true
+    }
 }

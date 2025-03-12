@@ -15,6 +15,8 @@ class MeetingController: UIViewController {
     @IBOutlet weak var remoteView: UIView!
     @IBOutlet weak var localView: UIView!
     @IBOutlet weak var buttonGroup: NoBorderNoBack8!
+    var token:String!
+    var channel:String!
     var touched=false
     var bGroupPoints:CGPoint!
        // Declare a variable for the AgoraRtcEngineKit instance
@@ -53,7 +55,7 @@ class MeetingController: UIViewController {
     @IBAction func abort(_ sender: Any) {
         agoraKit.stopPreview()
         agoraKit.leaveChannel()
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func mic(_ sender: Any) {
         agoraKit.muteLocalAudioStream(localAudio)
@@ -96,7 +98,7 @@ class MeetingController: UIViewController {
         }
        
     }
-       // Clean up resources when deallocating
+       
        deinit {
            agoraKit.stopPreview()
            agoraKit.leaveChannel(nil)
@@ -126,7 +128,7 @@ class MeetingController: UIViewController {
            // Use a temporary Token to join the channel
            // Replace <#Your Token#> and <#Your Channel Name#> with your project's Token and channel name
            // If you set uid=0, the engine generates a uid internally; on success, it triggers didJoinChannel callback
-           agoraKit.joinChannel(byToken: "007eJxTYPhyQcsy4Whe16VpIvOMzLI/e0qu+r7lieetKecNii4f1W9QYDA2STM2TzI2TjI1NzJJNTS3NDY3MDQzTjYwSTUws0wx09m3Ml2Aj4Ghf0VzPyMDBIL4bAwpqXmpuakMDADTXSA4", channelId: "deneme", uid: 0, mediaOptions: options)
+           agoraKit.joinChannel(byToken: token, channelId: channel, uid: 0, mediaOptions: options)
        }
    }
    // Extension for implementing AgoraRtcEngineDelegate methods

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Network
+import UIKit
 protocol completionHandler{
     func onHttpFinished(response:response!)
 }
@@ -61,6 +63,8 @@ public enum URL_TYPE:CustomStringConvertible {
     case getTrainerSold
     case getAdsFromSearchService
     case getTrainerUpcoming
+    case updateSearchService
+    case createMeetingToken
     
     public var description : String {
         switch self {
@@ -94,6 +98,8 @@ public enum URL_TYPE:CustomStringConvertible {
         case .getTrainerSold: return "dataservice/execute/getTrainerSold"
         case .getAdsFromSearchService: return "searchservice/get/ads"
         case .getTrainerUpcoming: return "dataservice/execute/getTrainerUpcoming"
+        case .updateSearchService: return "searchservice/update"
+        case .createMeetingToken: return "agoraservice/create/meeting"
         }
     }
 }
@@ -129,7 +135,22 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
     var requestCode:Int!
     var postFile:URL!
     var delegate:uploadProgress!
+    public static var no_connection = "No Internet Connection!"
     
+    func isInternetAvailable(completion: @escaping (Bool) -> Void) {
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue.global(qos: .background)
+        
+        monitor.start(queue: queue)
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                completion(true)
+            } else {
+                completion(false)
+            }
+            monitor.cancel()
+        }
+    }
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         let uploadProgress:Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
         if(self.delegate != nil){
@@ -137,7 +158,32 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
         }
     }
     public func process(withBlock callback: @escaping OnComplete) {
+        isInternetAvailable { isConnected in
+            if isConnected {
+                self.processMain {response in
+                    callback(response)
+                }
+            } else {
+                let res = responseBuilder()
+                res.setExceptionData("No Internet Connection!")
+                    .setResponseCode(777)
+                callback(res.createResponse())
+                print("❌ İnternet yok, API çağrısı iptal edildi.")
+                return
+            }
+        }
+    }
+    static var shown:Bool = false
+    public static func noInterneterror(v:UIViewController){
+        if(shown){return}
+        shown = true
+        Functions.createAlertStatic(self: v, title: String(localized:"error"), message: String(localized:"no_internet"), yesNo: false, alertReturn: { result in
+                shown = false
+            })
+    }
+    func processMain(withBlock callback: @escaping OnComplete) {
         getServerResponseForUrlCallback = callback
+        
         let res = responseBuilder()
         if(post_type != POST_TYPE.MULTIPART){
             let defaultConfigObject: URLSessionConfiguration = URLSessionConfiguration.default

@@ -65,7 +65,11 @@ class UpdateAboutViewController: UIViewController {
                 }
                
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -89,6 +93,7 @@ class UpdateAboutViewController: UIViewController {
 
     }
     @objc func update(_ button: UIBarButtonItem?) {
+        self.view.showLoader(String(localized:"wait"))
         var data : Any = [
             "where": [
                 "collectionName": "trainerAbout",
@@ -107,7 +112,16 @@ class UpdateAboutViewController: UIViewController {
             if success! {
                 print(success!)
             }else {
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                        self.view.dismissLoader()
+                    }
+                    return
+                }
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
             }
         })
     }

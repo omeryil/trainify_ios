@@ -118,6 +118,7 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
             let t = i.time.components(separatedBy: "-")
             let sDate = Statics.convertToTimestamp(dateString: "\(d) \(t[0])")
             let eDate = Statics.convertToTimestamp(dateString: "\(d) \(t[1])")
+            var fullDate:String = Statics.formatDateFromLong(timestamp: sDate!)
             let cdata : Any = [
                 "collectionName":"sold",
                 "content":[
@@ -127,6 +128,7 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                     "trainer_name":self.trainerName!,
                     "token":"",
                     "isActive":true,
+                    "fulldate":fullDate,
                     "startDate":sDate!,
                     "endDate":eDate!,
                     "ads_id":self.ads_id!
@@ -136,7 +138,13 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
         }
         let data : Any = ["contents":contents]
         functions.addMultipleCollection(data: data, onCompleteBool: {s,e in
-            print(s!)
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.view.dismissLoader()
                 self.getSold()
@@ -151,17 +159,28 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                 "and": [
                     "reserveKey":reserveKey,
                 ]
+            ],"sort":[
+                "time":"desc"
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: {d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
+            var addRes:Bool = true
             if d != nil {
                 if (d as! NSArray).count>0 {
+                    
                     for i in d as! NSArray{
                         let collection = i as! NSDictionary
                         let content = collection["content"] as! NSDictionary
+                        let uid = content["id"] as! String
                         let time = content["time"] as! Int64
                         let check:Bool = Statics.checkMinsDifference(from: TimeInterval(time))
-                        if !check {
+                        if !check && uid != self.userData["id"] as! String  {
                             DispatchQueue.main.async {
                                 self.functions.createAlert(self: self, title: String(localized:"error"), message: String(localized: "error_adding_reservation"), yesNo: false, alertReturn: { result in
                                 })
@@ -169,11 +188,20 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                                 self.timeCollection.reloadData()
                             }
                             return
+                        }else if(check){
+                            addRes = true
                         }
+                        else{
+                            addRes = false
+                        }
+                        break
                     }
                 }
             }
-            self.addReserved(reserveKey)
+            if addRes {
+                self.addReserved(reserveKey)
+            }
+            
         })
     }
     func removeReserved(_ reserveKey:String){
@@ -186,7 +214,12 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
             ]
         ]
         functions.delete(data: data, onCompleteBool: {s,e in
-            print(s!)
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
     }
     func addReserved(_ reserveKey:String){
@@ -194,12 +227,12 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
         let data : Any = [
             "collectionName":"reserved",
             "content":[
+                "id":userData["id"],
                 "time": now,
-                "reserveKey":reserveKey,
-                "uniqueFields":["reserveKey"]
+                "reserveKey":reserveKey
             ]
         ]
-        functions.addUniqueCollection(data: data, onCompleteBool: {s,e in
+        functions.addCollection(data: data, onCompleteBool: {s,e in
             if s! == false {
                 DispatchQueue.main.async {
                     self.functions.createAlert(self: self, title: String(localized:"error"), message: String(localized: "error_adding_reservation"), yesNo: false, alertReturn: { result in
@@ -207,6 +240,12 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                     self.times[self.selectedTimeIndexPathRow].hide = true
                     self.timeCollection.reloadData()
                 }
+            }
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
             }
         })
     }
@@ -236,6 +275,12 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: {d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count>0 {
                     for i in d as! NSArray{
@@ -273,6 +318,12 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: { d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count>0 {
                    for i in d as! NSArray{
@@ -287,8 +338,8 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                        let repetition_period = content["repetition_period"] as! String
                        let contains:Bool = self.soldItems.contains(where: { $0.startDate == startTime && $0.endDate == endTime})
                        var date = Statics.createDate(year: Int(content["year"] as! String)!, month: Int(content["month"] as! String)!, day: Int(content["day"] as! String)!)
-                       let key:String = "\(ads_id)_\(startTime)_\(endTime)"
-                       self.times.append(AdsTimeItem(item: strDate, selected: false, reserveKey: key,hide:false))
+                       
+                       self.times.append(AdsTimeItem(item: strDate, selected: false,hide:false,ads_id: ads_id, startTime: startTime,endTime: endTime))
                        self.cds.append(CalendarTimeAndDate(date: date,time: strDate, selected: false,startDate: startTime,endDate: endTime))
                        if !contains{
                            self.eventDates.append(date)
@@ -383,7 +434,11 @@ extension TrainingDetails: UICollectionViewDelegate, UICollectionViewDataSource,
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeCell", for: indexPath) as? AdsTimeCell else { return UICollectionViewCell() }
-        let i = times[indexPath.row]
+        var i = times[indexPath.row]
+        if i.selected
+            && i.hide{
+            i.selected.toggle()
+        }
         cell.configure(with: i)
         cell.back.alpha =  i.hide ? 0.5 : 1.0
         return cell
@@ -395,12 +450,13 @@ extension TrainingDetails: UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = collectionView.cellForItem(at: indexPath) as! AdsTimeCell
         selectedTimeIndexPathRow = indexPath.row
         if times[indexPath.row].hide {return}
-        let rk = times[indexPath.row].reserveKey
+        let item = times[indexPath.row]
         times[indexPath.row].selected.toggle()
+        let key:String = "\(item.ads_id ?? "")_\(self.selectedDate ?? Date())_\(item.startTime ?? 0)_\(item.endTime ?? 0)"
         if times[indexPath.row].selected{
-            getReserved(rk!)
+            getReserved(key)
         }else{
-            removeReserved(rk!)
+            removeReserved(key)
         }
         cds.enumerated().forEach { (i, c) in
             if selectedDate == c.date{

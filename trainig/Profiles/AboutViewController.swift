@@ -44,10 +44,11 @@ class AboutViewController: UIViewController {
                     self.aboutText.text=content["about"] as? String
                 }
             }else{
-                print(error!)
-            }
-            DispatchQueue.main.async {
-                //self.view.dismissLoader()
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
             }
         })
     }

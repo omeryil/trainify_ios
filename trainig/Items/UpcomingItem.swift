@@ -15,4 +15,6 @@ struct UpcomingItem {
     var duration: String!
     var time: String!
     var photo: Any!
+    var soldId:String!
+    var trainerId:String!
 }

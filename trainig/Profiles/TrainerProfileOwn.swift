@@ -78,6 +78,15 @@ class TrainerProfileOwn: UIViewController,CallMainDelegate {
         var videoUrl:String? = vUrl
         videoUrl = videoUrl?.replacingOccurrences(of: "download?", with: "watch?")
         functions.getVideo(url: videoUrl!, onCompleteWithData: {(result,error) in
+            if error != nil && !(error!).isEmpty {
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
+                return
+            }
             if let url = String(data: result as! Data, encoding: .utf8) {
                 videoUrl = url
             } else {
@@ -121,6 +130,12 @@ class TrainerProfileOwn: UIViewController,CallMainDelegate {
             ]
         ]
         functions.getCollection(data: data, onCompleteWithData: { (d,error) in
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
             if d != nil {
                 if (d as! NSArray).count>0 {
                     for i in d as! NSArray{

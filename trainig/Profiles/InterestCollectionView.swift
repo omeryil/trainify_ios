@@ -15,7 +15,6 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     var interestsList:[InterestItem]=[]
     let functions=Functions()
     var id:String!
-    var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading"]
     var forTrainer:Bool=false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +33,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         self.collectionView!.collectionViewLayout = layout
-       
-        
+        //self.interestsList = CacheData.getInterestData()
         if forTrainer{
             addTrainerData()
         }
@@ -69,11 +67,17 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
                     let content = itemDic["content"] as! NSDictionary
                     self.interestsList.append(InterestItem(interest: content["interest"] as? String ?? "" ,selected: false ))
                 }
+               
+                //CacheData.saveInterestData(interests: self.interestsList)
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -102,12 +106,18 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
                     let itemDic = item as! NSDictionary
                     let content = itemDic["content"] as! NSDictionary
                     self.interestsList.append(InterestItem(interest: content["spec"] as? String ?? "" ,selected: false ))
+                   
                 }
+                //CacheData.saveInterestData(interests: self.interestsList)
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
                 }
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -115,6 +125,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     }
     override func viewWillAppear(_ animated: Bool) {
         interestsList.removeAll()
+        //interestsList = CacheData.getInterestData()
         if forTrainer{
             addTrainerData()
         }

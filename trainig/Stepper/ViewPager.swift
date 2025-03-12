@@ -97,12 +97,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         }else if position < views.count-1 {
             next()
         }else {
-            if isTrainer{
-                startTrainer()
-            }else{
-                start()
-            }
-            
+            start()
         }
     }
     func uploadProfilePhoto(fileURL:URL,onCompleteWithData:@escaping Functions.OnCompleteWithData){
@@ -125,51 +120,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
             }
         })
     }
-    func start(){
-        ind = self.view.showLoader(String(localized:"wait"))!
-        let id = userData["id"] as! String
-        let dict = personalInfoData as! NSDictionary
-        var mFields:[Any] = []
-        if dict["photo"] != nil {
-            uploadProfilePhoto(fileURL: dict["photo"] as! URL, onCompleteWithData: {
-                (result,error) in
-                if result != nil {
-                    DispatchQueue.main.async {
-                        self.ind.lbl.text = "Profile Photo Uploaded"
-                    }
-                    let response = result as! response
-                    let json = response.JsonObject
-                    let dd = json!["data"] as! NSDictionary
-                    let url = dd["url"] as! String
-                    let photo = Statics.osService + url
-                    let d : Any = ["field":"photo","value":photo]
-                    mFields.append(d)
-                    var ud : [String:Any] = self.userData as! [String : Any]
-                    ud["photo"] = photo
-                    CacheData.saveUserData(data: ud as! NSMutableDictionary)
-                    self.userData = ud as! NSMutableDictionary
-                    self.updatePhotoOrVideo(id: id, dict: mFields as Any, onCompleteBool: { (success,error) in
-                        if success! {
-                            DispatchQueue.main.async {
-                                self.ind.lbl.text = "Profile Photo Updated"
-                            }
-                        }else {
-                            DispatchQueue.main.async {
-                                self.ind.lbl.text = "Profile Photo Update Error" + error!
-                            }
-                            print(error!)
-                        }
-                        self.addFeatures(id: id, dict: dict)
-                    })
-                }
-                
-            })
-        }else {
-            self.addFeatures(id: id, dict: dict)
-        }
-        
-        
-    }
+    
     func updatePhotoOrVideo(id:String,dict:Any,onCompleteBool:@escaping Functions.OnCompleteBool){
         let data:Any = [
             "where": [
@@ -188,7 +139,19 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
     }
     func addFeatures(id:String,dict:NSDictionary,onCompleteBool:@escaping Functions.OnCompleteBool)
     {
+        let trainerItems:[String] = ["gender","birthdate","height","weight","expstarted","title","rating"]
+        let userItems:[String] = ["gender","birthdate","height","weight"]
         
+        var fields : [Any] = []
+        var list = isTrainer ? trainerItems : userItems
+        
+        for i in list {
+            let item : Any = [
+                "field": i,
+                "value": dict[i],
+            ]
+            fields.append(item)
+        }
         let data : Any = [
             "where": [
                 "collectionName": "users",
@@ -196,38 +159,21 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                     "id": userData["id"]
                 ]
             ],
-            "fields":[
-                [
-                    "field": "gender",
-                    "value":dict["gender"],
-                ],
-                [
-                    "field": "birthdate",
-                    "value":dict["birthDate"],
-                ],
-                [
-                    "field": "height",
-                    "value":dict["height"],
-                ],
-                [
-                    "field": "weight",
-                    "value":dict["weight"],
-                ],
-                [
-                    "field": "expstarted",
-                    "value":dict["expstarted"],
-                ],
-                [
-                    "field": "title",
-                    "value":dict["title"],
-                ],
-                [
-                    "field": "rating",
-                    "value":dict["rating"],
-                ]
-            ]
+            "fields":fields
         ]
         functions.update(data: data, onCompleteBool: {(success, error) in
+           
+            self.userData["gender"] = dict["gender"]
+            self.userData["birthdate"] = dict["birthdate"]
+            self.userData["height"] = dict["height"]
+            self.userData["weight"] = dict["weight"]
+            self.userData["expstarted"] = dict["expsarted"]
+            self.userData["rating"] = CGFloat(0)
+            if self.isTrainer {
+                self.userData["title"] = dict["title"]
+            }
+            
+            CacheData.saveUserData(data: self.userData)
             onCompleteBool(success!,error!)
         })
     }
@@ -269,17 +215,71 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         ]
         functions.addRelations(data: data, onCompleteBool: {(success, error) in
             onCompleteBool(success!,error!)
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
     }
-    
-    func startTrainer(){
-        ind = self.view.showLoader(String(localized:"wait"))!
+    func hasValidPersonalData(_ data: Any?) -> Bool {
+        guard let dict = data as? NSDictionary else { return false }
+        return true
+    }
+    func start() {
+        
         let id = userData["id"] as! String
+        var str = ""
+        var err_mes = ""
+        if !hasValidPersonalData(personalInfoData){
+            str = "choose_gender_error"
+            err_mes = String(localized:String.LocalizationValue(str))
+            functions.createAlert(self: self, title: String(localized:"error"), message: err_mes, yesNo: false, alertReturn: { result in
+                
+            })
+            return
+        }
         let dict = personalInfoData as! NSDictionary
+        var continue_=false
+        var elements:[String]!
+        if isTrainer{
+            elements=["gender","birthdate","expstarted","title","weight","height"]
+        }else{
+            elements=["gender","birthdate","weight","height"]
+        }
+        for i in elements {
+            if let value = dict.value(forKey: i), !(value is NSNull) {
+                if let stringValue = value as? String, !stringValue.isEmpty {
+                    continue_ = true
+                } else if let intValue = value as? Int, intValue != 0 {
+                    continue_ = true
+                } else {
+                    continue_ = false
+                    break
+                }
+            }else{
+                continue_ = false
+                break
+            }
+        }
+        
+        if !continue_ {
+            str = "choose_personal_error"
+            err_mes = String(localized:String.LocalizationValue(str))
+            functions.createAlert(self: self, title: String(localized:"error"), message: err_mes, yesNo: false, alertReturn: { result in
+                                  
+                })
+            return
+        }
+        let group = DispatchGroup()
+        ind = self.view.showLoader(String(localized:"wait"))!
         var mFields:[Any] = []
         if dict["photo"] != nil {
+            group.enter()
             uploadProfilePhoto(fileURL: dict["photo"] as! URL, onCompleteWithData: {
                 (result,error) in
+                defer { group.leave() }
                 if result != nil {
                     DispatchQueue.main.async {
                         self.ind.lbl.text = "Profile Photo Uploaded"
@@ -291,10 +291,8 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                     let photo = Statics.osService + url
                     let d : Any = ["field":"photo","value":photo]
                     mFields.append(d)
-                    var ud : [String:Any] = self.userData as! [String : Any]
-                    ud["photo"] = photo
-                    CacheData.saveUserData(data: ud as! NSMutableDictionary)
-                    self.userData = ud as! NSMutableDictionary
+                    self.userData["photo"] = photo
+                    CacheData.saveUserData(data: self.userData)
                     self.updatePhotoOrVideo(id: id, dict: mFields as Any, onCompleteBool: { (success,error) in
                         if success! {
                             DispatchQueue.main.async {
@@ -307,16 +305,60 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                             }
                             print(error!)
                         }
-                        self.addFeatures(id: id, dict: dict)
+                        
                     })
+                }else{
+                    
                 }
-                
+            })
+           
+        }
+        group.enter()
+        self.addFeatures(id: id, dict: dict, onCompleteBool: { (success,error) in
+            defer { group.leave() }
+            if success! {
+                DispatchQueue.main.async {
+                    self.ind.lbl.text = "Features Added"
+                }
+               
+            }else {
+                DispatchQueue.main.async {
+                    self.ind.lbl.text = "Features Add Error" + error!
+                }
+                print(error!)
+            }
+            
+           
+        })
+        if interestData != nil {
+            group.enter()
+            self.addInterest(id: id, dict: dict,onCompleteBool: {s,e in
+                defer { group.leave() }
             })
         }
-        
-        
+        if self.userData["role"] as! String == "trainer" {
+            group.enter()
+            self.addAbout(id: id, dict: dict,onCompleteBool: {s,e in
+                defer { group.leave() }
+            })
+            group.enter()
+            self.addProfit(id: id, dict: dict,onCompleteBool: {s,e in
+                defer { group.leave() }
+            })
+            if videoData != nil {
+                group.enter()
+                self.addVideo(id: id, dict: dict,onCompleteBool: {s,e in
+                    defer { group.leave() }
+                })
+            }
+        }
+        // Tüm işlemler tamamlandığında çalışacak kod
+        group.notify(queue: DispatchQueue.main) {
+            self.forward()
+        }
     }
-    func addVideo(id:String,dict:Any){
+    
+    func addVideo(id:String,dict:Any,onCompleteBool:@escaping Functions.OnCompleteBool){
         var mf:[Any]=[]
         uploadPromotionVideo(fileURL: videoData as! URL, onCompleteWithData: {
             (result,error) in
@@ -331,10 +373,8 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 let video = Statics.osService + url
                 let d : Any = ["field":"video","value":video]
                 mf.append(d)
-                var ud : [String:Any] = self.userData as! [String : Any]
-                ud["video"] = video
-                CacheData.saveUserData(data: ud as! NSMutableDictionary)
-                self.userData = ud as! NSMutableDictionary
+                self.userData["video"] = video
+                CacheData.saveUserData(data: self.userData)
                 self.updatePhotoOrVideo(id: id, dict: mf as Any, onCompleteBool: { (success,error) in
                     if success! {
                         DispatchQueue.main.async {
@@ -347,32 +387,16 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                         }
                         print(error!)
                     }
-                    DispatchQueue.main.async {
-                        self.forward()
-                    }
+                    onCompleteBool(success!,error!)
                 })
+            }else{
+                onCompleteBool(false,error!)
             }
             
         })
     }
-    func addFeatures(id:String,dict:Any){
-        self.addFeatures(id: id, dict: dict as! NSDictionary, onCompleteBool: { (success,error) in
-            if success! {
-                DispatchQueue.main.async {
-                    self.ind.lbl.text = "Features Added"
-                }
-               
-            }else {
-                DispatchQueue.main.async {
-                    self.ind.lbl.text = "Features Add Error" + error!
-                }
-                print(error!)
-            }
-            self.addInterest(id: id, dict: dict)
-           
-        })
-    }
-    func addInterest(id:String,dict:Any){
+
+    func addInterest(id:String,dict:Any,onCompleteBool:@escaping Functions.OnCompleteBool){
         let d = interestData as! NSDictionary
         if d.object(forKey: "items") != nil  && (d["items"] as! [String]).count>0{
             self.addInterests(id: id, onCompleteBool: { (success,error) in
@@ -387,26 +411,13 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                     }
                     print(error!)
                 }
-                if self.userData["role"] as! String == "trainer" {
-                    self.addAbout(id: id, dict: dict)
-                }else{
-                    DispatchQueue.main.async {
-                        self.forward()
-                    }
-                }
-                
+                onCompleteBool(true, "")
             })
         }else{
-            if self.userData["role"] as! String == "trainer" {
-                self.addAbout(id: id, dict: dict)
-            }else{
-                DispatchQueue.main.async {
-                    self.forward()
-                }
-            }
+            onCompleteBool(true, "")
         }
     }
-    func addAbout(id:String,dict:Any){
+    func addAbout(id:String,dict:Any,onCompleteBool:@escaping Functions.OnCompleteBool){
         var data : Any =
         [
             "relations": [
@@ -437,16 +448,21 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 DispatchQueue.main.async {
                     self.ind.lbl.text = "About Add Error" + error!
                 }
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
             }
-            self.addProfit(id: id, dict: dict)
+            onCompleteBool(success!,error)
         })
         
     }
     func addCertificate(id:String,dict:Any){
         
     }
-    func addProfit(id:String,dict:Any){
+    func addProfit(id:String,dict:Any,onCompleteBool:@escaping Functions.OnCompleteBool){
         let data : Any = [
             "relations": [
                 [
@@ -478,9 +494,15 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
                 DispatchQueue.main.async {
                     self.ind.lbl.text = "Profit Add Error" + error!
                 }
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
             }
-            self.addVideo(id: id, dict: dict)
+            onCompleteBool(success!,error!)
+            
         })
     }
     func forward(){
@@ -529,7 +551,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         let interest=storyboard?.instantiateViewController(withIdentifier: "ints") as! Interests
         interest.isStepperOn=true
         interest.stepperDelegate=self
-        
+        interest.isTrainer=isTrainer
         let about=storyboard?.instantiateViewController(withIdentifier: "abt") as! UpdateAboutViewController
         about.isStepperOn=true
         about.delegate=self
@@ -545,7 +567,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
         if userData["role"] as! String == "trainer" {
             views.append(provideo)
             views.append(about)
-            views.append(certificates)
+            //views.append(certificates)
         }
         views.append(interest)
     }

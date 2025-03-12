@@ -70,8 +70,8 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         "gender":"",
         "height":"",
         "weight":"",
-        "birthDate":0,
-        "expStarted":0,
+        "birthdate":0,
+        "expstarted":0,
         "title":"",
         "rating":CGFloat(0)
     ]
@@ -272,12 +272,12 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         if selectedTextField == birthDateTF {
             birthDateTF.text = formatDate(date: datePicker.date)
             let secondsStamp = Int(datePicker.date.timeIntervalSince1970*1000)
-            stepperData["birthDate"]=secondsStamp
+            stepperData["birthdate"]=secondsStamp
             stepperDelegate?.personalInfo(data: stepperData)
         }else if selectedTextField == expTF {
             expTF.text = formatDate(date: eDatePicker.date)
             let secondsStamp = Int(eDatePicker.date.timeIntervalSince1970*1000)
-            stepperData["expStarted"]=secondsStamp
+            stepperData["expstarted"]=secondsStamp
             stepperDelegate?.personalInfo(data: stepperData)
         }else if selectedTextField == weightTF{
             weightTF.text = weights[wPicker.selectedRow(inComponent: 0)]

@@ -11,6 +11,8 @@ import UIKit
 struct AdsTimeItem {
     var item: String!
     var selected: Bool!
-    var reserveKey: String!
     var hide: Bool!
+    var ads_id: String!
+    var startTime:Int64!
+    var endTime:Int64!
 }

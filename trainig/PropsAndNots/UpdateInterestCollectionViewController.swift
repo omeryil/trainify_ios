@@ -11,7 +11,6 @@ private let reuseIdentifier = "intCell"
 
 class UpdateInterestCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     var interestsList:[InterestItem]=[]
-    var ints:[String]=["Hiking","Swimming","Reading","CookingCooking","Traveling","Hiking","Swimming","Reading","Aerial Yoga","Pilates","Cycling","Dancing","Boxing","Martial Arts","Jogging","Running","Yoga","Meditation","Stretching"]
     let functions=Functions()
     var userData:NSMutableDictionary!
     var forTrainer:Bool=false
@@ -35,12 +34,19 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         collectionView.collectionViewLayout = layout
-        
+//        interestsList = CacheData.getInterestData()
+//        selectAll()
+    
         // Do any additional setup after loading the view.
     }
-    
+    func selectAll(){
+        for i in interestsList{
+            i.selected=true
+        }
+        collectionView.reloadData()
+    }
     func addData(){
-        for i in ints{
+        for i in Statics.intList {
             if !interestsList.contains(where: { $0.interest == i }){
                 interestsList.append(InterestItem(interest: i,selected: false ))
             }
@@ -76,10 +82,15 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
                     if !self.interestsList.contains(where: { $0.interest == i }){
                         self.interestsList.append(InterestItem(interest: i ,selected: true ))
                     }
+                    //CacheData.saveInterestData(interests: self.interestsList)
                 }
                 
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
             DispatchQueue.main.async {
@@ -116,10 +127,15 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
                     if !self.interestsList.contains(where: { $0.interest == i }){
                         self.interestsList.append(InterestItem(interest: i ,selected: true ))
                     }
+                    //CacheData.saveInterestData(interests: self.interestsList)
                 }
                 
             }else{
-                print(error!)
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
             DispatchQueue.main.async {
@@ -178,7 +194,8 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(update))
-        interestsList = []
+//        interestsList = CacheData.getInterestData()
+//        selectAll()
         forTrainer = userData["role"] as! String == "user" ? false : true
         if forTrainer {
             getTrainerData()
@@ -220,6 +237,12 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
         print(data)
         functions.delete(data: data, onCompleteBool: { (success,error) in
             oNCompleteBool(success,error)
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
     }
     func insertDatas(oNCompleteBool:@escaping Functions.OnCompleteBool){
@@ -260,6 +283,12 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
         ]
         functions.addRelations(data: data, onCompleteBool: { (success,error) in
             oNCompleteBool(success,error)
+            if error == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
         })
         print(data)
     }

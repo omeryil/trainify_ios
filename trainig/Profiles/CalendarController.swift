@@ -76,7 +76,11 @@ class CalendarController: UIViewController,FSCalendarDelegate,FSCalendarDataSour
                     self.calendar.reloadData()
                 }
             }else{
-                print(e!)
+                if e == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })
@@ -85,7 +89,7 @@ class CalendarController: UIViewController,FSCalendarDelegate,FSCalendarDataSour
         items.removeAll()
         self.calendarTable.reloadData()
         let data : Any = [
-            "usid":"af6009c7-f18e-4770-9464-ffade8f37bc7",
+            "usid":userData["id"],
             "selected_date":dateString
         ]
         functions.executeUserBought(data: data, onCompleteWithData: {d,e in
@@ -98,11 +102,14 @@ class CalendarController: UIViewController,FSCalendarDelegate,FSCalendarDataSour
                     let usercontent = itemTop["usercontent"] as! NSDictionary
                     let training_name = adscontent["training_title"] as? String ?? ""
                     let trainer_name = usercontent["name"] as? String ?? ""
-                    let startDate = content["startDate"] as! Int64
-                    let endDate = content["endDate"] as! Int64
-                    let time = "\(adscontent["date"] as? String ?? "") \(adscontent["start_time"] as? String ?? "") - \(adscontent["end_time"] as? String ?? "") "
+                    let startD = content["startDate"] as! Int64
+                    let endD = content["endDate"] as! Int64
+                    let startHHmm = Statics.formatTimeFromLong(timestamp: startD)
+                    let endHHmm = Statics.formatTimeFromLong(timestamp: endD)
+                    let strdate = Statics.formatDateFromLong(timestamp: startD)
+                    let time = "\(strdate) \(startHHmm) - \(endHHmm) "
                     let adsIsActive = adscontent["isActive"] as! Bool
-                    let photo = usercontent["photo"]
+                    //let photo = usercontent["photo"]
                     if !self.items.contains(where: { $0.time == time && $0.trainer_name == trainer_name }){
                         self.items.append(CalendarItem(trainer_name: trainer_name, training_name: training_name, time: time, isActive: adsIsActive))
                     }
@@ -111,7 +118,11 @@ class CalendarController: UIViewController,FSCalendarDelegate,FSCalendarDataSour
                     self.calendarTable.reloadData()
                 }
             }else{
-                print(e!)
+                if e == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                }
                 
             }
         })

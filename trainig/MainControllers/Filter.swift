@@ -25,6 +25,7 @@ class Filter: UIViewController, sliderChangedDelegate {
     @IBOutlet weak var experiences: UICollectionView!
     public var delegate:filterDelegate?
     public var filterItem = FilterItem()
+    public var checkFilterItem = FilterItem()
     @IBOutlet weak var ageRange: RangeSlider!
     @IBOutlet weak var priceRange: RangeSlider!
     var trainingTypes:[InterestItem]=[]
@@ -82,12 +83,14 @@ class Filter: UIViewController, sliderChangedDelegate {
         addTType()
         addGenders()
         addExp()
+        checkFilterItem = filterItem
         // Do any additional setup after loading the view.
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        let isApply:Bool = checkFilterItem == filterItem
         if isBeingDismissed {
-            delegate?.returnFilter(filter: filterItem)
+            delegate?.returnFilter(filter: filterItem,isApply:!isApply)
         }
     }
     @IBAction func close_cl(_ sender: Any) {
