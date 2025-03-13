@@ -12,6 +12,8 @@ protocol sign_in_up_delegate
 {
     func sign_in()
     func sign_up()
+    func upKeyboard(notification: NSNotification)
+    func downKeyboard()
 }
 protocol filterDelegate{
     func returnFilter(filter:FilterItem,isApply:Bool)

@@ -32,14 +32,39 @@ class SignInView: UIViewController, UITextFieldDelegate {
             email.text = ""
             password.text = ""
         }
+        email.delegate = self
         password.delegate = self
         forgot_btn.setTitle(String(localized: "forgot_pass"), for: .normal)
         sign_in_button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         sign_in_button.titleLabel?.text = String(localized: "sign_in")
         orLabel.text = String(localized: "orStr")
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.delegate?.upKeyboard(notification: notification)
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.delegate?.downKeyboard()
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == email {
+            password.becomeFirstResponder() // textField2'ye geç
+        } else if textField == password {
+            password.resignFirstResponder()// textField3'e geç
+        }
         return true
     }
     @IBAction func sign_in_cl(_ sender: Any) {

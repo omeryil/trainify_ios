@@ -123,6 +123,14 @@
 "info"= "Info";
 "meeting_not_started"= "This meeting has not yet been initiated by the Trainer.";
 "unexpected_err"= "Unexpected Error Qccured!";
+"medical_history"= "Medical History";
+"medical_history_ph"= "Enter information about your medical history that trainers need to know....";
+"about_yourself"="About Yourself";
+"target"= "User Target";
+"target_ph"= "Enter information about your target that trainers need to know....";
+"date_range"= "Date Range";
+"weight_change_list"= "Weight Change List";
+
 
 
 

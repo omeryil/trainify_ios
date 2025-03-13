@@ -18,7 +18,7 @@ class InterestCollectionView: UICollectionViewController,UICollectionViewDelegat
     var forTrainer:Bool=false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         // Uncomment the following line to preserve selection between presentations

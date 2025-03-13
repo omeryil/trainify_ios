@@ -8,6 +8,18 @@
 import UIKit
 
 class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
+    func upKeyboard(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height / 2 // Yarım boy yukarı kaydır
+            }
+        }
+    }
+    
+    func downKeyboard() {
+        self.view.frame.origin.y = 0
+    }
+    
     func showIndicator() {
         self.view.showLoader(String(localized:"wait"))
     }

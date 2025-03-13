@@ -27,7 +27,7 @@ public class Functions {
                     onCompleteBool(true,"")
                 }else {
                    
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                     return
                 }
             }
@@ -61,7 +61,7 @@ public class Functions {
                     
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -90,7 +90,7 @@ public class Functions {
                     onCompleteWithData(items,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -112,7 +112,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -134,7 +134,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -156,7 +156,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -178,7 +178,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -200,7 +200,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -222,7 +222,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -239,7 +239,7 @@ public class Functions {
                     onCompleteWithData(response?.VData!,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -261,7 +261,7 @@ public class Functions {
                     onCompleteWithData(results,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -280,7 +280,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -299,7 +299,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -318,7 +318,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -337,7 +337,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -356,7 +356,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -375,7 +375,7 @@ public class Functions {
                     onCompleteBool(true,"")
                     
                 }else {
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -394,7 +394,7 @@ public class Functions {
                     onCompleteWithData(response?.JsonObject,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -415,7 +415,7 @@ public class Functions {
                     onCompleteWithData(d,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -436,7 +436,7 @@ public class Functions {
                     onCompleteWithData(json,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -457,7 +457,7 @@ public class Functions {
                     onCompleteWithData(json,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -478,7 +478,7 @@ public class Functions {
                     onCompleteWithData(json,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -499,7 +499,7 @@ public class Functions {
                     onCompleteWithData(json,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -519,7 +519,7 @@ public class Functions {
                     onCompleteWithData(json,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -537,7 +537,7 @@ public class Functions {
                 if statusCode == 200 {
                     onCompleteWithData(statusCode,"")
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -572,7 +572,7 @@ public class Functions {
                     onCompleteWithData(result,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }
@@ -591,7 +591,7 @@ public class Functions {
                     onCompleteBool(true,"")
                 }else {
                     
-                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteBool(false,self.returnError(response: response!, statusCode: statusCode ?? 500))
                     return
                 }
             }
@@ -622,7 +622,7 @@ public class Functions {
                     onCompleteWithData(response,"")
                     
                 }else {
-                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode!))
+                    onCompleteWithData(nil,self.returnError(response: response!, statusCode: statusCode ?? 500))
                 }
             }
     }

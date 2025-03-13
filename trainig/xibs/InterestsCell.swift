@@ -13,7 +13,10 @@ class InterestsCell: UICollectionViewCell {
     @IBOutlet weak var back: BorderedView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        interest.sizeToFit()
+        interest.numberOfLines = 1
+        interest.textAlignment = .center
+        interest.translatesAutoresizingMaskIntoConstraints = false
+        back.translatesAutoresizingMaskIntoConstraints = false
         // Initialization code
     }
     func configure(with interest_item:InterestItem){

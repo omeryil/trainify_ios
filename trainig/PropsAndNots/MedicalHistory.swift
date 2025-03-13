@@ -7,30 +7,41 @@
 
 import UIKit
 
-class UpdateAboutViewController: UIViewController {
+class MedicalHistory: UIViewController {
     var placeholderLabel : UILabel!
-    @IBOutlet weak var aboutTextView: CustomTextViewBorder8!
+    @IBOutlet weak var medialHistoryTxt: CustomTextViewBorder8!
     @IBOutlet weak var countLabel: UILabel!
     let functions = Functions()
     var userData:NSMutableDictionary!
-    var aboutId=""
+    var medicalId=""
     var isStepperOn:Bool = false
     var delegate:StepperDelegate?
+    var isFirst=true
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = CacheData.getUserData()!
-        self.title = String(localized: "about")
-        aboutTextView.delegate = self
-        aboutTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        self.title = String(localized: "medical_history")
+        medialHistoryTxt.delegate = self
+        medialHistoryTxt.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
         placeholderLabel = UILabel()
-        placeholderLabel.text = String(localized:"about_yourself")
+        placeholderLabel.text = String(localized:"medical_history_ph")
         placeholderLabel.textColor = UIColor.lightGray
-        placeholderLabel.font = .systemFont(ofSize: (aboutTextView.font?.pointSize)!)
-        placeholderLabel.sizeToFit()
-        aboutTextView.addSubview(placeholderLabel)
-        placeholderLabel.frame.origin = CGPoint(x: 16, y: 16)
-        placeholderLabel.isHidden = !aboutTextView.text.isEmpty
+        placeholderLabel.font = UIFont.systemFont(ofSize: medialHistoryTxt.font?.pointSize ?? 17)
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.lineBreakMode = .byWordWrapping
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        medialHistoryTxt.addSubview(placeholderLabel)
+        placeholderLabel.isHidden = !medialHistoryTxt.text.isEmpty
+        NSLayoutConstraint.activate([
+            placeholderLabel.leadingAnchor.constraint(equalTo: medialHistoryTxt.leadingAnchor, constant: 16),
+            placeholderLabel.trailingAnchor.constraint(equalTo: medialHistoryTxt.trailingAnchor, constant: -16),
+            placeholderLabel.topAnchor.constraint(equalTo: medialHistoryTxt.topAnchor, constant: 16),
+            placeholderLabel.widthAnchor.constraint(lessThanOrEqualTo: medialHistoryTxt.widthAnchor, constant: -32) // Genişlik sınırı ekle
+        ])
+
+        // Auto Layout'un tam olarak çalışmasını sağlamak için
+        placeholderLabel.preferredMaxLayoutWidth = medialHistoryTxt.frame.width - 32
         getAboutText()
         // Do any additional setup after loading the view.
     }
@@ -44,24 +55,26 @@ class UpdateAboutViewController: UIViewController {
                     ]
                 ],
                 "related": [
-                    "relationName": "trainerAboutRelation",
+                    "relationName": "userMediacalRelation",
                     "where": [
-                        "collectionName": "trainerAbout"
+                        "collectionName": "userMedical"
                     ]
                 ]
         ]
-        functions.getRelations(data: data,listItem:"trainerAbout", onCompleteWithData: { (contentData,error) in
+        functions.getRelations(data: data,listItem:"userMedical", onCompleteWithData: { (contentData,error) in
             let resData=contentData as? NSArray ?? []
             if error!.isEmpty {
                 for item in resData{
+                    self.isFirst = false
                     let itemDic = item as! NSDictionary
-                    self.aboutId = itemDic["id"] as! String
+                    self.medicalId = itemDic["id"] as! String
                     let content = itemDic["content"] as! NSDictionary
                     DispatchQueue.main.async {
-                        self.aboutTextView.text=content["about"] as? String
-                        self.placeholderLabel.isHidden = !self.aboutTextView.text.isEmpty
+                        self.medialHistoryTxt.text=content["history"] as? String
+                        self.placeholderLabel.isHidden = !self.medialHistoryTxt.text.isEmpty
                         self.updateCharacterCount()
                     }
+                    break
                 }
                
             }else{
@@ -76,8 +89,8 @@ class UpdateAboutViewController: UIViewController {
         
     }
     func updateCharacterCount() {
-        delegate?.about(data: self.aboutTextView.text ?? "")
-        let cCount = self.aboutTextView.text.count
+        delegate?.about(data: self.medialHistoryTxt.text ?? "")
+        let cCount = self.medialHistoryTxt.text.count
 
         self.countLabel.text = "\((0) + cCount)/1000"
      }
@@ -94,17 +107,65 @@ class UpdateAboutViewController: UIViewController {
     }
     @objc func update(_ button: UIBarButtonItem?) {
         self.view.showLoader(String(localized:"wait"))
+        if isFirst{
+            insertData()
+        }else{
+            updateData()
+        }
+        
+       
+    }
+    func insertData() {
+        let id=userData["id"]
+        var data : Any =
+        [
+            "relations": [
+                [
+                    "id": id,
+                    "collectionName":"users",
+                    "relationName": "userMediacalRelation"
+                ]
+            ],
+            "contents": [
+                [
+                    "collectionName": "userMedical",
+                    "content": [
+                        "history": medialHistoryTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines),
+                        "createdDate": Int64(Date().timeIntervalSince1970*1000)
+                    ]
+                ]
+            ]
+        ]
+        functions.addRelations(data: data, onCompleteBool: { (success,error) in
+            if success! {
+               
+                self.isFirst = false
+            }else {
+
+                if error == PostGet.no_connection {
+                    DispatchQueue.main.async {
+                        PostGet.noInterneterror(v: self)
+                    }
+                    return
+                }
+            }
+            DispatchQueue.main.async {
+                self.view.dismissLoader()
+            }
+        })
+    }
+    func updateData() {
         var data : Any = [
             "where": [
-                "collectionName": "trainerAbout",
+                "collectionName": "userMedical",
                 "and": [
-                    "id": self.aboutId
+                    "id": self.medicalId
                 ]
             ],
             "fields": [
                 [
-                    "field": "about",
-                    "value": aboutTextView.text!
+                    "field": "history",
+                    "value": medialHistoryTxt.text!
                 ]
             ]
         ]
@@ -136,7 +197,7 @@ class UpdateAboutViewController: UIViewController {
     */
 
 }
-extension UpdateAboutViewController : UITextViewDelegate {
+extension MedicalHistory : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel?.isHidden = !textView.text.isEmpty
         self.updateCharacterCount()

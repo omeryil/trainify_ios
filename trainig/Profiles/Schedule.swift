@@ -7,7 +7,17 @@
 
 import UIKit
 
-class Schedule: UIViewController {
+class Schedule: UIViewController, UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+   
+    
     var placeholderLabel : UILabel!
     @IBOutlet weak var training_title_lbl: UILabel!
     @IBOutlet weak var choose_date_lbl: UILabel!
@@ -87,8 +97,60 @@ class Schedule: UIViewController {
         timePickerEnd = Statics.createTimePicker(tf: time_finish_txt, pickerToolbar: pickerToolBar)
         repetitionPicker.delegate = self
         repetitionPicker.dataSource = self
-        // Do any additional setup after loading the view.
+       
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        price_txt.delegate = self
+        equipments_txt.delegate = self
+        training_title_txt.delegate = self
+        
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == training_title_txt {
+            training_title_txt.resignFirstResponder()
+        } else if textField == price_txt {
+            price_txt.resignFirstResponder()
+        }
+        return true
+    }
+    var activeTextField: UITextField?
+    var activeTextView: UITextView?
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if let textField = activeTextField {
+                let textFieldFrame = textField.convert(textField.bounds, to: self.view)
+                let keyboardTop = self.view.frame.height - keyboardSize.height
+                
+                if textFieldFrame.maxY > keyboardTop {
+                    let offset = textFieldFrame.maxY - keyboardTop + 40
+                    self.view.frame.origin.y = -offset
+                }
+            }else if let textView = activeTextView {
+                let textFieldFrame = textView.convert(textView.bounds, to: self.view)
+                let keyboardTop = self.view.frame.height - keyboardSize.height
+                
+                if textFieldFrame.maxY > keyboardTop {
+                    let offset = textFieldFrame.maxY - keyboardTop + 40
+                    self.view.frame.origin.y = -offset
+                }
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
     @objc func cancelBtnClicked(_ button: UIBarButtonItem?) {
         choose_date_txt?.resignFirstResponder()
         repetition_interval_txt?.resignFirstResponder()
@@ -109,6 +171,7 @@ class Schedule: UIViewController {
         }else if selectedTextField == repetition_interval_txt {
             selectedRepition = repetitions[repetitionPicker.selectedRow(inComponent: 0)]
             repetition_interval_txt.text = String(localized:String.LocalizationValue(selectedRepition))
+            equipments_txt.becomeFirstResponder()
         }
         else if selectedTextField == time_start_txt {
             let formatter = DateFormatter()
@@ -234,10 +297,19 @@ extension Schedule : UITextViewDelegate {
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         placeholderLabel?.isHidden = !textView.text.isEmpty
+        activeTextView = nil
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderLabel?.isHidden = true
+        activeTextView = textView
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+           if text == "\n" {
+               textView.resignFirstResponder()
+               return false
+           }
+           return true
+       }
 }
 extension Schedule:UIPickerViewDelegate,UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

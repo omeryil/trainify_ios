@@ -64,6 +64,8 @@ class SettingsController: UITableViewController {
         let photo = storyboard?.instantiateViewController(withIdentifier: "upPhoto") as! UpdatePhotoViewController
         let video = storyboard?.instantiateViewController(withIdentifier: "upVideo") as! UpdateVideoViewController
         let cert = storyboard?.instantiateViewController(withIdentifier: "upCert") as! UpdateCertificateTableViewController
+        let mh = storyboard?.instantiateViewController(withIdentifier: "mhis") as! MedicalHistory
+        let trgt = storyboard?.instantiateViewController(withIdentifier: "trgt") as! Target
         if !forTrainer {
             personalInfo.append(ForwardItem(title: String(localized:"personal_info"),controller: pi))
         }
@@ -74,6 +76,8 @@ class SettingsController: UITableViewController {
             personalInfo.append(ForwardItem(title: String(localized:"specialities"),controller: ints ))
 //            personalInfo.append(ForwardItem(title: String(localized:"certificates"),controller: cert ))
         }else {
+            personalInfo.append(ForwardItem(title: String(localized:"medical_history"),controller: mh ))
+            personalInfo.append(ForwardItem(title: String(localized:"target"),controller: trgt ))
             personalInfo.append(ForwardItem(title: String(localized:"interests"),controller: ints ))
         }
         

@@ -167,7 +167,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
             self.userData["birthdate"] = dict["birthdate"]
             self.userData["height"] = dict["height"]
             self.userData["weight"] = dict["weight"]
-            self.userData["expstarted"] = dict["expsarted"]
+            self.userData["expstarted"] = dict["expstarted"]
             self.userData["rating"] = CGFloat(0)
             if self.isTrainer {
                 self.userData["title"] = dict["title"]

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpView: UIViewController {
+class SignUpView: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var isTrainer: UISwitch!
     
     @IBOutlet weak var asTrainer: UILabel!
@@ -38,7 +38,44 @@ class SignUpView: UIViewController {
         
         sign_up.setTitle(String(localized: "sign_up"), for: .normal)
         sign_up.setTitle(String(localized: "sign_up"), for: .selected)
+        
+        name.delegate = self
+        mail.delegate = self
+        password.delegate = self
+        repassword.delegate = self
+        
         setEmpty()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.delegate?.upKeyboard(notification: notification)
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.delegate?.downKeyboard()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == name {
+            mail.becomeFirstResponder()
+        } else if textField == mail {
+            password.becomeFirstResponder()
+        }else if textField == password {
+            repassword.becomeFirstResponder()
+        }else{
+            repassword.resignFirstResponder()
+        }
+        return true
     }
     func setEmpty() {
         name.text = ""

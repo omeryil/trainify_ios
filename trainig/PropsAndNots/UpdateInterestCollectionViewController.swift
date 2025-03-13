@@ -17,7 +17,14 @@ class UpdateInterestCollectionViewController: UICollectionViewController,UIColle
     var existingIds:[String]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground() // Opak hale getir
+        appearance.backgroundColor = .black   // Rengi belirle
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.lightGray] // Başlık rengini beyaz yap
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.lightGray] // Büyük başlık rengini de beyaz yap
         
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         userData = CacheData.getUserData()!
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
