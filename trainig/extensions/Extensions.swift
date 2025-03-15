@@ -150,4 +150,37 @@ extension UITableView {
 private struct AssociatedKeys {
     static var refreshAction = "refreshAction"
 }
-
+extension UITextView {
+    func addDoneButtonOnKeyboard() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.barTintColor = UIColor.black
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: String(localized:"done"), style: .done, target: self, action: #selector(doneButtonTapped))
+        doneButton.tintColor = UIColor.main
+        toolbar.items = [flexSpace, doneButton]
+        self.inputAccessoryView = toolbar
+        self.keyboardAppearance = .dark
+    }
+    
+    @objc private func doneButtonTapped() {
+        self.resignFirstResponder() // Dismiss the keyboard
+    }
+}
+extension UITextField {
+    func addDoneButtonOnKeyboard() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.barTintColor = UIColor.black
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: String(localized:"done"), style: .done, target: self, action: #selector(doneButtonTapped))
+        doneButton.tintColor = UIColor.main
+        toolbar.items = [flexSpace, doneButton]
+        self.inputAccessoryView = toolbar
+        self.keyboardAppearance = .dark
+    }
+    
+    @objc private func doneButtonTapped() {
+        self.resignFirstResponder() // Dismiss the keyboard
+    }
+}

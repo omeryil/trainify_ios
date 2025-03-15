@@ -41,6 +41,21 @@ class AdsCell: UITableViewCell {
       
         
     }
+    func configureNoTime(with adsItem: AdsItem){
+        training_name.text = adsItem.training_title
+        price.text = "₺" + adsItem.price
+        let optionalText: String? = adsItem.repetition
+        let str : String = String(localized: String.LocalizationValue(optionalText!))
+        _repeat.text = str
+        timeStr.text = "\(Statics.calculateDuration(adsItem.start_time, adsItem.end_time))"
+        if adsItem.isActive == true{
+            isActive.backgroundColor = .systemGreen
+        }else{
+            isActive.backgroundColor = .systemRed
+        }
+      
+        
+    }
     
 
 }

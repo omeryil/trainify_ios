@@ -58,6 +58,13 @@ class First: UINavigationController {
 
     func navigateToHome() {
         let userData=CacheData.getUserData()!
+        let isFirst:Bool!
+        if userData.object(forKey: "isFirst") != nil {
+            isFirst = userData["isFirst"] as? Bool
+        } else {
+            isFirst = false
+        }
+       
         let role=userData["role"] as! String
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let sceneDelegate = scene.delegate as? SceneDelegate {
@@ -65,10 +72,14 @@ class First: UINavigationController {
             appearance.tintColor = UIColor.lightGray
             var n:UIViewController!
             let role=userData["role"] as! String
-            if role=="user"{
-                n = self.storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+            if isFirst {
+                n = storyboard?.instantiateViewController(withIdentifier: "vpager") as! ViewPager
             }else{
-                n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+                if role=="user"{
+                    n = self.storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+                }else{
+                    n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+                }
             }
             let navController = UINavigationController(rootViewController: n)
             sceneDelegate.window?.rootViewController = navController

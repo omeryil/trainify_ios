@@ -176,8 +176,11 @@ class UserHomeViewController: UIViewController {
                 }
                 return
             }
+            
             DispatchQueue.main.async {
-                self.loadsearchList(data as! [NSDictionary])
+                if data != nil {
+                    self.loadsearchList(data as! [NSDictionary])
+                }
                 self.view.dismissLoader()
             }
             
@@ -197,6 +200,7 @@ class UserHomeViewController: UIViewController {
         recommendedTable.refreshControl?.endRefreshing()
     }
     func enterMeeting(_ item:UpcomingItem){
+        self.view.showLoader(String(localized:"wait"))
         let data : Any = [
             "where": [
                 "collectionName": "sold",
@@ -209,6 +213,7 @@ class UserHomeViewController: UIViewController {
             if error == PostGet.no_connection {
                 DispatchQueue.main.async {
                     PostGet.noInterneterror(v: self)
+                    self.view.dismissLoader()
                 }
                 return
             }

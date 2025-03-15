@@ -372,6 +372,24 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         if selectedTextField == textField {
             let res = tpicker.selectedRow(inComponent: 0)
             if res == 0 {
+                var item = ads[selectedIndexAd]
+                let n = storyboard?.instantiateViewController(withIdentifier: "tDetails") as! TrainingDetails
+                n.trainerId = userData["id"] as? String ?? ""
+                n.trainerName = userData["name"]  as? String ?? ""
+                n.trainerTitle = userData["title"]  as? String ?? ""
+                n.trainerPhoto = userData["photo"]
+                n.rating = String(format: "%.1f", userData["rating"] as! CVarArg)
+                n.price = item.price
+                n.duration = Statics.calculateDuration(item.start_time, item.end_time)
+                n.equipments = item.equipments
+                n.ads_id = item.record_id
+                n.startDate = Statics.convertToTimestamp(dateString: "\(item.date ?? "") \(item.start_time ?? "")")
+                n.endDate = Statics.convertToTimestamp(dateString: "\(item.date ?? "") \(item.end_time ?? "")")
+                n.title = item.training_title
+                n.selectedDate = Statics.createDate(d: "\(item.date ?? "")T03:00")
+                n.isTrainer = true
+                self.navigationController?.pushViewController(n, animated: true)
+            }else if res == 1 {
                 self.ads[selectedIndexAd].isActive = !selectedAd
                 DispatchQueue.main.async {
                     self.adsTable.reloadData()
@@ -451,6 +469,14 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             if d != nil {
                 if (d as! NSArray).count<1 {
                     self.addTrainerAdsDate(data: data)
+                }else{
+                   
+                    DispatchQueue.main.async {
+                        self.functions.createAlert(self: self, title: String(localized:"error"), message: String(localized:"training_exists"), yesNo: false, alertReturn: { (yesNo) in
+                            
+                        })
+                        self.view.dismissLoader()
+                    }
                 }
             }else{
                 self.addTrainerAdsDate(data: data)
@@ -582,9 +608,9 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
             }
         })
     }
-    func getAdsById(id:[String]) {
+    func getAdsById(id:[String]){
         self.ads.removeAll()
-        if id .count > 0 {
+        if id.count > 0 {
             let data:Any = [
                 "where": [
                     "collectionName":"ads",
@@ -605,13 +631,9 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                     for i in d as! [[String:Any]] {
                         let id = i["id"] as! String
                         let content = i["content"] as! [String:Any]
-                        
-                        self.ads.append(AdsItem(training_title: content["training_title"] as? String ?? "", repetition: content["repetition"] as? String ?? "", price: content["price"] as? String ?? "",start_time: content["start_time"] as? String ?? "",end_time: content["end_time"] as? String ?? "",record_id:id, isActive: content["isActive"] as? Bool ?? true,equipments: content["equipments"] as? String ?? "",date: content["date"] as? String ?? ""))
+                        self.getAdsByDate(date: content["date"] as? String ?? "")
+                        break
                     }
-                }
-                DispatchQueue.main.async {
-                    self.adsTable.reloadData()
-                    self.hideIndicator()
                 }
             })
         }else {
@@ -620,6 +642,39 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 self.hideIndicator()
             }
         }
+    }
+    func getAdsByDate(date:String) {
+        let data:Any = [
+            "where": [
+                "collectionName":"ads",
+                "and":[
+                    "date":date,
+                    "trainer_id":userData["id"]
+                ]
+            ]
+        ]
+        functions.getCollection(data: data, onCompleteWithData: {d,e in
+            if e == PostGet.no_connection {
+                DispatchQueue.main.async {
+                    PostGet.noInterneterror(v: self)
+                }
+                return
+            }
+            if d != nil {
+                
+                for i in d as! [[String:Any]] {
+                    let id = i["id"] as! String
+                    let content = i["content"] as! [String:Any]
+                    
+                    self.ads.append(AdsItem(training_title: content["training_title"] as? String ?? "", repetition: content["repetition"] as? String ?? "", price: content["price"] as? String ?? "",start_time: content["start_time"] as? String ?? "",end_time: content["end_time"] as? String ?? "",record_id:id, isActive: content["isActive"] as? Bool ?? true,equipments: content["equipments"] as? String ?? "",date: self.selectedDate))
+                }
+            }
+            DispatchQueue.main.async {
+                self.adsTable.reloadData()
+                self.hideIndicator()
+            }
+        })
+        
     }
     func deleteRecord(id:String){
         let data : Any = [
@@ -726,7 +781,7 @@ extension AdsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "adsCell") as? AdsCell else {
             return UITableViewCell()
         }
-        cell.configure(with: ads[indexPath.row])
+        cell.configureNoTime(with: ads[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -761,6 +816,7 @@ extension AdsViewController: UITableViewDelegate, UITableViewDataSource {
         selectedIndexAd = indexPath.row
         tPickerItems.removeAll()
         selectedAdId = adsItem.record_id!
+        tPickerItems.append(String(localized:"show_details"))
         let t = selectedAd ? String(localized:"deactivate") : String(localized:"activate")
         tPickerItems.append(t)
         tPickerItems.append(String(localized:"add_new_time"))

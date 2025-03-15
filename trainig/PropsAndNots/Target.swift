@@ -43,6 +43,7 @@ class Target: UIViewController {
         // Auto Layout'un tam olarak çalışmasını sağlamak için
         placeholderLabel.preferredMaxLayoutWidth = targetTxt.frame.width - 32
         getAboutText()
+        targetTxt.addDoneButtonOnKeyboard()
         // Do any additional setup after loading the view.
     }
     func getAboutText(){

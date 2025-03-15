@@ -14,6 +14,8 @@ class RoundedTextView: UITextView {
         let height:CGFloat=self.frame.height;
         layer.cornerRadius = height/8
         clipsToBounds=true
+        self.addDoneButtonOnKeyboard()
+        
     }
     
 }

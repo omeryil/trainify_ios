@@ -44,5 +44,13 @@
 	<string>zv5bqnq95kxz6ai7ln7zy6kq56bvp4ag9qz1s82qxnf6epk8</string>
 	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+    </array>
+    <key>UIRequiresFullScreen</key>
+    <false/>
+    <key>Allows Picture in Picture</key>
+    <true/>
 </dict>
 </plist>

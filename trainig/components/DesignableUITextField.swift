@@ -10,7 +10,10 @@ import UIKit
 @IBDesignable
 class DesignableUITextField: UITextField {
     
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.addDoneButtonOnKeyboard()
+    }
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var textRect = super.rightViewRect(forBounds: bounds)
         textRect.origin.x -=  rightPadding

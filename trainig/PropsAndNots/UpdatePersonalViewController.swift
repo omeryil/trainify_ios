@@ -55,6 +55,9 @@ class UpdatePersonalViewController: UIViewController {
         tableview.separatorStyle = .singleLine
         tableview.separatorColor = .gray
         headers = [String(localized:"weight_change_list")]
+        heightTF.applyDoneButton = false
+        weightTF.applyDoneButton = false
+        
         // Do any additional setup after loading the view.
     }
     func createWeightPicker(){

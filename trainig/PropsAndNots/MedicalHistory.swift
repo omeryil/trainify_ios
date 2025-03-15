@@ -43,6 +43,7 @@ class MedicalHistory: UIViewController {
         // Auto Layout'un tam olarak çalışmasını sağlamak için
         placeholderLabel.preferredMaxLayoutWidth = medialHistoryTxt.frame.width - 32
         getAboutText()
+        medialHistoryTxt.addDoneButtonOnKeyboard()
         // Do any additional setup after loading the view.
     }
     func getAboutText(){

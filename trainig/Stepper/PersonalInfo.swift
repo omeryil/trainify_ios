@@ -119,7 +119,39 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         createHeightPicker()
         createWeightPicker()
         bindPickers()
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        birthDateTF.applyDoneButton = false
+        heightTF.applyDoneButton = false
+        weightTF.applyDoneButton = false
+        expTF.applyDoneButton = false
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if let textView = titleTF {
+                let textFieldFrame = textView.convert(textView.bounds, to: self.view)
+                let keyboardTop = self.view.frame.height - keyboardSize.height
+                
+                if textFieldFrame.maxY > keyboardTop {
+                    let offset = textFieldFrame.maxY - keyboardTop + 40
+                    self.view.frame.origin.y = -offset
+                }
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     @objc func textFieldDidChange(_ textField: UITextField) {
         stepperData["title"]=textField.text?.trimmingCharacters(in: .whitespaces)
@@ -180,6 +212,12 @@ class PersonalInfo:UIViewController,UICollectionViewDataSource,UICollectionViewD
         hPicker.trailingAnchor.constraint(equalTo: frameView.trailingAnchor).isActive = true
         heightTF.inputView = frameView
         heightTF?.inputAccessoryView = pickerToolbar
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTF {
+            titleTF.resignFirstResponder() // textField2'ye geç
+        }
+        return true
     }
     func bindPickers(){
         for i in 50...280{

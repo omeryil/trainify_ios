@@ -65,6 +65,7 @@ public enum URL_TYPE:CustomStringConvertible {
     case getTrainerUpcoming
     case updateSearchService
     case createMeetingToken
+    case refreshToken
     
     public var description : String {
         switch self {
@@ -100,6 +101,7 @@ public enum URL_TYPE:CustomStringConvertible {
         case .getTrainerUpcoming: return "dataservice/execute/getTrainerUpcoming"
         case .updateSearchService: return "searchservice/update"
         case .createMeetingToken: return "agoraservice/create/meeting"
+        case .refreshToken: return "authservice/refresh"
         }
     }
 }
@@ -157,9 +159,16 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
             self.delegate.progress(uploadProgress: uploadProgress)
         }
     }
+    var ttt = 0
     public func process(withBlock callback: @escaping OnComplete) {
         isInternetAvailable { isConnected in
             if isConnected {
+//                if self.ttt < 1  {
+//                    self.token = "eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25JZCI6IjY0Y2NlNjVmOTdmYjMwN2FkNmYzZDFlOSIsImNsaWVudElkIjoiN2QwMGVlNGEyZmNjYjNhYzY2N2E0YmQ3Iiwicm9sZSI6Imd1ZXN0IiwiaWQiOiI2N2QxNjlkOWYwODBhNzMxODJhYTc2MjEiLCJhcHBsaWNhdGlvbklkIjoiZDM1MjgwNTgtYzE2MS00ZjExLTgzMDQtMGUwMGY3N2RmYmRlIiwic3ViIjoiN2QwMGVlNGEyZmNjYjNhYzY2N2E0YmQ3IiwiaWF0IjoxNzQxNzc3MzcwLCJleHAiOjE3NDE4NjM3NzB9.XaBihCC-q3nndBdBvXgTF3do_VFn97EdF7_AvM9-_Kg"
+//                    self.ttt += 1
+//                }
+                
+                
                 self.processMain {response in
                     callback(response)
                 }
@@ -178,8 +187,8 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
         if(shown){return}
         shown = true
         Functions.createAlertStatic(self: v, title: String(localized:"error"), message: String(localized:"no_internet"), yesNo: false, alertReturn: { result in
-                shown = false
-            })
+            shown = false
+        })
     }
     func processMain(withBlock callback: @escaping OnComplete) {
         getServerResponseForUrlCallback = callback
@@ -217,6 +226,281 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
                 
                 do {
                     let httpResponse=response as? HTTPURLResponse
+                    print(httpResponse!.statusCode ?? 0)
+                    if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                        self.handleTokenExpiration { success in
+                            
+                            if success {
+                                // Token yenilendikten sonra bu isteği tekrar çağır
+                                self.processMain {response in
+                                    callback(response)
+                                }
+                            } else {
+                                res
+                                    .setExceptionData("")
+                                    .setResponseCode(httpResponse.statusCode)
+                                callback(res.createResponse())
+                            }
+                        }
+                    }
+                    else{
+                        var str = String(decoding: data!, as: UTF8.self)
+                        print(str)
+                        if(self.return_type == RETURN_TYPE.JSONOBJECT){
+                            if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: myData, options: []) as? [String:AnyObject] {
+                                let jo:NSDictionary = jsonOutput as NSDictionary
+                                print(jo)
+                                res.setJsonObject(jo)
+                                    .setExceptionData("")
+                                    .setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }else{
+                                res.setExceptionData("Hata")
+                                    .setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }
+                        }else if(self.return_type == RETURN_TYPE.JSONARRAY){
+                            if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: data!, options: []) as? [[String: Any]] {
+                                let ja:[NSDictionary] = jsonOutput as [NSDictionary]
+                                
+                                res.setJsonArray(ja)
+                                    .setExceptionData("")
+                                    .setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }else{
+                                res.setExceptionData("Hata")
+                                    .setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }
+                        }else if(self.return_type == RETURN_TYPE.STRING){
+                            let str = String(decoding: data!, as: UTF8.self)
+                            res.setJsonData(jsonData:str)
+                                .setExceptionData("")
+                                .setResponseCode(httpResponse!.statusCode)
+                            callback(res.createResponse())
+                            
+                        }else if(self.return_type == RETURN_TYPE.DATA){
+                            if let myData = data {
+                                
+                                res.setData(data!)
+                                    .setExceptionData("")
+                                    .setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }else{
+                                res.setExceptionData("Hata").setResponseCode(httpResponse!.statusCode)
+                                callback(res.createResponse())
+                            }
+                        }
+                    }
+                } catch {
+                    res.setExceptionData("Hata")
+                    callback(res.createResponse())
+                }
+                
+            }
+            dataTask.resume()
+            
+        }
+        else if(post_type==POST_TYPE.MULTIPART){
+            let url: URL = URL(string: url_type)!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            if(token != nil && token != ""){
+                request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            }
+            let boundary = UUID().uuidString
+            let fieldName = "file"  // Sunucunun beklediği dosya parametre adı
+            let fileName = postFile.lastPathComponent
+            let mimeType = "image/jpeg"
+            
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            let random = true
+            var body = Data()
+            
+            // --- Random Parametresi Ekleyelim ---
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"random\"\r\n\r\n".data(using: .utf8)!)
+            body.append("\(random)\r\n".data(using: .utf8)!) // "true" veya "false" olarak gönderir
+            
+            // --- Resim Dosyası Ekleyelim ---
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+            
+            // --- Görüntü verisini oku ve ekle ---
+            if let imageData = try? Data(contentsOf: postFile) {
+                body.append(imageData)
+            }
+            
+            body.append("\r\n".data(using: .utf8)!)
+            
+            // --- Bitiş Sınır ---
+            body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            request.httpBody = body
+            
+            // --- Yükleme işlemi ---
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    res.setExceptionData(error.localizedDescription)
+                    callback(res.createResponse())
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    print(httpResponse.statusCode)
+                    do {
+                        if(self.return_type == RETURN_TYPE.JSONOBJECT){
+                            if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: myData, options: []) as? [String:AnyObject] {
+                                let jo:NSDictionary = jsonOutput as NSDictionary
+                                print(jo)
+                                res.setJsonObject(jo)
+                                    .setExceptionData("")
+                                    .setResponseCode(httpResponse.statusCode)
+                                callback(res.createResponse())
+                            }else{
+                                res.setExceptionData("Hata")
+                                    .setResponseCode(httpResponse.statusCode)
+                                callback(res.createResponse())
+                            }
+                        }else if(self.return_type == RETURN_TYPE.JSONARRAY){
+                            if let myData = data, let jsonOutput = try JSONSerialization.jsonObject(with: myData, options: []) as? [[String:AnyObject]] {
+                                let ja:[NSDictionary] = jsonOutput as [NSDictionary]
+                                
+                                res.setJsonArray(ja)
+                                    .setExceptionData("")
+                                callback(res.createResponse())
+                            }else{
+                                res.setExceptionData("Hata")
+                                callback(res.createResponse())
+                            }
+                        }else if(self.return_type == RETURN_TYPE.STRING){
+                            let str = String(decoding: data!, as: UTF8.self)
+                            res.setJsonData(jsonData:str)
+                                .setExceptionData("")
+                            callback(res.createResponse())
+                            
+                        }
+                    } catch {
+                        res.setExceptionData("Hata")
+                        callback(res.createResponse())
+                    }
+                }
+            }
+            
+            task.resume()
+        }
+        
+    }
+    private var isRefreshing = false
+    private var requestsToRetry: [(Result<Data, Error>) -> Void] = []
+    
+    private var accessToken: String = "initial_access_token"
+    private let session = URLSession.shared
+    private let lockQueue = DispatchQueue(label: "com.api.tokenlock")
+    private let semaphore = DispatchSemaphore(value: 1)
+    private func handleTokenExpiration(completion: @escaping (Bool) -> Void) {
+        lockQueue.sync {
+            guard !isRefreshing else {
+                print("1")
+                // Eğer zaten yenileme işlemi devam ediyorsa, istekleri sıraya al
+                requestsToRetry.append { result in
+                    switch result {
+                    case .success:
+                        completion(true)
+                    case .failure:
+                        completion(false)
+                    }
+                }
+                return
+            }
+            isRefreshing = true
+        }
+        guard let url = URL(string: Statics.host + URL_TYPE.refreshToken.description) else {
+            print("Invalid URL")
+            return
+        }
+        var request = URLRequest(url: url)
+           request.httpMethod = "GET"
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    print("JSON Data: \(json)")
+                    let newToken = json["token"] as? String
+                    
+                    self.token = newToken
+                    CacheData.saveToken(data: self.token, duration: Statics.tokentimeMax)
+                    
+                    completion(true)
+                    self.lockQueue.sync {
+                        self.requestsToRetry.forEach { $0(.success(Data())) }
+                        self.requestsToRetry.removeAll()
+                    }
+                }else{
+                    completion(false)
+                    
+                    self.lockQueue.sync {
+                        self.requestsToRetry.forEach { $0(.failure(NSError(domain: "Refresh failed", code: 401, userInfo: nil))) }
+                        self.requestsToRetry.removeAll()
+                    }
+                }
+            } catch {
+                print("JSON Parsing Error: \(error.localizedDescription)")
+            }
+        }
+        
+        task.resume()
+        
+    }
+    func processRefresh(withBlock callback: @escaping OnComplete) {
+        getServerResponseForUrlCallback = callback
+        
+        let res = responseBuilder()
+        if(post_type != POST_TYPE.MULTIPART){
+            let defaultConfigObject: URLSessionConfiguration = URLSessionConfiguration.default
+            let delegateFreeSession: URLSession = URLSession(configuration: defaultConfigObject, delegate: nil, delegateQueue: nil)
+            let url: URL = URL(string: url_type)!
+            var urlRequest: URLRequest = URLRequest(url: url)
+            urlRequest.httpMethod = self.method == REQUEST_METHODS.GET ? "GET" : "POST"
+            print(self.method == REQUEST_METHODS.GET ? "GET" : "POST")
+            if((self.method == REQUEST_METHODS.POST
+                || self.method == nil) && jsonPostData != nil){
+                do {
+                    urlRequest.httpBody = try JSONSerialization.data(withJSONObject: jsonPostData, options: .prettyPrinted)
+                    let d=try JSONSerialization.data(withJSONObject: jsonPostData, options: .prettyPrinted)
+                    let strr = String(decoding: d, as: UTF8.self)
+                    print(strr)
+                } catch {
+                    print(error)
+                    return
+                }
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
+            if self.method == REQUEST_METHODS.POST {
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+            }
+            if(token != nil && token != ""){
+                urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            }
+            var dataTask = URLSessionDataTask()
+            
+            dataTask = delegateFreeSession.dataTask(with: urlRequest) { data, response, errors in
+                
+                do {
+                    let httpResponse=response as? HTTPURLResponse
+                    print(httpResponse!.statusCode ?? 0)
+                    
                     var str = String(decoding: data!, as: UTF8.self)
                     print(str)
                     if(self.return_type == RETURN_TYPE.JSONOBJECT){

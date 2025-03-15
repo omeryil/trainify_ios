@@ -124,6 +124,7 @@ class SignUpView: UIViewController,UITextFieldDelegate {
                 "role": isTrainer.isOn ? "trainer" : "user",
                 "createdDate": Statics.currentTimeInMilliSeconds(),
                 "isActive":true,
+                "isFirst":true,
                 "uniqueFields":["usermail"]
             ]
         ]
@@ -135,17 +136,23 @@ class SignUpView: UIViewController,UITextFieldDelegate {
                 return
             }
                 if s! == false {
-                    self.functions.createAlert(self: self, title: String(localized: "error"), message: e!, yesNo: false, alertReturn: { result in
-                        
-                    })
+                    DispatchQueue.main.async {
+                        self.functions.createAlert(self: self, title: String(localized: "error"), message: e!, yesNo: false, alertReturn: { result in
+                            
+                        })
+                        self.indicatorDelegate?.hideIndicator()
+                    }
                 }else{
                     self.functions.addUniqueCollection(data: data, onCompleteBool: {(success,error) in
                         if success! {
                             self.sign_in()
                         }else {
-                            self.functions.createAlert(self: self, title: String(localized: "error"), message: error!, yesNo: false, alertReturn: { result in
-                                
-                            })
+                            DispatchQueue.main.async {
+                                self.functions.createAlert(self: self, title: String(localized: "error"), message: error!, yesNo: false, alertReturn: { result in
+                                    
+                                })
+                                self.indicatorDelegate?.hideIndicator()
+                            }
                         }
                     })
                 }
@@ -168,6 +175,7 @@ class SignUpView: UIViewController,UITextFieldDelegate {
                     self.functions.createAlert(self: self, title: String(localized: "error"), message: error!, yesNo: false, alertReturn: { result in
                         
                     })
+                    self.indicatorDelegate?.hideIndicator()
                 }
                 
                 print(error!)

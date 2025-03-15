@@ -274,6 +274,14 @@ public class Statics {
         formatter.dateFormat = "yyyy/MM/dd"
         return formatter.date(from: "\(year)/\(month)/\(day)")!
     }
+    public static func createDate(d:String) -> Date {
+        let formatter = DateFormatter()
+        let ts = d.components(separatedBy: "T")
+        let ds = ts[0].components(separatedBy: "-")
+        let ns = "\(ds[2])/\(ds[1])/\(ds[0]) \(ts[1])"
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        return formatter.date(from: ns)!
+    }
     public static func convertToTimestamp(dateString: String) -> Int64? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"

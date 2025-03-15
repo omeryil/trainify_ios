@@ -12,8 +12,13 @@ class VideoPlay: AVPlayerViewController {
     var videoURL: URL!
     override func viewDidLoad() {
         super.viewDidLoad()
-        player = AVPlayer(url: videoURL)
-        player?.play()
+        if let v = videoURL {
+            player = AVPlayer(url: v)
+            player?.play()
+        }else{
+            self.dismiss(animated: true)
+        }
+      
         // Do any additional setup after loading the view.
     }
     

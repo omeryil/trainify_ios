@@ -152,6 +152,11 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
             ]
             fields.append(item)
         }
+        let isFirst : Any = [
+            "field": "isFirst",
+            "value": false,
+        ]
+        fields.append(isFirst)
         let data : Any = [
             "where": [
                 "collectionName": "users",
@@ -169,6 +174,7 @@ class ViewPager: UIViewController,UIScrollViewDelegate,StepperDelegate,indicator
             self.userData["weight"] = dict["weight"]
             self.userData["expstarted"] = dict["expstarted"]
             self.userData["rating"] = CGFloat(0)
+            self.userData["isFirst"] = false
             if self.isTrainer {
                 self.userData["title"] = dict["title"]
             }

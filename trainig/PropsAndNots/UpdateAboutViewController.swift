@@ -32,8 +32,10 @@ class UpdateAboutViewController: UIViewController {
         placeholderLabel.frame.origin = CGPoint(x: 16, y: 16)
         placeholderLabel.isHidden = !aboutTextView.text.isEmpty
         getAboutText()
+        aboutTextView.addDoneButtonOnKeyboard()
         // Do any additional setup after loading the view.
     }
+    
     func getAboutText(){
         let id=userData["id"]
         let data:Any=[

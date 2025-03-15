@@ -13,6 +13,7 @@ public class CacheData {
     static let userDataKey = "userData"
     static let InterestDataKey = "interestData"
     static let hasNotificationKey = "hasNotification"
+    static let isFirst = "isFirst"
     
 
     public static func saveToken(data: String, duration: TimeInterval) {
@@ -62,6 +63,12 @@ public class CacheData {
     }
     public static func hasNotification() -> Bool? {
         return UserDefaults.standard.bool(forKey: hasNotificationKey)
+    }
+    public static func saveIsFirst(value: Bool = true) {
+        UserDefaults.standard.set(value, forKey: isFirst)
+    }
+    public static func getIsFirst() -> Bool? {
+        return UserDefaults.standard.bool(forKey: isFirst)
     }
     public static func clearAll() -> Bool{
         UserDefaults.standard.dictionaryRepresentation().keys.forEach { key in

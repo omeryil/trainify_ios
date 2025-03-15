@@ -130,6 +130,9 @@
 "target_ph"= "Enter information about your target that trainers need to know....";
 "date_range"= "Date Range";
 "weight_change_list"= "Weight Change List";
+"done"= "Done";
+"training_exists"= "This time esists on your scheduled ads";
+"show_details"= "Show Details";
 
 
 

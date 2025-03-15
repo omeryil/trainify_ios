@@ -655,6 +655,7 @@ public class Functions {
         return err
     }
     public func createAlert(self:UIViewController,title: String, message: String, yesNo: Bool,alertReturn:@escaping onAlertReturn) {
+        
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "DarkBack")
         let attributedString = NSAttributedString(string: title, attributes: [

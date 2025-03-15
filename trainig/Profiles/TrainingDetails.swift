@@ -66,6 +66,7 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
     var userData:NSMutableDictionary!
     var soldItems:[SoldItem]=[]
     var selectedTimeIndexPathRow:Int!
+    var isTrainer:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,9 +95,17 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+//        if let sd = selectedDate {
+//            calendar.select(selectedDate)
+//            calendar.reloadData()
+//        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        if isTrainer {
+            return
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy))
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -397,9 +406,14 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
                         self.calendar.reloadData()
                         DispatchQueue.main.async {
                             self.calendar.allowsSelection = true
-                            let selectedDate = Date()
-                            self.calendar.select(selectedDate)
-                            self.calendar(self.calendar, didSelect: Date(), at: .current)
+                            if let sd = self.selectedDate {
+                                self.calendar.select(sd)
+                                self.calendar(self.calendar, didSelect: sd, at: .current)
+                            }else{
+                                let selectedDate = Date()
+                                self.calendar.select(selectedDate)
+                                self.calendar(self.calendar, didSelect: Date(), at: .current)
+                            }
                         }
                     }
                 }
@@ -435,9 +449,11 @@ extension TrainingDetails: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeCell", for: indexPath) as? AdsTimeCell else { return UICollectionViewCell() }
         var i = times[indexPath.row]
-        if i.selected
-            && i.hide{
-            i.selected.toggle()
+        if !isTrainer {
+            if i.selected
+                && i.hide{
+                i.selected.toggle()
+            }
         }
         cell.configure(with: i)
         cell.back.alpha =  i.hide ? 0.5 : 1.0
@@ -446,7 +462,7 @@ extension TrainingDetails: UICollectionViewDelegate, UICollectionViewDataSource,
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        if isTrainer {return}
         let cell = collectionView.cellForItem(at: indexPath) as! AdsTimeCell
         selectedTimeIndexPathRow = indexPath.row
         if times[indexPath.row].hide {return}

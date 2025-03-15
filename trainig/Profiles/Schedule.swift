@@ -9,6 +9,7 @@ import UIKit
 
 class Schedule: UIViewController, UITextFieldDelegate {
     
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }
@@ -16,7 +17,45 @@ class Schedule: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = nil
     }
-   
+    let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal // Ensures the integer is formatted without decimal places
+        formatter.maximumFractionDigits = 0 // Disables any fractional digits
+        formatter.usesGroupingSeparator = false // Disables thousands separators (commas)
+        return formatter
+    }()
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField == self.price_txt {
+            
+            
+            // Eğer metin 4 karakteri geçiyorsa, 4 karakterle sınırlı tutuyoruz
+            if let text = textField.text, text.count > 4 {
+                textField.text = String(text.prefix(4)) // Sadece ilk 4 karakteri al
+            }
+        }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.price_txt {
+            // Get the current text and the new text input
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            
+            // Remove any non-numeric characters (including comma)
+            let allowedCharacters = CharacterSet(charactersIn: "0123456789") // Only digits
+            let cleanedText = newText.components(separatedBy: allowedCharacters.inverted).joined()
+            
+            // Check if the cleaned text can be converted to an integer
+            if let number = Int(cleanedText) {
+                textField.text = numberFormatter.string(from: NSNumber(value: number)) // Format the integer without decimals
+            } else {
+                textField.text = "" // Clear the text if it's invalid input
+            }
+            return false
+        }else{
+            return true
+        }// Prevent manual entry
+    }
+    
     
     var placeholderLabel : UILabel!
     @IBOutlet weak var training_title_lbl: UILabel!
@@ -51,7 +90,7 @@ class Schedule: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         userData = CacheData.getUserData()!
-        
+        price_txt.keyboardType = .numberPad
         titleLbl.text = String(localized:"schedule_settings")
         
         training_title_lbl.text = String(localized:"training_title")
@@ -84,11 +123,11 @@ class Schedule: UIViewController, UITextFieldDelegate {
         placeholderLabel.isHidden = !equipments_txt.text.isEmpty
         pickerToolBar = Statics.createUIToolBar()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:
-                #selector(cancelBtnClicked(_:)))
+                                            #selector(cancelBtnClicked(_:)))
         cancelButton.tintColor = UIColor.red
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action:
-                #selector(doneBtnClicked(_:)))
+                                            #selector(doneBtnClicked(_:)))
         doneButton.tintColor = UIColor(named: "MainColor")
         pickerToolBar.items = [cancelButton, flexSpace, doneButton]
         datePicker = Statics.createDatePicker(tf: choose_date_txt, pickerToolbar: pickerToolBar)
@@ -97,7 +136,7 @@ class Schedule: UIViewController, UITextFieldDelegate {
         timePickerEnd = Statics.createTimePicker(tf: time_finish_txt, pickerToolbar: pickerToolBar)
         repetitionPicker.delegate = self
         repetitionPicker.dataSource = self
-       
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
@@ -114,7 +153,10 @@ class Schedule: UIViewController, UITextFieldDelegate {
         price_txt.delegate = self
         equipments_txt.delegate = self
         training_title_txt.delegate = self
-        
+        repetition_interval_txt.applyDoneButton = false
+        time_start_txt.applyDoneButton = false
+        time_finish_txt.applyDoneButton = false
+        choose_date_txt.applyDoneButton = false
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == training_title_txt {
@@ -157,7 +199,7 @@ class Schedule: UIViewController, UITextFieldDelegate {
         time_finish_txt?.resignFirstResponder()
         time_start_txt?.resignFirstResponder()
     }
-        
+    
     @objc func doneBtnClicked(_ button: UIBarButtonItem?) {
         choose_date_txt?.resignFirstResponder()
         repetition_interval_txt?.resignFirstResponder()
@@ -188,7 +230,7 @@ class Schedule: UIViewController, UITextFieldDelegate {
     var selectedTextField: UITextField?
     @IBAction func t_up(_ sender: Any) {
         selectedTextField = sender as? UITextField
-    
+        
     }
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true , completion: nil)
@@ -197,22 +239,22 @@ class Schedule: UIViewController, UITextFieldDelegate {
         var check : Any = checktxts()
         if let error_message = check as? String {
             functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
-                                  
-                })
+                
+            })
             return
         }
         check = checkTimes()
         if let error_message = check as? String {
             functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
-                                  
-                })
+                
+            })
             return
         }
         check = true
         if let error_message = check as? String {
             functions.createAlert(self: self, title: String(localized:"error"), message: error_message, yesNo: false, alertReturn: { result in
-                                  
-                })
+                
+            })
             return
         }
         send()
@@ -261,7 +303,6 @@ class Schedule: UIViewController, UITextFieldDelegate {
         }
     }
     func send(){
-        indicatorDelegate?.showIndicator()
         let data : Any = [
             "collectionName":"ads",
             "content":[
@@ -281,15 +322,15 @@ class Schedule: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true)
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 extension Schedule : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
@@ -304,12 +345,12 @@ extension Schedule : UITextViewDelegate {
         activeTextView = textView
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-           if text == "\n" {
-               textView.resignFirstResponder()
-               return false
-           }
-           return true
-       }
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }
 extension Schedule:UIPickerViewDelegate,UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

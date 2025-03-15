@@ -37,10 +37,20 @@ class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
         let userData=CacheData.getUserData()!
         var n:UIViewController!
         let role=userData["role"] as! String
-        if role=="user"{
-            n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        let isFirst:Bool!
+        if userData.object(forKey: "isFirst") != nil {
+            isFirst = userData["isFirst"] as? Bool
+        } else {
+            isFirst = false
+        }
+        if isFirst{
+            n = storyboard?.instantiateViewController(withIdentifier: "vpager") as! ViewPager
         }else{
-            n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+            if role=="user"{
+                n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+            }else{
+                n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+            }
         }
         //let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
         self.navigationController!.pushViewController(n, animated: true)

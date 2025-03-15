@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 class CustomTextFieldBorder8: UITextField {
-   
+    var applyDoneButton: Bool = true
     override func layoutSubviews() {
         super.layoutSubviews()
         let height:CGFloat=self.frame.height;
@@ -18,6 +18,9 @@ class CustomTextFieldBorder8: UITextField {
         self.backgroundColor=UIColor.black
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
+        if applyDoneButton{
+            self.addDoneButtonOnKeyboard()
+        }
     }
     struct Constants {
             static let sidePadding: CGFloat = 15

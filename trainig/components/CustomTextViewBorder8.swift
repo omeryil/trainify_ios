@@ -17,6 +17,7 @@ class CustomTextViewBorder8: UITextView {
         self.backgroundColor=UIColor.black
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
+        self.addDoneButtonOnKeyboard()
     }
     struct Constants {
             static let sidePadding: CGFloat = 15

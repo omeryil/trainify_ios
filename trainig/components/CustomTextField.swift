@@ -9,12 +9,18 @@ import Foundation
 import UIKit
 class CustomTextField: UITextField {
    
+    var applyDoneButton: Bool = true
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         let height:CGFloat=self.frame.height;
         layer.cornerRadius = height/2
         clipsToBounds=true
         self.placeHolderColor=UIColor.lightGray
+        if applyDoneButton{
+            self.addDoneButtonOnKeyboard()
+        }
+        
     }
     struct Constants {
             static let sidePadding: CGFloat = 15

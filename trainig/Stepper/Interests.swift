@@ -58,19 +58,27 @@ class Interests: UIViewController,UICollectionViewDelegate,UICollectionViewDataS
             desc.text=String(localized: "select_exp_desc")
         }
         
-        addData()
+       
         InterestCollection.dataSource=self
         InterestCollection.delegate=self
-        InterestCollection.centerContentHorizontalyByInsetIfNeeded(minimumInset: UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0))
+        if isStepperOn{
+            InterestCollection.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                InterestCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -175)
+            ])
+            
+        }
+        InterestCollection.centerContentHorizontalyByInsetIfNeeded(minimumInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         self.InterestCollection.register(UINib(nibName: "InterestsCell", bundle: nil), forCellWithReuseIdentifier: "intCell")
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         //layout.itemSize = CGSize(width: 80, height: 100)
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 10
         InterestCollection.collectionViewLayout = layout
-       
+        addData()
         // Do any additional setup after loading the view.
     }
     func addData(){
