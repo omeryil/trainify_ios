@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1983B503ED76448415D8C36BFC740644"
-               BuildableName = "AvailableHapticFeedback.bundle"
-               BlueprintName = "AvailableHapticFeedback-AvailableHapticFeedback"
+               BlueprintIdentifier = "FA755404924ED490AAE8819D2305E8AD"
+               BuildableName = "MultiSlider.bundle"
+               BlueprintName = "MultiSlider-MultiSlider"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

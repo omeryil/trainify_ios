@@ -226,7 +226,7 @@ public class PostGet:NSObject,URLSessionTaskDelegate{
                 
                 do {
                     let httpResponse=response as? HTTPURLResponse
-                    print(httpResponse!.statusCode ?? 0)
+                    //print(httpResponse!.statusCode ?? 0)
                     if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
                         self.handleTokenExpiration { success in
                             

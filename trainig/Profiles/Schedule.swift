@@ -57,6 +57,7 @@ class Schedule: UIViewController, UITextFieldDelegate {
     }
     
     
+    @IBOutlet weak var schedule_btn: UIButton!
     var placeholderLabel : UILabel!
     @IBOutlet weak var training_title_lbl: UILabel!
     @IBOutlet weak var choose_date_lbl: UILabel!
@@ -88,7 +89,11 @@ class Schedule: UIViewController, UITextFieldDelegate {
     var duration:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let attributedString = NSAttributedString(string: String(localized:"create_str"), attributes: [
+                NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+        ])
+        schedule_btn.setAttributedTitle(attributedString, for: .normal)
         userData = CacheData.getUserData()!
         price_txt.keyboardType = .numberPad
         titleLbl.text = String(localized:"schedule_settings")

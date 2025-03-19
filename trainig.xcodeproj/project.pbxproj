@@ -7,12 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09E2AEAD1A1F722B683661E8 /* Pods_trainig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2A87C568B37F4526E4D20E /* Pods_trainig.framework */; };
-		13096AADA0BFB77540481A44 /* Pods_trainig_trainigUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FDCAE955B2B2BFFE6FFF75 /* Pods_trainig_trainigUITests.framework */; };
 		503977BA2D5BF7A6009BCF96 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 503977B92D5BF7A6009BCF96 /* Kingfisher */; };
+		504C7C6F2D871BFF009E4FD6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 504C7C6E2D871BFF009E4FD6 /* FirebaseAnalytics */; };
+		504C7C712D871BFF009E4FD6 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 504C7C702D871BFF009E4FD6 /* FirebaseAnalyticsOnDeviceConversion */; };
+		504C7C732D871BFF009E4FD6 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 504C7C722D871BFF009E4FD6 /* FirebaseInAppMessaging-Beta */; };
 		505F08612D4745BA00A5794B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 505F08602D4745BA00A5794B /* Media.xcassets */; };
+		50C501712D872FEA00A868E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50C501702D872FE900A868E8 /* FirebaseAnalytics */; };
+		50C501732D872FEA00A868E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 50C501722D872FEA00A868E8 /* FirebaseAnalyticsOnDeviceConversion */; };
+		50C501752D872FEA00A868E8 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 50C501742D872FEA00A868E8 /* FirebaseInAppMessaging-Beta */; };
+		50C501772D872FF600A868E8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 50C501762D872FF600A868E8 /* Kingfisher */; };
+		50C512952D87382800A868E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50C512942D87382800A868E8 /* FirebaseAnalytics */; };
+		50C512972D87382900A868E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 50C512962D87382900A868E8 /* FirebaseAnalyticsOnDeviceConversion */; };
+		50C512992D87382900A868E8 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 50C512982D87382900A868E8 /* FirebaseInAppMessaging-Beta */; };
+		50C5129B2D87382900A868E8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 50C5129A2D87382900A868E8 /* FirebaseMessaging */; };
 		50C7432C2D47001200486038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C7432A2D47001200486038 /* Localizable.strings */; };
-		B80958950B0F2D2487A14DA4 /* Pods_trainigTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C02D624FB469905E2513E5 /* Pods_trainigTests.framework */; };
+		B2A7FF65AE016EA2F067CDFA /* Pods_trainig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A2FCEBB0AB1B3A7CE0ED8F /* Pods_trainig.framework */; };
+		F08E3A9644642554E02B5433 /* Pods_trainig_trainigUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBBE69751ABCA4EC41382DD /* Pods_trainig_trainigUITests.framework */; };
+		FAD2A93E458B89972FA1FA2C /* Pods_trainigTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC044CABB31E3A183305453F /* Pods_trainigTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,21 +44,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B2A87C568B37F4526E4D20E /* Pods_trainig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		186F8D383B3664AF52D93ADB /* Pods-trainig-trainigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig-trainigUITests.debug.xcconfig"; path = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		505F08602D4745BA00A5794B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		50C649872D3AF1D400B095A0 /* trainig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trainig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C6499D2D3AF1D500B095A0 /* trainigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trainigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C649A72D3AF1D500B095A0 /* trainigUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trainigUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C7432B2D47001200486038 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		50C7432D2D47004E00486038 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		57C02D624FB469905E2513E5 /* Pods_trainigTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69B17F554746B4155692D3D9 /* Pods-trainigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainigTests.release.xcconfig"; path = "Target Support Files/Pods-trainigTests/Pods-trainigTests.release.xcconfig"; sourceTree = "<group>"; };
-		6AAC9A171864A06BB2AA0DDB /* Pods-trainig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig.release.xcconfig"; path = "Target Support Files/Pods-trainig/Pods-trainig.release.xcconfig"; sourceTree = "<group>"; };
-		80708A64F81F6E7791AEF357 /* Pods-trainig-trainigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig-trainigUITests.release.xcconfig"; path = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.release.xcconfig"; sourceTree = "<group>"; };
-		DBD34C94C157ACD12FDB64B7 /* Pods-trainigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainigTests.debug.xcconfig"; path = "Target Support Files/Pods-trainigTests/Pods-trainigTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E6A4723BA43872EEF732A48F /* Pods-trainig-trainigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig-trainigUITests.debug.xcconfig"; path = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F8FDCAE955B2B2BFFE6FFF75 /* Pods_trainig_trainigUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig_trainigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC3F4FC2F89ABF9A5B2905C3 /* Pods-trainig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig.debug.xcconfig"; path = "Target Support Files/Pods-trainig/Pods-trainig.debug.xcconfig"; sourceTree = "<group>"; };
+		52294B41485F7D36DD1EC3DE /* Pods-trainigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainigTests.debug.xcconfig"; path = "Target Support Files/Pods-trainigTests/Pods-trainigTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7901C094C49C77D2CC76E809 /* Pods-trainig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig.release.xcconfig"; path = "Target Support Files/Pods-trainig/Pods-trainig.release.xcconfig"; sourceTree = "<group>"; };
+		7BBBE69751ABCA4EC41382DD /* Pods_trainig_trainigUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig_trainigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94DCE07F74AC94EDEE469E7D /* Pods-trainig-trainigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig-trainigUITests.release.xcconfig"; path = "Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A9E3D1F6DF0B79196FF2A7E4 /* Pods-trainig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainig.debug.xcconfig"; path = "Target Support Files/Pods-trainig/Pods-trainig.debug.xcconfig"; sourceTree = "<group>"; };
+		BC044CABB31E3A183305453F /* Pods_trainigTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB45E6057FF08FA7A1E63B7 /* Pods-trainigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trainigTests.release.xcconfig"; path = "Target Support Files/Pods-trainigTests/Pods-trainigTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5A2FCEBB0AB1B3A7CE0ED8F /* Pods_trainig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trainig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -87,7 +98,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				503977BA2D5BF7A6009BCF96 /* Kingfisher in Frameworks */,
-				09E2AEAD1A1F722B683661E8 /* Pods_trainig.framework in Frameworks */,
+				50C501712D872FEA00A868E8 /* FirebaseAnalytics in Frameworks */,
+				50C512972D87382900A868E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				50C501772D872FF600A868E8 /* Kingfisher in Frameworks */,
+				50C501752D872FEA00A868E8 /* FirebaseInAppMessaging-Beta in Frameworks */,
+				50C501732D872FEA00A868E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				504C7C6F2D871BFF009E4FD6 /* FirebaseAnalytics in Frameworks */,
+				504C7C712D871BFF009E4FD6 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				50C5129B2D87382900A868E8 /* FirebaseMessaging in Frameworks */,
+				504C7C732D871BFF009E4FD6 /* FirebaseInAppMessaging-Beta in Frameworks */,
+				50C512952D87382800A868E8 /* FirebaseAnalytics in Frameworks */,
+				B2A7FF65AE016EA2F067CDFA /* Pods_trainig.framework in Frameworks */,
+				50C512992D87382900A868E8 /* FirebaseInAppMessaging-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B80958950B0F2D2487A14DA4 /* Pods_trainigTests.framework in Frameworks */,
+				FAD2A93E458B89972FA1FA2C /* Pods_trainigTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,23 +125,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13096AADA0BFB77540481A44 /* Pods_trainig_trainigUITests.framework in Frameworks */,
+				F08E3A9644642554E02B5433 /* Pods_trainig_trainigUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5035626FDF1DD4F16A3E98CD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1B2A87C568B37F4526E4D20E /* Pods_trainig.framework */,
-				F8FDCAE955B2B2BFFE6FFF75 /* Pods_trainig_trainigUITests.framework */,
-				57C02D624FB469905E2513E5 /* Pods_trainigTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		50C6497E2D3AF1D400B095A0 = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +142,7 @@
 				50C649AA2D3AF1D500B095A0 /* trainigUITests */,
 				50C649882D3AF1D400B095A0 /* Products */,
 				6B0541B35A9F7A23B65A5537 /* Pods */,
-				5035626FDF1DD4F16A3E98CD /* Frameworks */,
+				DA4395506AA09E3753678B3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,14 +159,24 @@
 		6B0541B35A9F7A23B65A5537 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FC3F4FC2F89ABF9A5B2905C3 /* Pods-trainig.debug.xcconfig */,
-				6AAC9A171864A06BB2AA0DDB /* Pods-trainig.release.xcconfig */,
-				E6A4723BA43872EEF732A48F /* Pods-trainig-trainigUITests.debug.xcconfig */,
-				80708A64F81F6E7791AEF357 /* Pods-trainig-trainigUITests.release.xcconfig */,
-				DBD34C94C157ACD12FDB64B7 /* Pods-trainigTests.debug.xcconfig */,
-				69B17F554746B4155692D3D9 /* Pods-trainigTests.release.xcconfig */,
+				A9E3D1F6DF0B79196FF2A7E4 /* Pods-trainig.debug.xcconfig */,
+				7901C094C49C77D2CC76E809 /* Pods-trainig.release.xcconfig */,
+				186F8D383B3664AF52D93ADB /* Pods-trainig-trainigUITests.debug.xcconfig */,
+				94DCE07F74AC94EDEE469E7D /* Pods-trainig-trainigUITests.release.xcconfig */,
+				52294B41485F7D36DD1EC3DE /* Pods-trainigTests.debug.xcconfig */,
+				BFB45E6057FF08FA7A1E63B7 /* Pods-trainigTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DA4395506AA09E3753678B3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5A2FCEBB0AB1B3A7CE0ED8F /* Pods_trainig.framework */,
+				7BBBE69751ABCA4EC41382DD /* Pods_trainig_trainigUITests.framework */,
+				BC044CABB31E3A183305453F /* Pods_trainigTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,11 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50C649B02D3AF1D500B095A0 /* Build configuration list for PBXNativeTarget "trainig" */;
 			buildPhases = (
-				7D762703B727E03BABD5520B /* [CP] Check Pods Manifest.lock */,
+				2D9D98F6549C0DADE716336B /* [CP] Check Pods Manifest.lock */,
 				50C649832D3AF1D400B095A0 /* Sources */,
 				50C649842D3AF1D400B095A0 /* Frameworks */,
 				50C649852D3AF1D400B095A0 /* Resources */,
-				8D2CF2B98975C54A927BD70D /* [CP] Embed Pods Frameworks */,
+				AC96843A7BFC98EFCDA25DFF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,7 +208,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50C649B52D3AF1D500B095A0 /* Build configuration list for PBXNativeTarget "trainigTests" */;
 			buildPhases = (
-				10CBDA903D2351235290A0B5 /* [CP] Check Pods Manifest.lock */,
+				733C0A822A5215DD73F6791C /* [CP] Check Pods Manifest.lock */,
 				50C649992D3AF1D500B095A0 /* Sources */,
 				50C6499A2D3AF1D500B095A0 /* Frameworks */,
 				50C6499B2D3AF1D500B095A0 /* Resources */,
@@ -208,11 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50C649B82D3AF1D500B095A0 /* Build configuration list for PBXNativeTarget "trainigUITests" */;
 			buildPhases = (
-				0544C028315887F80E274E28 /* [CP] Check Pods Manifest.lock */,
+				8B674D36F0D29B3460C4C1E6 /* [CP] Check Pods Manifest.lock */,
 				50C649A32D3AF1D500B095A0 /* Sources */,
 				50C649A42D3AF1D500B095A0 /* Frameworks */,
 				50C649A52D3AF1D500B095A0 /* Resources */,
-				3914C80DA5AAC2869B0C85D4 /* [CP] Embed Pods Frameworks */,
+				4F27B94B36213B0406F5B0C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,6 +284,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				503977B82D5BF7A6009BCF96 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 50C649882D3AF1D400B095A0 /* Products */;
@@ -302,68 +325,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0544C028315887F80E274E28 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-trainig-trainigUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		10CBDA903D2351235290A0B5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-trainigTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3914C80DA5AAC2869B0C85D4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D762703B727E03BABD5520B /* [CP] Check Pods Manifest.lock */ = {
+		2D9D98F6549C0DADE716336B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,7 +347,68 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D2CF2B98975C54A927BD70D /* [CP] Embed Pods Frameworks */ = {
+		4F27B94B36213B0406F5B0C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		733C0A822A5215DD73F6791C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-trainigTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B674D36F0D29B3460C4C1E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-trainig-trainigUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC96843A7BFC98EFCDA25DFF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -456,12 +479,13 @@
 /* Begin XCBuildConfiguration section */
 		50C649B12D3AF1D500B095A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC3F4FC2F89ABF9A5B2905C3 /* Pods-trainig.debug.xcconfig */;
+			baseConfigurationReference = A9E3D1F6DF0B79196FF2A7E4 /* Pods-trainig.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = trainig/trainig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 54P9HKL7PC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -471,8 +495,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -481,6 +506,8 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.genetous.training;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -489,12 +516,13 @@
 		};
 		50C649B22D3AF1D500B095A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AAC9A171864A06BB2AA0DDB /* Pods-trainig.release.xcconfig */;
+			baseConfigurationReference = 7901C094C49C77D2CC76E809 /* Pods-trainig.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = trainig/trainig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 54P9HKL7PC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -504,8 +532,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,6 +543,8 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.genetous.training;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -643,7 +674,7 @@
 		};
 		50C649B62D3AF1D500B095A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBD34C94C157ACD12FDB64B7 /* Pods-trainigTests.debug.xcconfig */;
+			baseConfigurationReference = 52294B41485F7D36DD1EC3DE /* Pods-trainigTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -663,7 +694,7 @@
 		};
 		50C649B72D3AF1D500B095A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69B17F554746B4155692D3D9 /* Pods-trainigTests.release.xcconfig */;
+			baseConfigurationReference = BFB45E6057FF08FA7A1E63B7 /* Pods-trainigTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -683,7 +714,7 @@
 		};
 		50C649B92D3AF1D500B095A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6A4723BA43872EEF732A48F /* Pods-trainig-trainigUITests.debug.xcconfig */;
+			baseConfigurationReference = 186F8D383B3664AF52D93ADB /* Pods-trainig-trainigUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -701,7 +732,7 @@
 		};
 		50C649BA2D3AF1D500B095A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80708A64F81F6E7791AEF357 /* Pods-trainig-trainigUITests.release.xcconfig */;
+			baseConfigurationReference = 94DCE07F74AC94EDEE469E7D /* Pods-trainig-trainigUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -767,6 +798,14 @@
 				minimumVersion = 8.2.0;
 			};
 		};
+		504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -774,6 +813,61 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 503977B82D5BF7A6009BCF96 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		504C7C6E2D871BFF009E4FD6 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		504C7C702D871BFF009E4FD6 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		504C7C722D871BFF009E4FD6 /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		50C501702D872FE900A868E8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		50C501722D872FEA00A868E8 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		50C501742D872FEA00A868E8 /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		50C501762D872FF600A868E8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 503977B82D5BF7A6009BCF96 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		50C512942D87382800A868E8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		50C512962D87382900A868E8 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		50C512982D87382900A868E8 /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		50C5129A2D87382900A868E8 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C7C6D2D871BFF009E4FD6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

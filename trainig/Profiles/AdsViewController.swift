@@ -98,6 +98,7 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
     }
     func getSpecs(){
         specs.removeAll()
+        add_btn.isHidden=true
         let data:Any=[
             "where": [
                 "collectionName": "users",
@@ -128,7 +129,13 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 }
                 
             }
+            DispatchQueue.main.async {
+                self.add_btn.isHidden=false
+            }
         })
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getSpecs();
     }
     func hideIndicator() {
         self.view.dismissLoader()
@@ -239,8 +246,11 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 }
                 return
             }
-            if d as! Int == 200{
-                print("OK")
+            if !e!.isEmpty {
+                DispatchQueue.main.async {
+                    self.functions.createAlert(self: self, title: String(localized:"error"), message: String(localized:"unexpected_err"), yesNo: false, alertReturn: { result in
+                    })
+                }
             }
         })
     }
@@ -272,6 +282,7 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
     let textFieldTime = UITextField()
     var selectedIndexAd:Int!
     var mainAdsDate:NSDictionary!
+    @IBOutlet weak var add_btn: CustomButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.isHidden = true
@@ -291,7 +302,6 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         textFieldTime.delegate = self
         
         getTrainerFeatures()
-        getSpecs()
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -566,10 +576,21 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
         })
     }
     @IBAction func adAds_cl(_ sender: Any) {
-        let fc=storyboard?.instantiateViewController(withIdentifier: "sch") as! Schedule
-        fc.indicatorDelegate=self
-        fc.passDataDelegate=self
-        present(fc, animated: true)
+        if specs.count==0{
+            functions.createAlert(self: self, title: "Error", message: String(localized:"spec_ask"), yesNo: true, alertReturn: { (yesNo) in
+                if yesNo!{
+                    let fc = self.storyboard?.instantiateViewController(withIdentifier: "upInterests") as! UpdateInterestCollectionViewController
+                    self.navigationController?.pushViewController(fc, animated: true)
+                }else {
+                    return
+                }
+            })
+        }else{
+            let fc=storyboard?.instantiateViewController(withIdentifier: "sch") as! Schedule
+            fc.indicatorDelegate=self
+            fc.passDataDelegate=self
+            present(fc, animated: true)
+        }
     }
     func getAds(date:String) {
         self.ads.removeAll()
@@ -627,7 +648,6 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                     return
                 }
                 if d != nil {
-                    
                     for i in d as! [[String:Any]] {
                         let id = i["id"] as! String
                         let content = i["content"] as! [String:Any]
@@ -665,8 +685,51 @@ class AdsViewController: UIViewController,indicatorDelegate,PassDataDelegate,FSC
                 for i in d as! [[String:Any]] {
                     let id = i["id"] as! String
                     let content = i["content"] as! [String:Any]
-                    
-                    self.ads.append(AdsItem(training_title: content["training_title"] as? String ?? "", repetition: content["repetition"] as? String ?? "", price: content["price"] as? String ?? "",start_time: content["start_time"] as? String ?? "",end_time: content["end_time"] as? String ?? "",record_id:id, isActive: content["isActive"] as? Bool ?? true,equipments: content["equipments"] as? String ?? "",date: self.selectedDate))
+                    let ddate = Statics.createStringToDate(d: date)
+                    let rep = content["repetition"]
+                    var addtoList:Bool = false
+                    var addItem = 0;
+                    var period:Int = 0
+                    var item:Calendar.Component = .day
+                    switch rep as? String ?? "" {
+                    case "norep":
+                        if date == self.selectedDate {
+                            addtoList = true
+                        }
+                        break
+                    case "daily":
+                        period = 365
+                        item = .day
+                        addItem = 1
+                        break
+                    case "weekly":
+                        period = 52
+                        item = .weekday
+                        addItem = 7
+                        break
+                    case "monthly":
+                        period = 365
+                        item = .month
+                        addItem = 1
+                        break
+                    default:
+                        break
+                    }
+                    for i in 0..<period{
+                        if date == self.selectedDate {
+                            addtoList = true
+                            break
+                        }
+                        var ndate = Calendar.current.date(byAdding: item, value: addItem, to: ddate)!
+                        let strDay = Statics.formatDate(date: ndate)
+                        if strDay == self.selectedDate {
+                            addtoList = true
+                            break
+                        }
+                    }
+                    if addtoList{
+                        self.ads.append(AdsItem(training_title: content["training_title"] as? String ?? "", repetition: content["repetition"] as? String ?? "", price: content["price"] as? String ?? "",start_time: content["start_time"] as? String ?? "",end_time: content["end_time"] as? String ?? "",record_id:id, isActive: content["isActive"] as? Bool ?? true,equipments: content["equipments"] as? String ?? "",date: self.selectedDate))
+                    }
                 }
             }
             DispatchQueue.main.async {

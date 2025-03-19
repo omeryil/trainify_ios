@@ -6,7 +6,6 @@
 //  Copyright © 2016 Yonat Sharon. All rights reserved.
 //
 
-import AvailableHapticFeedback
 import SweeterSwift
 import UIKit
 
@@ -15,6 +14,7 @@ open class MultiSlider: UIControl {
     @objc open var value: [CGFloat] = [] {
         didSet {
             if isSettingValue { return }
+            value.sort()
             adjustThumbCountToValueCount()
             adjustValuesToStepAndLimits()
             updateAllValueLabels()
@@ -22,17 +22,13 @@ open class MultiSlider: UIControl {
         }
     }
 
-    @objc public internal(set) var draggedThumbIndex: Int = -1
-
     @IBInspectable open dynamic var minimumValue: CGFloat = 0 { didSet { adjustValuesToStepAndLimits() } }
     @IBInspectable open dynamic var maximumValue: CGFloat = 1 { didSet { adjustValuesToStepAndLimits() } }
     @IBInspectable open dynamic var isContinuous: Bool = true
 
-    /// snap thumbs to specific values, evenly spaced. (default = 0: allow any value)
-    @IBInspectable open dynamic var snapStepSize: CGFloat = 0 { didSet { adjustValuesToStepAndLimits() } }
+    // MARK: - Multiple Thumbs
 
-    /// generate haptic feedback when hitting snap steps
-    @IBInspectable open dynamic var isHapticSnap: Bool = true
+    @objc public internal(set) var draggedThumbIndex: Int = -1
 
     @IBInspectable open dynamic var thumbCount: Int {
         get {
@@ -54,22 +50,172 @@ open class MultiSlider: UIControl {
         }
     }
 
-    /// show value labels next to thumbs. (default: show no label)
-    @objc open dynamic var valueLabelPosition: NSLayoutConstraint.Attribute = .notAnAttribute {
-        didSet {
-            valueLabels.removeViewsStartingAt(0)
-            if valueLabelPosition != .notAnAttribute {
-                for i in 0 ..< thumbViews.count {
-                    addValueLabel(i)
-                }
+    /// minimal distance to keep between thumbs (half a thumb by default)
+    @IBInspectable public dynamic var distanceBetweenThumbs: CGFloat = -1
+
+    @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool {
+        get { return distanceBetweenThumbs != 0 }
+        set {
+            if keepsDistanceBetweenThumbs != newValue {
+                distanceBetweenThumbs = newValue ? -1 : 0
             }
         }
     }
+
+    // MARK: - Snap to Discrete Values
+
+    /// snap thumbs to specific values, evenly spaced. (default = 0: allow any value)
+    @IBInspectable open dynamic var snapStepSize: CGFloat {
+        get {
+            switch snap {
+            case let .stepSize(stepSize): return stepSize
+            default: return 0
+            }
+        }
+        set {
+            snap = newValue.isNormal ? .stepSize(newValue) : .never
+        }
+    }
+
+    /// snap thumbs to specific values. changes `minimumValue` and `maximumValue`.  (default = []: allow any value)
+    @objc open dynamic var snapValues: [CGFloat] {
+        get {
+            switch snap {
+            case .never:
+                return []
+            case let .stepSize(stepSize):
+                return Array(stride(from: minimumValue, to: maximumValue, by: stepSize)) + [maximumValue]
+            case let .values(values):
+                return values
+            }
+        }
+        set {
+            snap = .values(newValue)
+        }
+    }
+
+    /// image to show at each snap value
+    @IBInspectable open dynamic var snapImage: UIImage? {
+        didSet {
+            setupTrackLayoutMargins()
+
+            guard snapValues.count > 2 else { return }
+            if let snapImage = snapImage {
+                if nil != oldValue {
+                    snapViews.forEach { $0.image = snapImage }
+                } else {
+                    snapValues.forEach { addSnapView(at: $0) }
+                }
+            } else {
+                snapViews.removeAllViews()
+            }
+        }
+    }
+
+    /// Snapping behavior: How should the slider snap thumbs to discrete values
+    public enum Snap: Equatable {
+        /// No snapping, slider continuously.
+        case never
+        /// Snap to values separated by a constant step, starting from `minimumValue`. Equivalent to setting `snapStepSize`.
+        case stepSize(CGFloat)
+        /// Snap to the specified values. Equivalent to setting `snapValues`.
+        case values([CGFloat])
+    }
+
+    /// Snapping behavior: How should the slider snap thumbs to discrete values
+    open dynamic var snap: Snap = .never {
+        didSet {
+            if case let .values(values) = snap {
+                if values.isEmpty {
+                    snap = .never
+                } else {
+                    var sorted = values.sorted()
+                    if minimumValue > values.first! {
+                        minimumValue = sorted.first!
+                    } else if minimumValue < sorted.first! {
+                        sorted.insert(minimumValue, at: 0)
+                    }
+                    if maximumValue < values.last! {
+                        maximumValue = sorted.last!
+                    } else if maximumValue > sorted.last! {
+                        sorted.append(maximumValue)
+                    }
+                    snap = .values(sorted)
+                }
+            }
+            adjustValuesToStepAndLimits()
+        }
+    }
+
+    /// generate haptic feedback when hitting snap steps
+    @IBInspectable open dynamic var isHapticSnap: Bool {
+        get {
+            selectionFeedbackGenerator != nil
+        }
+        set {
+            selectionFeedbackGenerator = newValue ? UISelectionFeedbackGenerator() : nil
+            selectionFeedbackGenerator?.prepare()
+        }
+    }
+
+    // MARK: - Value Labels
 
     /// value label shows difference from previous thumb value (true) or absolute value (false = default)
     @IBInspectable open dynamic var isValueLabelRelative: Bool = false {
         didSet {
             updateAllValueLabels()
+        }
+    }
+
+    /// show value labels next to thumbs. (default: show no label)
+    @objc open dynamic var valueLabelPosition: NSLayoutConstraint.Attribute = .notAnAttribute {
+        didSet {
+            updateValueLabelPosition()
+        }
+    }
+
+    /// show every other value label opposite of the value label position.
+    /// e.g., If you set `valueLabelPosition` to `.top`, the second value label position would be `.bottom`.
+    @IBInspectable open dynamic var valueLabelAlternatePosition: Bool = false {
+        didSet {
+            updateValueLabelPosition()
+        }
+    }
+
+    @IBInspectable open dynamic var valueLabelColor: UIColor? {
+        didSet {
+            valueLabels.forEach { $0.textColor = valueLabelColor }
+        }
+    }
+
+    open dynamic var valueLabelFont: UIFont? {
+        didSet {
+            valueLabels.forEach { $0.font = valueLabelFont }
+        }
+    }
+
+    @objc open dynamic var valueLabelFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        formatter.minimumIntegerDigits = 1
+        formatter.roundingMode = .halfEven
+        return formatter
+    }() {
+        didSet {
+            updateAllValueLabels()
+            if #available(iOS 11.0, *) {
+                oldValue.removeObserverForAllProperties(observer: self)
+                valueLabelFormatter.addObserverForAllProperties(observer: self)
+            }
+        }
+    }
+
+    /// Return value label text for a thumb index and value. If `nil`, then `valueLabelFormatter` will be used instead.
+    @objc open dynamic var valueLabelTextForThumb: ((Int, CGFloat) -> String?)? {
+        didSet {
+            for i in valueLabels.indices {
+                updateValueLabel(i)
+            }
         }
     }
 
@@ -97,15 +243,9 @@ open class MultiSlider: UIControl {
         }
     }
 
-    @IBInspectable open dynamic var valueLabelColor: UIColor? {
+    @IBInspectable public dynamic var thumbTintColor: UIColor? {
         didSet {
-            valueLabels.forEach { $0.textColor = valueLabelColor }
-        }
-    }
-
-    open dynamic var valueLabelFont: UIFont? {
-        didSet {
-            valueLabels.forEach { $0.font = valueLabelFont }
+            thumbViews.forEach { $0.applyTint(color: thumbTintColor) }
         }
     }
 
@@ -116,6 +256,9 @@ open class MultiSlider: UIControl {
             invalidateIntrinsicContentSize()
         }
     }
+
+    /// Respond to dragging beyond thumb image (useful if the image is small)
+    @IBInspectable open dynamic var thumbTouchExpansionRadius: CGFloat = 0
 
     @IBInspectable public dynamic var showsThumbImageShadow: Bool = true {
         didSet {
@@ -168,31 +311,10 @@ open class MultiSlider: UIControl {
         }
     }
 
-    /// minimal distance to keep between thumbs (half a thumb by default)
-    @IBInspectable public dynamic var distanceBetweenThumbs: CGFloat = -1
-
-    @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool {
-        get { return distanceBetweenThumbs != 0 }
-        set {
-            if keepsDistanceBetweenThumbs != newValue {
-                distanceBetweenThumbs = newValue ? -1 : 0
-            }
-        }
-    }
-
-    @objc open dynamic var valueLabelFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        formatter.minimumIntegerDigits = 1
-        formatter.roundingMode = .halfEven
-        return formatter
-    }() {
+    /// when thumb value is minimum or maximum, align it's center with the track end instead of its edge.
+    @IBInspectable public dynamic var centerThumbOnTrackEnd: Bool = false {
         didSet {
-            updateAllValueLabels()
-            if #available(iOS 11.0, *) {
-                oldValue.removeObserverForAllProperties(observer: self)
-                valueLabelFormatter.addObserverForAllProperties(observer: self)
-            }
+            setupTrackLayoutMargins()
         }
     }
 
@@ -201,6 +323,7 @@ open class MultiSlider: UIControl {
     @objc open var thumbViews: [UIImageView] = []
     @objc open var valueLabels: [UITextField] = [] // UILabels are a pain to layout, text fields look nice as-is.
     @objc open var trackView = UIView()
+    @objc open var snapViews: [UIImageView] = []
     @objc open var outerTrackViews: [UIView] = []
     @objc open var minimumView = UIImageView()
     @objc open var maximumView = UIImageView()
@@ -212,14 +335,17 @@ open class MultiSlider: UIControl {
     let margin: CGFloat = 32
     var isSettingValue = false
     lazy var defaultThumbImage: UIImage? = .circle()
-    var selectionFeedbackGenerator = AvailableHapticFeedback()
+    var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
     // MARK: - Overrides
 
     override open func tintColorDidChange() {
         let thumbTint = thumbViews.map { $0.tintColor } // different thumbs may have different tints
         super.tintColorDidChange()
-        trackView.backgroundColor = actualTintColor
+        let actualColor = actualTintColor
+        trackView.backgroundColor = actualColor
+        minimumView.tintColor = actualColor
+        maximumView.tintColor = actualColor
         for (thumbView, tint) in zip(thumbViews, thumbTint) {
             thumbView.tintColor = tint
         }

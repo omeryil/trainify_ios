@@ -44,7 +44,16 @@ class UserHomeViewController: UIViewController {
         noUpcoming.text=String(localized:"no_upcoming")
         
         recommendedTable.addRefreshControl(target: self, action: #selector(refreshData))
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.requestNotificationPermission()
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func go_notifications(_ sender: Any) {
+        let n = storyboard?
+            .instantiateViewController(withIdentifier: "noti")  as! Notifications
+        self.navigationController?.pushViewController(n, animated: true)
     }
     @objc func refreshData() {
         self.getInterestData()

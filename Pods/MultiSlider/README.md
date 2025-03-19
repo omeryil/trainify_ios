@@ -1,5 +1,5 @@
 # MultiSlider
-UISlider clone with multiple thumbs and values, range highlight, optional snap intervals, optional value labels, either vertical or horizontal.
+UISlider clone with multiple thumbs and values, range highlight, optional snap values, optional value labels, either vertical or horizontal.
 
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
@@ -19,8 +19,8 @@ UISlider clone with multiple thumbs and values, range highlight, optional snap i
 * Range slider (optional) - track color between thumbs different from track color outside thumbs
 * Vertical (optional)
 * Value labels (optional)
-* Snap interval (optional)
-* Haptic feedback
+* Snap steps or specific snap values (optional)
+* Haptic feedback (optional)
 * Configurable thumb image, minimum and maximum images.
 * Configurable track width, color, rounding.
 
@@ -37,9 +37,21 @@ slider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 slider.addTarget(self, action: #selector(sliderDragEnded(_:)), for: . touchUpInside) // sent when drag ends
 ```
 
-### SwiftUI
+### SwiftUI Usage
 
-Use `MultiValueSlider` from the [swiftui branch](https://github.com/yonat/MultiSlider/tree/swiftui).
+```swift
+@State var valueArray: [CGFloat] = [7, 13]
+// ...
+MultiValueSlider(value: $valueArray, minimumValue: 1, maximumValue: 5)
+```
+
+The properties mentioned below can be used as modifiers, or passed as arguments to the `MultiValueSlider` initializer. For example:
+
+```swift
+MultiValueSlider(value: $valueArray, outerTrackColor: .lightGray)
+    .thumbTintColor(.blue)
+```
+
 
 ### Getting multiple thumb values
 
@@ -69,26 +81,39 @@ slider.isVertical = false // same effect, but accessible from Interface Builder
 
 ```swift
 slider.valueLabelPosition = .left // .notAnAttribute = don't show labels
+slider.valueLabelAlternatePosition = true // alternate left and right positions (false by default)
 slider.isValueLabelRelative = true // show differences between thumbs instead of absolute values
 slider.valueLabelFormatter.positiveSuffix = " 𝞵s"
 slider.valueLabelColor = .green
 slider.valueLabelFont = someFont
 ```
 
-### Snap interval
+For more control over the label text:
+
+```swift
+slider.valueLabelTextForThumb = { thumbIndex, thumbValue in
+    ["Parasol", "Umbrella"][thumbIndex] + " \(thumbValue)"
+}
+```
+
+### Snap steps
 
 ```swift
 slider.snapStepSize = 0.5 // default is 0.0, i.e. don't snap
+slider.snapValues = [1, 2, 4, 8] // specify specific snap values instead uniform steps
 slider.isHapticSnap = false // default is true, i.e. generate haptic feedback when sliding over snap values
+slider.snapImage = UIImage(systemName: "circle.fill") // default: no image
 ```
 
 ### Changing Appearance
 
 ```swift
 slider.tintColor = .cyan // color of track
+slider.thumbTintColor = .blue // color of thumbs
 slider.trackWidth = 32
 slider.hasRoundTrackEnds = true
 slider.showsThumbImageShadow = false // wide tracks look better without thumb shadow
+slider.centerThumbOnTrackEnd = true // when thumb value is minimum or maximum, align it's center with the track end instead of its edge
 ```
 
 ### Images
@@ -104,6 +129,9 @@ slider.thumbImage = UIImage(named: "balloon")
 // or let each thumb have a different image:
 slider.thumbViews[0].image = UIImage(named: "ball")
 slider.thumbViews[1].image = UIImage(named: "club")
+
+// expand drag area when using a small thumb image:
+slider.thumbTouchExpansionRadius = 16
 ```
 
 ### Distance/Overlap Between Thumbs
@@ -147,7 +175,7 @@ Legacy versions:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yonat/MultiSlider", from: "1.11.2")
+    .package(url: "https://github.com/yonat/MultiSlider", from: "2.2.0")
 ]
 ```
 

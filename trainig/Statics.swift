@@ -39,7 +39,7 @@ public class Statics {
                                           "Resistance Band Workout",
                                           "Cross Fit Training",
                                           "Fitness",
-                                          "Home Ftiness",
+                                          "Home Fitness",
                                           "Balance Training",
                                           "Endurance" ]
     
@@ -282,6 +282,11 @@ public class Statics {
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         return formatter.date(from: ns)!
     }
+    public static func createStringToDate(d:String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyy"
+        return formatter.date(from: d)!
+    }
     public static func convertToTimestamp(dateString: String) -> Int64? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -295,5 +300,40 @@ public class Statics {
         }
         
         return nil
+    }
+    public static func updateToken(token: String) {
+        var userData=CacheData.getUserData()!
+        var update:Bool = false
+        if userData.object(forKey: "token") != nil {
+            if userData["token"] as! String != token {
+                update = true
+            }
+        } else {
+            update = true
+        }
+        if update {
+            let functions = Functions()
+            let data : Any = [
+                "where": [
+                    "collectionName": "users",
+                    "and": [
+                        "id": userData["id"]
+                    ]
+                ],
+                "fields":[
+                    [
+                        "field": "token",
+                        "value": token
+                    ]
+                ]
+            ]
+            functions.update(data: data, onCompleteBool: {s,e in
+                    print(s!)
+                if s! {
+                    userData["token"] = token
+                    CacheData.saveUserData(data: userData)
+                }
+            })
+        }
     }
 }

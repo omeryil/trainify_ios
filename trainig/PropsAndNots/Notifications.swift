@@ -9,20 +9,27 @@ import UIKit
 
 class Notifications: UITableViewController {
 
-    @IBOutlet var table: UITableView!
+   
     var notifications: [NotificationItem] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         addData()
-        table.delegate=self
-        table.dataSource=self
-        table.estimatedRowHeight=300
-        table.rowHeight = UITableView.automaticDimension
+        tableView.delegate=self
+        tableView.dataSource=self
+        tableView.estimatedRowHeight=300
+        tableView.rowHeight = UITableView.automaticDimension
+        self.title = String(localized: "notifications")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     func addData() {
         var notificationItem1 = NotificationItem(type: Notification_Types.Comment, title: "Eğitim Başlamak Üzere", createdDate: 1738307789000, content: "Frank Madison ile Alt Bacak Egzersizi 5 dk. içerinde başlayacak.", data: nil)

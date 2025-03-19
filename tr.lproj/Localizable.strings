@@ -132,3 +132,8 @@
 "training_exists"= "This time esists on your scheduled ads";
 "show_details"= "Show Details";
 "weight_change_list"= "Weight Change List";
+"notifications"="Notifications";
+"spec_ask"="Please add your specializations first. Do you want add now?";
+"create_str"="Create";
+"buy"="Buy";
+

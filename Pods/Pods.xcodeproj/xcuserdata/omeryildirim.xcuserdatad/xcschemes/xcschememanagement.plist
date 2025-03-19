@@ -9,17 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AvailableHapticFeedback-AvailableHapticFeedback.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AvailableHapticFeedback.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MultiSlider-MultiSlider.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

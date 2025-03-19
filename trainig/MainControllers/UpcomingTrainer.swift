@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import UserNotifications
+
 class UpcomingTrainer: UIViewController {
 
     @IBOutlet weak var profile_photo: RoundedImage!
@@ -17,11 +19,20 @@ class UpcomingTrainer: UIViewController {
     @IBOutlet weak var fullname: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         userData=CacheData.getUserData()!
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.requestNotificationPermission()
+        }
         tableView.dataSource = self
         tableView.delegate = self
         getUpcomingData(ind:true)
         // Do any additional setup after loading the view.
+    }
+    @IBAction func go_notifications(_ sender: Any) {
+        let n = storyboard?
+            .instantiateViewController(withIdentifier: "noti")  as! Notifications
+        self.navigationController?.pushViewController(n, animated: true)
     }
     override func viewWillAppear(_ animated: Bool) {
         userData=CacheData.getUserData()!
@@ -162,6 +173,7 @@ class UpcomingTrainer: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }
 extension UpcomingTrainer: UITableViewDataSource, UITableViewDelegate{

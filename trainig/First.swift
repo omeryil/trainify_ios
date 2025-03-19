@@ -10,6 +10,7 @@ import UIKit
 class First: UINavigationController {
 
     let functions = Functions()
+    var screen:UIViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         //CacheData.clearAll()
@@ -72,14 +73,20 @@ class First: UINavigationController {
             appearance.tintColor = UIColor.lightGray
             var n:UIViewController!
             let role=userData["role"] as! String
+            var x:UITabBarController!
             if isFirst {
                 n = storyboard?.instantiateViewController(withIdentifier: "vpager") as! ViewPager
             }else{
+               
                 if role=="user"{
                     n = self.storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+                    x = n as? UITabBarController
                 }else{
                     n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
+                    x = n as? UITabBarController
+                   
                 }
+                
             }
             let navController = UINavigationController(rootViewController: n)
             sceneDelegate.window?.rootViewController = navController

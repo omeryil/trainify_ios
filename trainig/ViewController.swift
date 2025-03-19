@@ -52,7 +52,7 @@ class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
                 n = storyboard?.instantiateViewController(withIdentifier: "tpage") as! TrainerTabViewController
             }
         }
-        //let n = storyboard?.instantiateViewController(withIdentifier: "upage") as! UserTabViewController
+        
         self.navigationController!.pushViewController(n, animated: true)
     }
     
@@ -60,10 +60,14 @@ class ViewController: UIViewController,sign_in_up_delegate,indicatorDelegate {
     @IBOutlet var sView: UIView!
     @IBOutlet weak var vc: UIView!
     @IBOutlet weak var segment: CustomSegmented!
+    var screen:UIViewController!
     var views: [UIViewController] = [SignInView(),SignUpView()]
     var position: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         self.navigationController?.isNavigationBarHidden = true
         for v in views{
             if v is SignInView{

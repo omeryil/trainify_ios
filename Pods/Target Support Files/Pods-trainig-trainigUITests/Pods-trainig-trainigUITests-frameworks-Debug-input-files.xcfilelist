@@ -1,5 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-trainig-trainigUITests/Pods-trainig-trainigUITests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AvailableHapticFeedback/AvailableHapticFeedback.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/MultiSlider/MultiSlider.framework
 ${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework

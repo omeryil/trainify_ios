@@ -161,6 +161,9 @@ class SettingsController: UITableViewController {
                     item.title {
                         case "Logout":
                         CacheData.clearAll()
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            appDelegate.logoutUser()
+                        }
                         let loginout = self.storyboard?.instantiateViewController(withIdentifier: "loginout") as! ViewController
                         self.navigationController?.pushViewController(loginout, animated: true)
                     default:

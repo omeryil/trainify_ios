@@ -862,9 +862,6 @@
                             <outlet property="delegate" destination="TGf-DH-Px4" id="LTt-ku-Zlb"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="table" destination="bdl-s3-60F" id="V4Q-Pd-uxa"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nok-ra-XZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1259,6 +1256,9 @@
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="bell.badge" catalog="system"/>
+                                                <connections>
+                                                    <action selector="go_notifications:" destination="3hZ-hz-f97" eventType="touchUpInside" id="lkO-Z7-Jxh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2263,7 +2263,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="26.666666666666668"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dumbbell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BlW-Xq-UVz">
-                                                                                    <rect key="frame" x="0.0" y="7.6666666666666625" width="17.333333333333332" height="11.666666666666666"/>
+                                                                                    <rect key="frame" x="0.0" y="7.6666666666666599" width="17.333333333333332" height="11.666666666666668"/>
                                                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="BlW-Xq-UVz" secondAttribute="height" multiplier="1:1" id="fW2-q3-FRU"/>
@@ -2602,7 +2602,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ccb-6a-7CF">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ccb-6a-7CF">
                                 <rect key="frame" x="8" y="67" width="377" height="743"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4174,7 +4174,7 @@
         <!--First-->
         <scene sceneID="1Dz-hk-eiF">
             <objects>
-                <navigationController id="o7U-ea-dJK" customClass="First" customModule="trainig" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="first" id="o7U-ea-dJK" customClass="First" customModule="trainig" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WSE-9Z-o6U">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -4355,7 +4355,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzA-Bu-LP3" customClass="CustomButton" customModule="trainig" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzA-Bu-LP3" customClass="CustomButton" customModule="trainig" customModuleProvider="target">
                                 <rect key="frame" x="304.33333333333331" y="696.33333333333337" width="56.666666666666686" height="56.666666666666629"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dzA-Bu-LP3" secondAttribute="height" multiplier="1:1" id="KVl-ze-RAs"/>
@@ -4386,6 +4386,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="n61-gv-Xgf"/>
                     <connections>
+                        <outlet property="add_btn" destination="dzA-Bu-LP3" id="ZA0-u9-bKv"/>
                         <outlet property="adsTable" destination="rsW-mo-FSd" id="e8N-vu-aoF"/>
                         <outlet property="calendar" destination="VT8-V1-1op" id="z9X-ut-j6T"/>
                     </connections>
@@ -4456,6 +4457,9 @@
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="bell.badge" catalog="system"/>
+                                                <connections>
+                                                    <action selector="go_notifications:" destination="aYf-fL-WHu" eventType="touchUpInside" id="qqw-Wf-aJV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4995,21 +4999,6 @@
                                             <constraint firstAttribute="height" constant="1" id="Lub-26-E9r"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHe-xx-Ybq">
-                                        <rect key="frame" x="322.66666666666669" y="8.0000000000000036" width="54.333333333333314" height="54.333333333333343"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="qHe-xx-Ybq" secondAttribute="height" multiplier="1:1" id="DNa-Uj-ju1"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="close:" destination="9yR-dr-jPy" eventType="touchUpInside" id="yen-JI-TK0"/>
-                                            <action selector="close_cl:" destination="qde-eE-7ib" eventType="touchUpInside" id="2qS-DE-bmb"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFL-Dl-lpn">
                                         <rect key="frame" x="170.66666666666666" y="25" width="52" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -5227,11 +5216,19 @@
                                             <constraint firstAttribute="height" constant="90" id="uh9-AF-gjr"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHD-le-i7w">
-                                        <rect key="frame" x="0.0" y="16" width="95" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHD-le-i7w">
+                                        <rect key="frame" x="276.66666666666669" y="21.000000000000004" width="108.33333333333331" height="34.333333333333343"/>
                                         <color key="tintColor" name="MainColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Schedule"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Schedule">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="16"/>
+                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="schedule_action:" destination="9yR-dr-jPy" eventType="touchUpInside" id="Q7L-8G-c5X"/>
                                         </connections>
@@ -5243,18 +5240,16 @@
                                     <constraint firstItem="mIq-br-yBa" firstAttribute="leading" secondItem="V80-0u-CRH" secondAttribute="leading" constant="8" id="1cE-Jj-azV"/>
                                     <constraint firstAttribute="trailing" secondItem="mIq-br-yBa" secondAttribute="trailing" constant="8" id="1dX-qp-zxg"/>
                                     <constraint firstAttribute="trailing" secondItem="Bsz-uS-Rg5" secondAttribute="trailing" constant="8" id="1gh-gM-S1d"/>
-                                    <constraint firstItem="qHe-xx-Ybq" firstAttribute="top" secondItem="V80-0u-CRH" secondAttribute="top" constant="8" id="2BC-nJ-84d"/>
                                     <constraint firstAttribute="trailing" secondItem="dg8-eO-7QB" secondAttribute="trailing" id="3gD-0C-TpK"/>
+                                    <constraint firstAttribute="trailing" secondItem="dHD-le-i7w" secondAttribute="trailing" constant="8" id="8y7-WN-dhB"/>
                                     <constraint firstItem="PZz-Xv-Wqx" firstAttribute="top" secondItem="mIq-br-yBa" secondAttribute="bottom" id="9NL-5g-xE1"/>
                                     <constraint firstItem="ok7-P0-moa" firstAttribute="width" secondItem="V80-0u-CRH" secondAttribute="width" multiplier="0.4" id="9ZD-Hz-AXd"/>
-                                    <constraint firstItem="dg8-eO-7QB" firstAttribute="top" secondItem="qHe-xx-Ybq" secondAttribute="bottom" constant="8" id="ADs-WZ-9bn"/>
+                                    <constraint firstItem="dHD-le-i7w" firstAttribute="top" secondItem="ok7-P0-moa" secondAttribute="bottom" constant="16" id="B4d-pR-xzf"/>
                                     <constraint firstItem="ok7-P0-moa" firstAttribute="centerX" secondItem="V80-0u-CRH" secondAttribute="centerX" id="Bic-Fv-pyi"/>
                                     <constraint firstItem="Bsz-uS-Rg5" firstAttribute="leading" secondItem="V80-0u-CRH" secondAttribute="leading" constant="8" id="CEw-c8-0dk"/>
-                                    <constraint firstItem="dHD-le-i7w" firstAttribute="leading" secondItem="V80-0u-CRH" secondAttribute="leading" id="G4e-uY-qIP"/>
-                                    <constraint firstItem="dHD-le-i7w" firstAttribute="top" secondItem="V80-0u-CRH" secondAttribute="top" constant="16" id="KRH-Zh-4cO"/>
+                                    <constraint firstItem="dg8-eO-7QB" firstAttribute="top" secondItem="dHD-le-i7w" secondAttribute="bottom" constant="15" id="Ja0-r8-iFk"/>
                                     <constraint firstItem="aff-kP-LMh" firstAttribute="top" secondItem="Tgr-Ov-KOo" secondAttribute="bottom" id="MWQ-GX-v8x"/>
                                     <constraint firstItem="Tgr-Ov-KOo" firstAttribute="top" secondItem="QiZ-Md-0rH" secondAttribute="bottom" id="OCb-if-7Je"/>
-                                    <constraint firstAttribute="trailing" secondItem="qHe-xx-Ybq" secondAttribute="trailing" constant="16" id="PRc-Tg-hPi"/>
                                     <constraint firstAttribute="trailing" secondItem="QiZ-Md-0rH" secondAttribute="trailing" constant="8" id="QCK-jM-X9i"/>
                                     <constraint firstItem="QiZ-Md-0rH" firstAttribute="top" secondItem="Bsz-uS-Rg5" secondAttribute="bottom" constant="8" id="VtK-t3-EgZ"/>
                                     <constraint firstItem="aff-kP-LMh" firstAttribute="leading" secondItem="V80-0u-CRH" secondAttribute="leading" constant="8" id="emG-23-zOq"/>
@@ -5294,6 +5289,7 @@
                         <outlet property="price_txt" destination="dhb-YU-3ol" id="CGB-zO-0Ga"/>
                         <outlet property="repetition_interval_lbl" destination="eWE-wR-R6m" id="JRk-62-1zA"/>
                         <outlet property="repetition_interval_txt" destination="1mx-wq-wqc" id="yvK-nY-efo"/>
+                        <outlet property="schedule_btn" destination="dHD-le-i7w" id="zbY-PN-e4g"/>
                         <outlet property="time_finish_txt" destination="xvy-hV-491" id="Fby-Wf-FlD"/>
                         <outlet property="time_range_lbl" destination="ucq-WO-lED" id="pYn-lG-4Xz"/>
                         <outlet property="time_start_txt" destination="ZaT-WJ-ZK3" id="ug0-Ya-d7m"/>
@@ -5463,8 +5459,8 @@
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="microphone.fill" catalog="system" width="110" height="128"/>
-        <image name="person" width="96" height="96"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person" width="96" height="96"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="phone.down.fill" catalog="system" width="128" height="53"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>

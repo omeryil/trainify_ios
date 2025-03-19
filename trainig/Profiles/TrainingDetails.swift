@@ -106,12 +106,22 @@ class TrainingDetails: UIViewController,FSCalendarDelegate,FSCalendarDataSource 
         if isTrainer {
             return
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy))
+        let button = UIButton(type: .system)
+        button.setTitle(String(localized:"buy"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .main
+        button.layer.cornerRadius = 8
+        button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+        button.addTarget(self, action: #selector(buy), for: .touchUpInside)
+
+        let barButtonItem = UIBarButtonItem(customView: button)
+        navigationItem.rightBarButtonItem = barButtonItem
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy))
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    @objc func buy(_ button: UIBarButtonItem?) {
+    @objc func buy() {
         
         var contents:[Any] = []
         let selected = cds.filter { $0.selected }

@@ -18,7 +18,7 @@ extension MultiSlider {
         isAccessibilityElement = true
         accessibilityIdentifier = "multi_slider"
         accessibilityLabel = "slider"
-        accessibilityTraits = [.adjustable]
+        accessibilityTraits = [.allowsDirectInteraction]
 
         minimumView.isHidden = true
         maximumView.isHidden = true
@@ -26,6 +26,8 @@ extension MultiSlider {
         if #available(iOS 11.0, *) {
             valueLabelFormatter.addObserverForAllProperties(observer: self)
         }
+
+        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
     }
 
     private func setupPanGesture() {
@@ -78,12 +80,15 @@ extension MultiSlider {
     func setupTrackLayoutMargins() {
         let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: 2, height: 2)
         let thumbDiameter = orientation == .vertical ? thumbSize.height : thumbSize.width
-        let halfThumb = thumbDiameter / 2 - 1 // 1 pixel for semi-transparent boundary
+        let margin = (centerThumbOnTrackEnd || nil != snapImage)
+            ? 0
+            : thumbDiameter / 2 - 1 // 1 pixel for semi-transparent boundary
         if orientation == .vertical {
-            trackView.layoutMargins = UIEdgeInsets(top: halfThumb, left: 0, bottom: halfThumb, right: 0)
+            trackView.layoutMargins = UIEdgeInsets(top: margin, left: 0, bottom: margin, right: 0)
+            constrainVerticalTrackViewToLayoutMargins()
             constrain(.width, to: max(thumbSize.width, trackWidth), relation: .greaterThanOrEqual)
         } else {
-            trackView.layoutMargins = UIEdgeInsets(top: 0, left: halfThumb, bottom: 0, right: halfThumb)
+            trackView.layoutMargins = UIEdgeInsets(top: 0, left: margin, bottom: 0, right: margin)
             constrainHorizontalTrackViewToLayoutMargins()
             constrain(.height, to: max(thumbSize.height, trackWidth), relation: .greaterThanOrEqual)
         }
@@ -110,21 +115,17 @@ extension MultiSlider {
     }
 
     func adjustThumbCountToValueCount() {
-        if value.count == thumbViews.count {
-            return
-        } else if value.count < thumbViews.count {
-            thumbViews.removeViewsStartingAt(value.count)
-            valueLabels.removeViewsStartingAt(value.count)
-        } else { // add thumbViews
-            for _ in thumbViews.count ..< value.count {
-                addThumbView()
-            }
+        guard value.count != thumbViews.count else { return }
+        thumbViews.removeAllViews()
+        valueLabels.removeAllViews()
+        for _ in value {
+            addThumbView()
         }
         updateOuterTrackViews()
     }
 
     func updateOuterTrackViews() {
-        outerTrackViews.removeViewsStartingAt(0)
+        outerTrackViews.removeAllViews()
         outerTrackViews.removeAll()
         guard nil != outerTrackColor else { return }
         guard let lastThumb = thumbViews.last else { return }
@@ -149,9 +150,19 @@ extension MultiSlider {
         return view
     }
 
+    func addSnapView(at snapValue: CGFloat) {
+        let snapView = UIImageView(image: snapImage)
+        snapView.tintColor = actualTintColor
+        snapViews.append(snapView)
+        slideView.addConstrainedSubview(snapView, constrain: NSLayoutConstraint.Attribute.center(in: orientation).perpendicularCenter)
+        slideView.sendSubviewToBack(snapView)
+        position(marker: snapView, at: snapValue)
+    }
+
     private func addThumbView() {
         let i = thumbViews.count
         let thumbView = UIImageView(image: thumbImage ?? defaultThumbImage)
+        thumbView.applyTint(color: thumbTintColor)
         thumbView.addShadow()
         thumbViews.append(thumbView)
         slideView.addConstrainedSubview(thumbView, constrain: NSLayoutConstraint.Attribute.center(in: orientation).perpendicularCenter)
@@ -179,10 +190,13 @@ extension MultiSlider {
         }
         let thumbView = thumbViews[i]
         slideView.constrain(valueLabel, at: valueLabelPosition.perpendicularCenter, to: thumbView)
+        let position = valueLabelAlternatePosition && (i % 2) == 0
+            ? valueLabelPosition.opposite
+            : valueLabelPosition
         slideView.constrain(
-            valueLabel, at: valueLabelPosition.opposite,
-            to: thumbView, at: valueLabelPosition,
-            diff: -valueLabelPosition.inwardSign * thumbView.diagonalSize / 4
+            valueLabel, at: position.opposite,
+            to: thumbView, at: position,
+            diff: -position.inwardSign * thumbView.diagonalSize / 4
         )
         valueLabels.append(valueLabel)
         updateValueLabel(i)
@@ -195,7 +209,12 @@ extension MultiSlider {
         } else {
             labelValue = value[i]
         }
-        valueLabels[i].text = valueLabelFormatter.string(from: NSNumber(value: Double(labelValue)))
+        valueLabels[i].text = valueLabelText(i, labelValue: labelValue)
+    }
+
+    func valueLabelText(_ i: Int, labelValue: CGFloat) -> String? {
+        valueLabelTextForThumb?(i, labelValue)
+            ?? valueLabelFormatter.string(from: NSNumber(value: Double(labelValue)))
     }
 
     func updateAllValueLabels() {
@@ -204,38 +223,36 @@ extension MultiSlider {
         }
     }
 
+    func updateValueLabelPosition() {
+        valueLabels.removeAllViews()
+        if valueLabelPosition != .notAnAttribute {
+            for i in 0 ..< thumbViews.count {
+                addValueLabel(i)
+            }
+        }
+    }
+
     func updateValueCount(_ count: Int) {
         guard count != value.count else { return }
         isSettingValue = true
+        defer { isSettingValue = false }
+
         if value.count < count {
             let appendCount = count - value.count
-            var startValue = value.last ?? minimumValue
-            let length = maximumValue - startValue
-            let relativeStepSize = snapStepSize / (maximumValue - minimumValue)
-            var step: CGFloat = 0
-            if value.isEmpty && 1 < appendCount {
-                step = (length / CGFloat(appendCount - 1)).truncated(relativeStepSize)
-            } else {
-                step = (length / CGFloat(appendCount)).truncated(relativeStepSize)
-                if !value.isEmpty {
-                    startValue += step
-                }
-            }
-            if 0 == step { step = relativeStepSize }
-            value += stride(from: startValue, through: maximumValue, by: step)
+            value += snapValues.isEmpty
+                ? value.distributedNewValues(count: appendCount, min: minimumValue, max: maximumValue)
+                : value.distributedNewValues(count: appendCount, allowedValues: snapValues)
+            value.sort()
         }
         if value.count > count { // don't add "else", since prev calc may add too many values in some cases
             value.removeLast(value.count - count)
         }
-
-        isSettingValue = false
     }
 
     func adjustValuesToStepAndLimits() {
         var adjusted = value.sorted()
         for i in 0 ..< adjusted.count {
-            let snapped = adjusted[i].rounded(snapStepSize)
-            adjusted[i] = min(maximumValue, max(minimumValue, snapped))
+            adjusted[i] = snap.snap(value: adjusted[i])
         }
 
         isSettingValue = true
@@ -248,26 +265,35 @@ extension MultiSlider {
     }
 
     func positionThumbView(_ i: Int) {
-        let thumbView = thumbViews[i]
-        let thumbValue = value[i]
-        slideView.removeFirstConstraint { $0.firstItem === thumbView && $0.firstAttribute == .center(in: orientation) }
-        let thumbRelativeDistanceToMax = (maximumValue - thumbValue) / (maximumValue - minimumValue)
+        position(marker: thumbViews[i], at: value[i])
+    }
+
+    private func position(marker: UIView, at value: CGFloat) {
+        guard let containerView = marker.superview else { return }
+        containerView.removeFirstConstraint { $0.firstItem === marker && $0.firstAttribute == .center(in: orientation) }
+        let minMaxValueDifference = maximumValue - minimumValue
+        let relativeDistanceToMax = minMaxValueDifference.isZero ? 0 : (maximumValue - value) / minMaxValueDifference
         if orientation == .horizontal {
-            if thumbRelativeDistanceToMax < 1 {
-                slideView.constrain(thumbView, at: .centerX, to: slideView, at: .right, ratio: CGFloat(1 - thumbRelativeDistanceToMax))
+            if relativeDistanceToMax < 1 {
+                containerView.constrain(marker, at: .centerX, to: containerView, at: .right, ratio: CGFloat(1 - relativeDistanceToMax))
             } else {
-                slideView.constrain(thumbView, at: .centerX, to: slideView, at: .left)
+                containerView.constrain(marker, at: .centerX, to: containerView, at: .left)
             }
         } else { // vertical orientation
-            if thumbRelativeDistanceToMax.isNormal {
-                slideView.constrain(thumbView, at: .centerY, to: slideView, at: .bottom, ratio: CGFloat(thumbRelativeDistanceToMax))
+            if relativeDistanceToMax.isNormal {
+                containerView.constrain(marker, at: .centerY, to: containerView, at: .bottom, ratio: CGFloat(relativeDistanceToMax))
             } else {
-                slideView.constrain(thumbView, at: .centerY, to: slideView, at: .top)
+                containerView.constrain(marker, at: .centerY, to: containerView, at: .top)
             }
         }
         UIView.animate(withDuration: 0.1) {
-            self.slideView.updateConstraintsIfNeeded()
+            containerView.updateConstraintsIfNeeded()
         }
+    }
+
+    func changePositionConstraint(for subview: UIView?, to constant: CGFloat) {
+        guard let constraint = subview?.superview?.constraints.first(where: { $0.firstItem === subview && $0.firstAttribute == .center(in: orientation) }) else { return }
+        constraint.constant = constant * constraint.secondAttribute.inwardSign
     }
 
     func layoutTrackEdge(toView: UIImageView, edge: NSLayoutConstraint.Attribute, superviewEdge: NSLayoutConstraint.Attribute) {

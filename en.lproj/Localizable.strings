@@ -133,6 +133,10 @@
 "done"= "Done";
 "training_exists"= "This time esists on your scheduled ads";
 "show_details"= "Show Details";
+"notifications"="Notifications";
+"spec_ask"="Please add your specializations first. Do you want add now?";
+"create_str"="Create";
+"buy"="Buy";
 
 
 

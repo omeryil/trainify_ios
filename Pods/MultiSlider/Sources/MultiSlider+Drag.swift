@@ -18,12 +18,10 @@ extension MultiSlider: UIGestureRecognizerDelegate {
     @objc open func didDrag(_ panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
         case .began:
-            if isHapticSnap { selectionFeedbackGenerator.prepare() }
             // determine thumb to drag
             let location = panGesture.location(in: slideView)
             draggedThumbIndex = closestThumb(point: location)
         case .ended, .cancelled, .failed:
-            if isHapticSnap { selectionFeedbackGenerator.end() }
             sendActions(for: .touchUpInside) // no bounds check for now (.touchUpInside vs .touchUpOutside)
             if !isContinuous { sendActions(for: [.valueChanged, .primaryActionTriggered]) }
         default:
@@ -75,13 +73,13 @@ extension MultiSlider: UIGestureRecognizerDelegate {
         } else {
             newValue += minimumValue
         }
-        newValue = newValue.rounded(snapStepSize)
+        newValue = snap.snap(value: newValue)
         guard newValue != value[draggedThumbIndex] else { return }
         isSettingValue = true
         value[draggedThumbIndex] = newValue
         isSettingValue = false
-        if (isHapticSnap && snapStepSize > 0) || relativeValue == 0 || relativeValue == 1 {
-            selectionFeedbackGenerator.generateFeedback()
+        if snap != .never || relativeValue == 0 || relativeValue == 1 {
+            selectionFeedbackGenerator?.selectionChanged()
         }
         if isContinuous { sendActions(for: [.valueChanged, .primaryActionTriggered]) }
     }
@@ -94,6 +92,7 @@ extension MultiSlider: UIGestureRecognizerDelegate {
                 updateValueLabel(draggedThumbIndex + 1)
             }
         }
+        UIAccessibility.post(notification: .announcement, argument: valueLabelText(draggedThumbIndex, labelValue: value[draggedThumbIndex]))
     }
 
     private func closestThumb(point: CGPoint) -> Int {
@@ -113,7 +112,7 @@ extension MultiSlider: UIGestureRecognizerDelegate {
                 break
             }
             minimumDistance = distance
-            if distance < thumbViews[i].diagonalSize {
+            if distance < thumbViews[i].diagonalSize + thumbTouchExpansionRadius {
                 closest = i
             }
         }
